@@ -1,0 +1,9 @@
+ideas for the project:
+
+
+puzzles:
+
+light game (the one on a 3x3 grid and you're trying to get all the lights to one color)
+tic tac toe (but the trick is that you can go outside the grid)
+game where you have to slide blocks around to get a specific block outside of the box
+sliding tiles game
