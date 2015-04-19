@@ -4,6 +4,24 @@ ideas for the project:
 puzzles:
 
 light game (the one on a 3x3 grid and you're trying to get all the lights to one color)
+---i already made this one on my calculator. it will take almost no time
+
 tic tac toe (but the trick is that you can go outside the grid)
+---what about that tictactoeception? (also somewhat simple though)
+
 game where you have to slide blocks around to get a specific block outside of the box
+---(i kinda hated those games)
+
 sliding tiles game
+---elaborate?
+
+
+
+top down dungeon game? (kinda like binding of isaac?)
+
+
+rip-off: 
+		pokemon
+		pacman
+		frogger
+		
