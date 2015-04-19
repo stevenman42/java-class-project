@@ -44,8 +44,6 @@ public class LightSource extends GameObject{
 			dR = 1;
 		}
 		glowCount++;
-
-
 		
 	}
 
