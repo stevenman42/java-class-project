@@ -65,6 +65,7 @@ public class Game extends Canvas implements Runnable{
         }
 		handler.addObject(new LightSource(300,200,ID.Light,100));
 		handler.addObject(new LightSource(100,100,ID.Light,50));
+		handler.addObject(new LightSource(425, 200, ID.Light, 50));
 		
 	}
 	
