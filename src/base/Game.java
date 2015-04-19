@@ -50,7 +50,7 @@ public class Game extends Canvas implements Runnable{
 		
 		new Window(WIDTH, HEIGHT, "Elite Group Project", this);
 		
-		addKeyListener(new KeyInput());
+		addKeyListener(new KeyInput(handler));
 		addMouseListener(new MouseInput());
 		
 		hud = new HUD();
@@ -63,9 +63,11 @@ public class Game extends Canvas implements Runnable{
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
 		handler.addObject(new LightSource(300,200,ID.Light,100));
 		handler.addObject(new LightSource(100,100,ID.Light,50));
 		handler.addObject(new LightSource(425, 200, ID.Light, 50));
+		handler.addObject(new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler));
 		
 	}
 	
