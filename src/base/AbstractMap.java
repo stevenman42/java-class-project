@@ -17,7 +17,7 @@ public abstract class AbstractMap {
 	}
 	
 	/**
-	 * updtes the map
+	 * updates the map
 	 */
 	public void tick(){
 		
