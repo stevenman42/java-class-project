@@ -28,11 +28,9 @@ public class LightSource extends GameObject{
 				new Color[]{new Color(0,0,0,0), new Color(0,0,0,255)});
 		g2.setPaint(p);
 		g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
-		
 	}
 	
 	public void tick(){
-		
 		if(glowCount >=5){
 			radius += dR;
 			glowCount = 0;
