@@ -12,8 +12,8 @@ public abstract class AbstractMap {
 	/**
 	 * Default constructor
 	 */
-	public AbstractMap(){
-		handler = new Handler();
+	public AbstractMap(Handler handler){
+		this.handler = handler;
 	}
 	
 	/**
@@ -24,11 +24,11 @@ public abstract class AbstractMap {
 	}
 	
 	/**
-	 * runs the render() method for all the objects in the game
+	 * renders the map
 	 * @param g
 	 */
 	public void render(Graphics g){
-		handler.render(g);
+		
 	}
 	
 	/**
