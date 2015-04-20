@@ -4,19 +4,48 @@ import java.awt.Graphics;
 
 public abstract class AbstractMap {
 	
-	protected State state;
-	protected Handler handler;
+	/**
+	 * the handler for the map
+	 */
+	private Handler handler;
 	
-	public AbstractMap(State state, Handler handler){
-		this.handler = handler;
-		this.state = state;		
+	/**
+	 * Default constructor
+	 */
+	public AbstractMap(){
+		handler = new Handler();
 	}
 	
-	public abstract void render(Graphics g);
-	public abstract void tick();
+	/**
+	 * runs the tick() method for all GameObjects in the map
+	 */
+	public void tick(){
+		handler.tick();
+	}
+	
+	/**
+	 * runs the render() method for all the objects in the game
+	 * @param g
+	 */
+	public void render(Graphics g){
+		handler.render(g);
+	}
+	
+	/**
+	 * adds a GameObject to the map
+	 * @param go
+	 */
+	public void addGameObject(GameObject go){
+		handler.addObject(go);
+	}
+	
+	/**
+	 * removes the GameObject to the map
+	 * @param go
+	 */
+	public void removeGameObject(GameObject go){
+		handler.removeObject(go);
 
-	public State getState(){
-		return state;
 	}
 	
 }
