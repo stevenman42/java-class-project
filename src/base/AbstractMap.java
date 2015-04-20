@@ -30,22 +30,6 @@ public abstract class AbstractMap {
 	public void render(Graphics g){
 		
 	}
-	
-	/**
-	 * adds a GameObject to the map
-	 * @param go
-	 */
-	public void addGameObject(GameObject go){
-		handler.addObject(go);
-	}
-	
-	/**
-	 * removes the GameObject to the map
-	 * @param go
-	 */
-	public void removeGameObject(GameObject go){
-		handler.removeObject(go);
 
-	}
 	
 }
