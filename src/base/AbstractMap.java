@@ -17,10 +17,10 @@ public abstract class AbstractMap {
 	}
 	
 	/**
-	 * runs the tick() method for all GameObjects in the map
+	 * updtes the map
 	 */
 	public void tick(){
-		handler.tick();
+		
 	}
 	
 	/**
