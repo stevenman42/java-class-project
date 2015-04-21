@@ -2,7 +2,9 @@ package base;
 
 public enum MapID {
 	
-	map1(),
-	map2();
+	Tile1(),
+	Tile2(),
+	Chest(),
+	Door();
 
 }
