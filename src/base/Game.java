@@ -15,7 +15,8 @@ import javax.imageio.ImageIO;
 
 public class Game extends Canvas implements Runnable{
 
-	private static final long serialVersionUID = 3054892105735692509L;
+	//private static final long serialVersionUID = 3054892105735692509L;
+	private static final long serialVersionUID = 6969696969696969696L;
 	
 	//set window size
 	public static final int WIDTH = 720, HEIGHT = WIDTH / 14 * 9;
