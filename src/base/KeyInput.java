@@ -23,25 +23,25 @@ public class KeyInput extends KeyAdapter{
 			GameObject tempObject = handler.object.get(i);
 			
 			if(tempObject.getId() == ID.Player){
-				if(key == KeyEvent.VK_UP){
+				if(key == KeyEvent.VK_W){
 					tempObject.setDY(-5);
 					keyDown[0] = true;
 				}
 			}
 			if(tempObject.getId() == ID.Player){
-				if(key == KeyEvent.VK_LEFT){
+				if(key == KeyEvent.VK_A){
 					tempObject.setDX(-5);
 					keyDown[1] = true;
 				}
 			}
 			if(tempObject.getId() == ID.Player){
-				if(key == KeyEvent.VK_DOWN){
+				if(key == KeyEvent.VK_S){
 					tempObject.setDY(5);
 					keyDown[2] = true;
 				}
 			}
 			if(tempObject.getId() == ID.Player){
-				if(key == KeyEvent.VK_RIGHT){
+				if(key == KeyEvent.VK_D){
 					tempObject.setDX(5);
 					keyDown[3] = true;
 				}
@@ -60,10 +60,10 @@ public class KeyInput extends KeyAdapter{
 			if(tempObject.getId() == ID.Player){
 				//key events for player one
 				
-				if(key == KeyEvent.VK_UP) keyDown[0] = false;
-				if(key == KeyEvent.VK_DOWN) keyDown[2] = false;
-				if(key == KeyEvent.VK_LEFT) keyDown[1] = false;
-				if(key == KeyEvent.VK_RIGHT) keyDown[3] = false;
+				if(key == KeyEvent.VK_W) keyDown[0] = false;
+				if(key == KeyEvent.VK_S) keyDown[2] = false;
+				if(key == KeyEvent.VK_A) keyDown[1] = false;
+				if(key == KeyEvent.VK_D) keyDown[3] = false;
 
 				
 				//stop movement

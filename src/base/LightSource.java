@@ -29,7 +29,7 @@ public class LightSource extends GameObject{
 				new float[]{0,1f},
 				new Color[]{new Color(0,0,0,0), new Color(0,0,0,255)});
 		g2.setPaint(p);
-		g2.fillOval((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
+		g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
 		
 	}
 	
