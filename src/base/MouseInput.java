@@ -1,10 +1,13 @@
 package base;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
 public class MouseInput implements MouseListener{
+	
+	public static Point mPoint;
 
 	
 	public void mouseClicked(MouseEvent e) {

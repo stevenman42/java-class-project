@@ -2,6 +2,7 @@ package base;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 
@@ -39,10 +40,19 @@ public class Player extends GameObject{
 		return new Rectangle((int)x,(int)y,(int)playerWidth,(int)playerHeight);
 	}
 
-	@Override
+	
 	public Ellipse2D getCircleBounds() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public double getAngle(){
+		Point mP = MouseMover.mPoint;
+		double opp, adj;
+		opp = mP.getY() - y;
+		adj = mP.getX() - x;
+		if(adj < 0)
+			return -Math.tanh(opp/adj)*360 + Math.PI;
+		return -Math.tanh(opp/adj)*2*Math.PI;
 	}
 	
 

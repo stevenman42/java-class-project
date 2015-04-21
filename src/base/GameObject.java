@@ -2,6 +2,7 @@ package base;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
 
@@ -30,7 +31,7 @@ public abstract class GameObject {
 	
 	//test for if two objects intersect
 	public abstract Rectangle getBounds();
-	public abstract Ellipse2D getCircleBounds();
+	public abstract Shape getCircleBounds();
 	
 	
 	//accesors and mutators for the vars
