@@ -34,13 +34,22 @@ public class LevelGenerator {
 	/**
 	 * 
 	 * This class only needs to be used when creating a "default" room with no parameters
+	 * Calm down bennett, we probably won't need this
 	 * 
 	 * @return newRoom
 	 */
 	private int[][] GenerateRoom(){
-		int[][] newRoom = new int[(int)Math.random() * 7 + 10][(int)Math.random() * 7 + 10];
+		
+		// creates a 2d array with a minimum length and with of 10, and a maximum of 16
+		// Note: this does not include the walls.  The total length and with are in [12, 18]
+		int[][] newRoom = new int[(int)Math.random() * 7 + 12][(int)Math.random() * 7 + 12];
+		
 		for (int i = 0; i < newRoom[0].length; i ++){
 			newRoom[0][i] = wallID;
+		}
+		
+		for (int i = 0; i < newRoom[0].length; i++){
+			newRoom[newRoom.length - 1][0] = wallID;
 		}
 		
 		
@@ -60,7 +69,7 @@ public class LevelGenerator {
 	public int[][] CreateLevel(){
 		int[][] newLevel = new int[128][128];
 		
-		
+		GenerateRoom();
 		
 		
 		
