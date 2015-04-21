@@ -19,6 +19,7 @@ public class Game extends Canvas implements Runnable{
 
 	//private static final long serialVersionUID = 3054892105735692509L;
 	// thanks chad
+	// private static final long serialVersionID = chad's_mom's_phone_number;
 	private static final long serialVersionUID = 6969696969696969696L;
 	
 	//set window size
