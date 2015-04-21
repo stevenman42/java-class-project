@@ -11,7 +11,7 @@ public abstract class GameObject {
 	//everything is a gameobject
 	
 
-	protected float x,y,z;
+	protected float x,y;
 	protected ID id;
 	protected float dX,dY;
 	protected float ddX, ddY;
