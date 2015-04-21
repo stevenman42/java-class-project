@@ -1,9 +1,11 @@
 package base;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 
 public class Overlay {
 
@@ -13,15 +15,18 @@ public class Overlay {
 		this.handler = handler;
 	}
 	
-	public void render(Graphics2D g2){
+	public void render(Graphics g){
 		
+		
+		Graphics2D g2 = (Graphics2D) g.create();
 		GameObject tempObject;
-		Rectangle clipRect;
+		Ellipse2D clipRect;
 		Area out;
 		for(int i = 0; i < handler.object.size(); i++){
 			tempObject = handler.object.get(i);
 			if(tempObject.getId() == ID.Light){
-				clipRect = tempObject.getBounds();
+				tempObject = (LightSource) tempObject;
+				clipRect = tempObject.getCircleBounds();
 				out = new Area(new Rectangle(0,0,Game.WIDTH, Game.HEIGHT));
 				out.subtract(new Area(clipRect));
 				g2.clip(out);
@@ -34,6 +39,7 @@ public class Overlay {
 		out.subtract(new Area(clipRect));
 		g2.clip(out);
 		*/
+		
 		
 		g2.setColor(new Color(0,0,0, 255));
 		g2.fillRect(0,0,Game.WIDTH,Game.HEIGHT);

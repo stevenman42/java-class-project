@@ -7,6 +7,7 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
 
 public class LightSource extends GameObject{
 	
@@ -21,13 +22,14 @@ public class LightSource extends GameObject{
 	}
 
 	public void render(Graphics2D g2){
+		
 		Paint p = new RadialGradientPaint(
 				new Point((int)x,(int)y),
 				radius,
 				new float[]{0,1f},
 				new Color[]{new Color(0,0,0,0), new Color(0,0,0,255)});
 		g2.setPaint(p);
-		g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
+		g2.fillOval((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
 		
 	}
 	
@@ -55,6 +57,10 @@ public class LightSource extends GameObject{
 
 	public Rectangle getBounds() {
 		return new Rectangle((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
+	}
+	
+	public Ellipse2D getCircleBounds(){
+		return new Ellipse2D.Double((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
 	}
 	
 	public String toString(){

@@ -1,7 +1,9 @@
 package base;
 
+import java.awt.AlphaComposite;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -28,6 +30,8 @@ public class Game extends Canvas implements Runnable{
 	private Random r = new Random();
 	//make a handler
 	private Handler handler;
+	
+	public static Composite comp = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f);
 	
 	//make the HUD
 	private HUD hud;
@@ -64,6 +68,7 @@ public class Game extends Canvas implements Runnable{
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+		
 
 		handler.addObject(new LightSource(300,200,ID.Light,100));
 		handler.addObject(new LightSource(100,100,ID.Light,50));
@@ -121,12 +126,15 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void tick(){
-		handler.tick();
+		if(Game.State == Game.STATE.GAME){
+			handler.tick();
+		}
+		else{}
 	}
 	
 	public void render(){
 		this.requestFocus();
-		
+	
 		
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
@@ -137,7 +145,7 @@ public class Game extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g.create();
 		
-		g.drawImage(background, 0,0,this);
+
 		
 		if(State == Game.STATE.GAME){
 			g.setColor(Color.green);
@@ -150,9 +158,15 @@ public class Game extends Canvas implements Runnable{
 		}
 		
 		//g.fillRect(0, 0, WIDTH, HEIGHT);
-		
-		handler.render(g);
-		overlay.render(g2d);
+		if(Game.State == Game.STATE.GAME){
+			g.drawImage(background, 0,0,this);
+			handler.render(g);
+			overlay.render(g);
+		}
+		else if (Game.State == Game.STATE.MENU){
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			menu.render(g);
+		}
 		
 		g2d.dispose();
 		g.dispose();
@@ -162,4 +176,5 @@ public class Game extends Canvas implements Runnable{
 	public static void main(String args[]){
 		new Game();
 	}
+
 }

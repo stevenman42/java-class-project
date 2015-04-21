@@ -3,6 +3,7 @@ package base;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
 
 public class Player extends GameObject{
 	
@@ -36,6 +37,12 @@ public class Player extends GameObject{
 
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,(int)playerWidth,(int)playerHeight);
+	}
+
+	@Override
+	public Ellipse2D getCircleBounds() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
