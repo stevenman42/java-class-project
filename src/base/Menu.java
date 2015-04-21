@@ -9,8 +9,8 @@ import java.awt.Rectangle;
 
 public class Menu {
 
-	public Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
-	public Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);
+	public static Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
+	public static Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);
 	
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;

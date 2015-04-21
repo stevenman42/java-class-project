@@ -20,13 +20,13 @@ public class Overlay {
 		
 		Graphics2D g2 = (Graphics2D) g.create();
 		GameObject tempObject;
-		Ellipse2D clipRect;
+		Rectangle clipRect;
 		Area out;
 		for(int i = 0; i < handler.object.size(); i++){
 			tempObject = handler.object.get(i);
 			if(tempObject.getId() == ID.Light){
 				tempObject = (LightSource) tempObject;
-				clipRect = tempObject.getCircleBounds();
+				clipRect = tempObject.getBounds();
 				out = new Area(new Rectangle(0,0,Game.WIDTH, Game.HEIGHT));
 				out.subtract(new Area(clipRect));
 				g2.clip(out);
