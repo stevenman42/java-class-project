@@ -40,6 +40,7 @@ public class Game extends Canvas implements Runnable{
 	private Menu menu;
 	private Pause pause;
 	private Overlay overlay;
+	private ArcLight arcLight;
 	
 	private BufferedImage background;
 
@@ -58,12 +59,12 @@ public class Game extends Canvas implements Runnable{
 		new Window(WIDTH, HEIGHT, "Elite Group Project", this);
 		
 		addKeyListener(new KeyInput(handler));
+		addMouseMotionListener(new MouseMover());
 		addMouseListener(new MouseInput());
 		
 		hud = new HUD();
 		menu = new Menu();
 		pause = new Pause();
-		overlay = new Overlay(handler);
 		
 		try {
             background = ImageIO.read(new File("tank.png"));
@@ -75,7 +76,12 @@ public class Game extends Canvas implements Runnable{
 		handler.addObject(new LightSource(300,200,ID.Light,100));
 		handler.addObject(new LightSource(100,100,ID.Light,50));
 		handler.addObject(new LightSource(425, 200, ID.Light, 50));
-		handler.addObject(new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler));
+		Player p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
+		handler.addObject(p);
+		arcLight = new ArcLight(p.getX(),p.getY(),ID.ArcLight,100,10,p);
+		
+		overlay = new Overlay(handler, arcLight);
+
 		
 	}
 	
@@ -164,6 +170,7 @@ public class Game extends Canvas implements Runnable{
 			g.drawImage(background, 0,0,this);
 			handler.render(g);
 			overlay.render(g);
+			arcLight.render(g);
 		}
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);
