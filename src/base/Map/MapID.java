@@ -1,4 +1,4 @@
-package base;
+package base.Map;
 
 public enum MapID {
 	

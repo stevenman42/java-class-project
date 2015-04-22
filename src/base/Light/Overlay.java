@@ -1,4 +1,4 @@
-package base;
+package base.Light;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Arc2D.Double;
 import java.awt.geom.Area;
+
+import base.Handler;
 
 public class Overlay {
 

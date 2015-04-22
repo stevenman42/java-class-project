@@ -1,4 +1,4 @@
-package base;
+package base.Map;
 
 import java.awt.Graphics;
 import java.util.LinkedList;

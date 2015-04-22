@@ -1,4 +1,4 @@
-package base;
+package base.Light;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -10,6 +10,11 @@ import java.awt.RadialGradientPaint;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
+
+import base.Game;
+import base.GameObject;
+import base.ID;
+import base.Player;
 
 public class ArcLight extends GameObject{
 

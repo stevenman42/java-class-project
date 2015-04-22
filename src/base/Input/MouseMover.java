@@ -1,4 +1,4 @@
-package base;
+package base.Input;
 
 import java.awt.Point;
 import java.awt.event.MouseAdapter;

@@ -6,6 +6,9 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
 
+import base.Input.MouseMover;
+import base.Light.LightSource;
+
 public class Player extends GameObject{
 	
 	Handler handler;

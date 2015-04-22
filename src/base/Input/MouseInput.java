@@ -1,8 +1,11 @@
-package base;
+package base.Input;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import base.Game;
+import base.Game.STATE;
 
 
 public class MouseInput implements MouseListener{

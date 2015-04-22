@@ -1,4 +1,4 @@
-package base;
+package base.Light;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,6 +11,10 @@ import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
+
+import base.Game;
+import base.GameObject;
+import base.ID;
 
 public class LightSource extends GameObject{
 	
