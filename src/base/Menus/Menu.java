@@ -11,7 +11,6 @@ import base.Game;
 
 public class Menu {
 	
-	private int dispX = 0, dispY = 0;
 
 	public static Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
 	public static Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);
@@ -22,18 +21,12 @@ public class Menu {
 		Font font0 = new Font("arial", Font.BOLD, 100);
 		g.setFont(font0);
 		g.setColor(Color.white);
-		g.drawString("Evader!", Game.WIDTH/2 - 180 + dispX, Game.HEIGHT/2 -100);
+		g.drawString("Evader!", Game.WIDTH/2 - 180, Game.HEIGHT/2 -100);
 		g2d.draw(playButton);
 		g2d.draw(quitButton);
 		Font font1 = new Font("arial", Font.BOLD, 25);
 		g.setFont(font1);
 		g.drawString("Play", playButton.x + 25, playButton.y + 35);
 		g.drawString("Quit", quitButton.x + 25, quitButton.y + 35);
-	}
-	
-	public void tick(){
-		dispX = (int)(Math.random()*2);
-		dispY = (int)(Math.random()*40 - 20);
-		
 	}
 }
