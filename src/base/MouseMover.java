@@ -6,10 +6,11 @@ import java.awt.event.MouseEvent;
 
 public class MouseMover extends MouseAdapter{
 
-	public static Point mPoint;
+	public static float mX, mY;
 	
 	public void mouseMoved(MouseEvent mM){
-		mPoint = mM.getPoint();
+		mX = mM.getX();
+		mY = mM.getY();
 		
 	}
 

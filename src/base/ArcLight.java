@@ -27,22 +27,15 @@ public class ArcLight{
 		this.staticRadius = radius;
 		this.spread = spread;
 		this.player = player;
+		arc.setArcByCenter(x, y, radius, player.getAngle()-spread/2, player.getAngle()+spread/2, Arc2D.PIE);
 	}
 
 	public void tick() {
-		
+		arc.setArcByCenter(player.getX(), player.getY(), radius, player.getAngle()-spread/2, player.getAngle()+spread/2, Arc2D.PIE);
+
 	}
 
 	public void render(Graphics2D g2) {
-		arc.setArcByCenter(player.getX()+16, player.getY()+16, radius, player.getAngle()-spread, 2*spread, Arc2D.PIE);
-		GradientPaint gp = new GradientPaint(100,
-											 50,
-											 new Color(0,0,0,0),
-											 10+radius*(float)Math.cos(Math.toRadians(player.getAngle())),
-											 50-radius*(float)Math.sin(Math.toRadians(player.getAngle())),
-											 new Color(0,0,0,255));
-		g2.setPaint(gp);
-		g2.fill(arc);
 		g2.draw(arc);
 	}
 

@@ -73,14 +73,10 @@ public class Game extends Canvas implements Runnable{
         }
 		
 
-		handler.addObject(new LightSource(300,200,ID.Light,100));
-		handler.addObject(new LightSource(100,100,ID.Light,50));
-		handler.addObject(new LightSource(425, 200, ID.Light, 50));
 		Player p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
-		arcLight = new ArcLight(p.getX(),p.getY(),ID.ArcLight,100,10,p);
-		
-		overlay = new Overlay(handler, arcLight);
+		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 100, 30, p);
+		overlay = new Overlay(handler);
 
 		
 	}
@@ -138,6 +134,9 @@ public class Game extends Canvas implements Runnable{
 			handler.tick();
 		}
 		else{}
+		if(arcLight != null)
+			arcLight.tick();
+		
 	}
 	
 	public void render(){
@@ -156,7 +155,7 @@ public class Game extends Canvas implements Runnable{
 
 		
 		if(State == Game.STATE.GAME){
-			g.setColor(Color.green);
+			g.setColor(Color.yellow);
 		}
 		else if(State == Game.STATE.PAUSE){
 			g.setColor(Color.red);
@@ -167,15 +166,18 @@ public class Game extends Canvas implements Runnable{
 		
 		//g.fillRect(0, 0, WIDTH, HEIGHT);
 		if(Game.State == Game.STATE.GAME){
-			g.drawImage(background, 0,0,this);
+			//g.drawImage(background, 0,0,this);
+			g.fillRect(0, 0, WIDTH, HEIGHT);
 			handler.render(g);
 			overlay.render(g);
-			arcLight.render(g);
 		}
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);
 			menu.render(g);
 		}
+		
+		if(arcLight != null)
+			arcLight.render(g2d);
 		
 		g2d.dispose();
 		g.dispose();
