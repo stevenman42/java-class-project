@@ -28,4 +28,8 @@ public class Menu {
 		g.drawString("Play", playButton.x + 25, playButton.y + 35);
 		g.drawString("Quit", quitButton.x + 25, quitButton.y + 35);
 	}
+	
+	public void tick(){
+		
+	}
 }
