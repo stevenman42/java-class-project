@@ -1,16 +1,7 @@
-package base;
+package base.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.lang.Math;
-
-
-class Room{
-	// this is a stub, as you can see
-	// I just made this to shut up the stupid IDE
-	// I expect that we're going to have an actual class that represents the rooms at some point, and that will replace this one
-	// Not in this file though probably, and it might not be called Room
-	// System.out.println("YOLOOOO");
-}
+import java.util.LinkedList;
 
 /**
  * 
@@ -25,7 +16,7 @@ public class LevelGenerator {
 	private int wallID = 1;
 	private int doorID = 2;
 	
-	public int[][] CreateLevel(ArrayList<Room> rooms){
+	public int[][] CreateLevel(ArrayList<Room> rooms){ //the List of rooms is being created and handled by the MapHandler
 		int[][] newLevel = new int[128][128];
 		
 		return newLevel;
@@ -36,6 +27,7 @@ public class LevelGenerator {
 	 * 
 	 * This class only needs to be used when creating a "default" room with no parameters
 	 * Calm down bennett, we probably won't need this
+	 * I hate defualt constructors -Bennett
 	 * 
 	 * @return newRoom
 	 */

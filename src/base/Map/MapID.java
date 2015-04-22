@@ -2,9 +2,11 @@ package base.Map;
 
 public enum MapID {
 	
-	Tile1(),
-	Tile2(),
-	Chest(),
-	Door();
+	room_Chest(),
+	room_Trap(),
+	room_Puzzle(),
+	room_Empty();
+	
+	
 
 }
