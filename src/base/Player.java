@@ -54,6 +54,12 @@ public class Player extends GameObject{
 		ang = Math.atan2(adj,opp);
 		ang = Math.toDegrees(ang);
 		
+		ang = ang - 90;
+		
+		if(ang < 0 && ang >= -270){
+			ang = ang +360;
+		}
+		
 		return ang;
 	}
 

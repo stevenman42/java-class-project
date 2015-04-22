@@ -17,6 +17,7 @@ public class ArcLight{
 	protected float dR = -1;
 	protected Player player;
 	protected Arc2D.Double arc = new Arc2D.Double();
+	protected double pangle, bangle, eangle;
 
 
 	public ArcLight(float x, float y, ID id, float radius, float spread, Player player) {
@@ -31,9 +32,12 @@ public class ArcLight{
 	}
 
 	public void tick() {
-		double pangle = player.getAngle();
-		System.out.println(pangle);
-		arc.setArcByCenter(player.getX()+16, player.getY()+16, radius, pangle-spread/2, pangle+spread/2, Arc2D.PIE);
+		pangle = player.getAngle();
+		bangle = pangle - spread;
+		eangle = pangle + spread;
+		System.out.println("Angle: " + (int)pangle + "  B: " + (int)bangle + " E: " + (int)eangle);
+		arc.setArcByCenter(player.getX()+16, player.getY()+16, radius, bangle, eangle, Arc2D.CHORD);
+		System.out.println(arc);
 
 	}
 
