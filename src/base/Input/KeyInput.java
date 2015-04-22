@@ -30,25 +30,25 @@ public class KeyInput extends KeyAdapter{
 			
 			if(tempObject.getId() == ID.Player){
 				if(key == KeyEvent.VK_W){
-					tempObject.setDY(-5);
+					tempObject.setDY(-3);
 					keyDown[0] = true;
 				}
 			}
 			if(tempObject.getId() == ID.Player){
 				if(key == KeyEvent.VK_A){
-					tempObject.setDX(-5);
+					tempObject.setDX(-3);
 					keyDown[1] = true;
 				}
 			}
 			if(tempObject.getId() == ID.Player){
 				if(key == KeyEvent.VK_S){
-					tempObject.setDY(5);
+					tempObject.setDY(3);
 					keyDown[2] = true;
 				}
 			}
 			if(tempObject.getId() == ID.Player){
 				if(key == KeyEvent.VK_D){
-					tempObject.setDX(5);
+					tempObject.setDX(3);
 					keyDown[3] = true;
 				}
 			}

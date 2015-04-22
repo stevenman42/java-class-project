@@ -1,7 +1,6 @@
 package base.Visual;
 
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -13,6 +12,7 @@ import java.awt.geom.Arc2D;
 
 import base.Game;
 import base.GameObject;
+import base.Handler;
 import base.ID;
 import base.Player;
 
@@ -24,21 +24,27 @@ public class ArcLight extends GameObject{
 	protected Player player;
 	protected static Arc2D.Double arc = new Arc2D.Double();
 	protected double pangle;
+	protected Handler handler;
 
 
-	public ArcLight(float x, float y, ID id, float radius, float spread, Player player) {
+	public ArcLight(float x, float y, ID id, float radius, float spread, Player player, Handler handler) {
 		super(x,y,id);
 		this.radius = radius;
 		this.staticRadius = radius;
 		this.spread = spread;
 		this.player = player;
+		this.handler = handler;
 	
 	}
 
 	public void tick() {
+		for(int i = 0; i < handler.object.size(); i++){
+			if(handler.object.get(i).getId() == ID.Player){
+				x = handler.object.get(i).getX() + 16;
+				y = handler.object.get(i).getY() + 16;
+			}
+		}
 		pangle = player.getAngle();
-		this.x = player.getX() + 16;
-		this.y = player.getY() + 16;
 		arc.setArcByCenter(x, y, radius, pangle-spread, 2*spread, Arc2D.PIE);
 		}
 
@@ -50,7 +56,7 @@ public class ArcLight extends GameObject{
 				new Color[]{new Color(50,50,0,50), new Color(0,0,0,255)});
 		g2.setPaint(p);
 		g2.setClip(arc);
-		g2.fillRect(0,0,Game.WIDTH,Game.HEIGHT);
+		g2.fillRect(0,0,Game.MAPWIDTH,Game.MAPHEIGHT);
 	}
 
 	public Rectangle getBounds() {

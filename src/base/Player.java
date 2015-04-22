@@ -34,7 +34,7 @@ public class Player extends GameObject{
 
 	public void render(Graphics g) {
 		g.setColor(Color.green);
-		g.fillRect((int)x, (int)y, (int)playerWidth, (int)playerHeight);
+		g.fillRect((int)(Game.WIDTH/2), (int)(Game.HEIGHT/2), (int)playerWidth, (int)playerHeight);
 		
 		
 	}
@@ -51,8 +51,8 @@ public class Player extends GameObject{
 	public double getAngle(){
 		double ang = 0, adj, opp, dist;
 		
-		adj = MouseMover.mX - (x+16);
-		opp = MouseMover.mY - (y+16);
+		adj = MouseMover.mX - (Game.WIDTH/2 +16);
+		opp = MouseMover.mY - (Game.HEIGHT/2 + 16);
 		
 		ang = Math.atan2(adj,opp);
 		ang = Math.toDegrees(ang);

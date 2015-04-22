@@ -41,7 +41,7 @@ public class LightSource extends GameObject{
 				new Color[]{new Color(50,50,0,0), new Color(0,0,0,255)});
 		g2.setPaint(p);
 		Arc2D.Double clipArc = ArcLight.arc;
-		Area out = new Area(new Rectangle(0,0,Game.WIDTH, Game.HEIGHT));
+		Area out = new Area(new Rectangle(0,0,Game.MAPWIDTH, Game.MAPHEIGHT));
 		out.subtract(new Area(clipArc));
 		g2.setClip(out);
 		g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));

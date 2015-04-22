@@ -37,6 +37,8 @@ public class Game extends Canvas implements Runnable{
 	
 	//set window size
 	public static final int WIDTH = 720, HEIGHT = WIDTH / 14 * 9;
+	public static final int MAPWIDTH = 128*32, MAPHEIGHT = 128*32;
+
 
 	//make a running instance thread for the game(what it runs on)
 	private Thread thread;
@@ -92,7 +94,7 @@ public class Game extends Canvas implements Runnable{
 
 		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
-		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p);
+		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
 		handler.addObject(arcLight);
 		overlay = new Overlay(handler, arcLight);
 
@@ -191,7 +193,7 @@ public class Game extends Canvas implements Runnable{
 			g2d.translate(cam.getX(), cam.getY()); //begin cam
 			
 			g.setColor(Color.black);
-			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.fillRect(0, 0, MAPWIDTH, MAPHEIGHT);
 			Area in = new Area(new Rectangle());
 			for(int i = 0; i < handler.object.size(); i++){
 				GameObject tempObject = handler.object.get(i);
