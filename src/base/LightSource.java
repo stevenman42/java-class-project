@@ -7,6 +7,8 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.Rectangle;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 
 public class LightSource extends GameObject{
@@ -14,6 +16,7 @@ public class LightSource extends GameObject{
 	protected float radius, staticRadius;
 	protected float glowCount = 0;
 	protected float dR = -1;
+
 	
 	public LightSource(float x, float y, ID id, float radius) {
 		super(x, y, id);
@@ -29,7 +32,11 @@ public class LightSource extends GameObject{
 				new float[]{0,1f},
 				new Color[]{new Color(0,0,0,0), new Color(0,0,0,255)});
 		g2.setPaint(p);
-		//g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
+		Arc2D.Double clipArc = ArcLight.arc;
+		Area out = new Area(new Rectangle(0,0,Game.WIDTH, Game.HEIGHT));
+		out.subtract(new Area(clipArc));
+		g2.clip(out);
+		g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
 		
 	}
 	

@@ -33,7 +33,6 @@ public class Game extends Canvas implements Runnable{
 	//make a handler
 	private Handler handler;
 	
-	public static Composite comp = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.6f);
 	
 	//make the HUD
 	private HUD hud;
@@ -75,8 +74,8 @@ public class Game extends Canvas implements Runnable{
 
 		Player p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
-		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 100, 5, p);
-		overlay = new Overlay(handler);
+		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p);
+		overlay = new Overlay(handler, arcLight);
 
 		
 	}
@@ -168,16 +167,18 @@ public class Game extends Canvas implements Runnable{
 		if(Game.State == Game.STATE.GAME){
 			//g.drawImage(background, 0,0,this);
 			g.fillRect(0, 0, WIDTH, HEIGHT);
+			
 			handler.render(g);
 			overlay.render(g);
+			if(arcLight != null)
+				arcLight.render(g2d);
 		}
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);
 			menu.render(g);
 		}
 		
-		if(arcLight != null)
-			arcLight.render(g2d);
+		
 		
 		g2d.dispose();
 		g.dispose();

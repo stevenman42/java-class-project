@@ -5,19 +5,22 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Arc2D;
+import java.awt.geom.Arc2D.Double;
 import java.awt.geom.Area;
 
 public class Overlay {
 
 	private Handler handler;
+	private ArcLight arcL;
 	
-	public Overlay(Handler handler){
+	public Overlay(Handler handler, ArcLight arcL){
 		this.handler = handler;
+		this.arcL = arcL;
 	}
 	
 	public void render(Graphics g){
 		
-		/*
+		
 		Graphics2D g2 = (Graphics2D) g.create();
 		GameObject tempObject;
 		Rectangle clipRect;
@@ -33,6 +36,10 @@ public class Overlay {
 			}
 
 		}
+		Arc2D.Double clipArc = (Arc2D.Double) arcL.getCircleBounds();
+		out = new Area(new Rectangle(0,0,Game.WIDTH, Game.HEIGHT));
+		out.subtract(new Area(clipArc));
+		g2.clip(out);
 		
 		/*
 		Rectangle clipRect = new Rectangle(50,50,100,100);
@@ -41,12 +48,12 @@ public class Overlay {
 		g2.clip(out);
 		*/
 		
-		/*
+		
 		g2.setColor(new Color(0,0,0, 255));
 		g2.fillRect(0,0,Game.WIDTH,Game.HEIGHT);
 		
 		g2.setClip(0, 0, Game.WIDTH, Game.HEIGHT);
-		*/
+		
 	}
 	
 	public void tick(){
