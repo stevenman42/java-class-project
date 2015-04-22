@@ -48,8 +48,8 @@ public class Player extends GameObject{
 	public double getAngle(){
 		double ang = 0, adj, opp, dist;
 		
-		adj = MouseMover.mX - x;
-		opp = MouseMover.mY - y;
+		adj = MouseMover.mX - (x+16);
+		opp = MouseMover.mY - (y+16);
 		
 		ang = Math.atan2(adj,opp);
 		ang = Math.toDegrees(ang);

@@ -31,7 +31,9 @@ public class ArcLight{
 	}
 
 	public void tick() {
-		arc.setArcByCenter(player.getX(), player.getY(), radius, player.getAngle()-spread/2, player.getAngle()+spread/2, Arc2D.PIE);
+		double pangle = player.getAngle();
+		System.out.println(pangle);
+		arc.setArcByCenter(player.getX()+16, player.getY()+16, radius, pangle-spread/2, pangle+spread/2, Arc2D.PIE);
 
 	}
 
