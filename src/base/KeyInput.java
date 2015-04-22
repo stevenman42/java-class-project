@@ -48,6 +48,9 @@ public class KeyInput extends KeyAdapter{
 			}
 			
 		}
+		if(key == KeyEvent.VK_ESCAPE){
+			Game.State = Game.STATE.MENU;
+		}
 		
 	}
 	
@@ -67,9 +70,9 @@ public class KeyInput extends KeyAdapter{
 
 				
 				//stop movement
-				if(!keyDown[0] && !keyDown[1])
+				if(!keyDown[0] && !keyDown[2])
 					tempObject.setDY(0);
-				if(!keyDown[2] &&!keyDown[3])
+				if(!keyDown[1] &&!keyDown[3])
 					tempObject.setDX(0);
 				
 			}
