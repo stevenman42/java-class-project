@@ -1,4 +1,4 @@
-package base.Light;
+package base.Visual;
 
 import java.awt.Color;
 import java.awt.GradientPaint;

@@ -1,4 +1,4 @@
-package base.Light;
+package base.Visual;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,26 +7,29 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 
 import base.Game;
 import base.GameObject;
+import base.Handler;
 import base.ID;
+import base.Player;
 
 public class LightSource extends GameObject{
 	
 	protected float radius, staticRadius;
 	protected float glowCount = 0;
 	protected float dR = -1;
+	protected Handler handler;
 
 	
-	public LightSource(float x, float y, ID id, float radius) {
+	public LightSource(float x, float y, ID id, float radius, Handler handler) {
 		super(x, y, id);
 		this.radius = radius;
 		this.staticRadius = radius;
+		this.handler = handler;
 	}
 
 	public void render(Graphics2D g2){
@@ -46,6 +49,13 @@ public class LightSource extends GameObject{
 	}
 	
 	public void tick(){
+		
+		for(int i = 0; i < handler.object.size(); i++){
+			if(handler.object.get(i).getId() == ID.Player){
+				x = handler.object.get(i).getX();
+				y = handler.object.get(i).getY();
+			}
+		}
 		
 		if(glowCount >=5){
 			radius += dR;

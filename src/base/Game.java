@@ -18,13 +18,14 @@ import javax.imageio.ImageIO;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
-import base.Light.ArcLight;
-import base.Light.LightSource;
-import base.Light.Overlay;
 import base.Map.MapHandler;
 import base.Menus.HUD;
 import base.Menus.Menu;
 import base.Menus.Pause;
+import base.Visual.ArcLight;
+import base.Visual.Camera;
+import base.Visual.LightSource;
+import base.Visual.Overlay;
 
 
 public class Game extends Canvas implements Runnable{
@@ -45,6 +46,7 @@ public class Game extends Canvas implements Runnable{
 	//make a handler
 	private Handler handler;
 	private MapHandler mapHandler;
+	private Camera cam;
 	
 	
 	//make the HUD
@@ -53,6 +55,7 @@ public class Game extends Canvas implements Runnable{
 	private Pause pause;
 	private Overlay overlay;
 	private ArcLight arcLight;
+	private Player p;
 	
 	private BufferedImage background;
 
@@ -78,6 +81,7 @@ public class Game extends Canvas implements Runnable{
 		hud = new HUD();
 		menu = new Menu();
 		pause = new Pause();
+		cam = new Camera(0,0);
 		
 		try {
             background = ImageIO.read(new File("tank.png"));
@@ -86,7 +90,7 @@ public class Game extends Canvas implements Runnable{
         }
 		
 
-		Player p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
+		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p);
 		handler.addObject(arcLight);
@@ -147,6 +151,11 @@ public class Game extends Canvas implements Runnable{
 		if(Game.State == Game.STATE.GAME){
 			handler.tick();
 			mapHandler.tick();
+			for(int i = 0; i < handler.object.size(); i++){
+				if(handler.object.get(i).getId() == ID.Player){
+					cam.tick(handler.object.get(i));
+				}
+			}
 		}
 		else{}
 		
@@ -165,7 +174,6 @@ public class Game extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g.create();
 		
-
 		
 		if(State == Game.STATE.GAME){
 			g2d.setColor(new Color(255,255,255,255));
@@ -179,6 +187,9 @@ public class Game extends Canvas implements Runnable{
 		
 		//g.fillRect(0, 0, WIDTH, HEIGHT);
 		if(Game.State == Game.STATE.GAME){
+			
+			g2d.translate(cam.getX(), cam.getY()); //begin cam
+			
 			g.setColor(Color.black);
 			g.fillRect(0, 0, WIDTH, HEIGHT);
 			Area in = new Area(new Rectangle());
@@ -195,8 +206,16 @@ public class Game extends Canvas implements Runnable{
 			g2d.drawImage(background, 0,0,this);
 			
 			g2d.setClip(null);
+			
+			
+
 			handler.render(g, g2d);
+			
+
 			mapHandler.render(g, g2d);
+			
+			g2d.translate(-cam.getX(), -cam.getY()); //end of cam
+
 		}
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);

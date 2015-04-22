@@ -7,7 +7,7 @@ import java.awt.Shape;
 import java.awt.geom.Arc2D;
 
 import base.Input.MouseMover;
-import base.Light.LightSource;
+import base.Visual.LightSource;
 
 public class Player extends GameObject{
 	
@@ -18,7 +18,7 @@ public class Player extends GameObject{
 	public Player(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
-		playerLight = new LightSource(x+playerWidth/2, y+playerHeight/2, ID.Light, 100);
+		playerLight = new LightSource(x+playerWidth/2, y+playerHeight/2, ID.Light, 100, handler);
 		handler.addObject(playerLight);
 	}
 
