@@ -11,7 +11,6 @@ public class MouseMover extends MouseAdapter{
 	public void mouseMoved(MouseEvent mM){
 		mX = mM.getX();
 		mY = mM.getY();
-		System.out.println(new Point((int)mX, (int)mY));
 		
 	}
 
