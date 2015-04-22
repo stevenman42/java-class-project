@@ -1,5 +1,6 @@
 package base;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.lang.Math;
 
 
@@ -42,15 +43,19 @@ public class LevelGenerator {
 		
 		// creates a 2d array with a minimum length and with of 10, and a maximum of 16
 		// Note: this does not include the walls.  The total length and with are in [12, 18]
-		int[][] newRoom = new int[(int)Math.random() * 7 + 12][(int)Math.random() * 7 + 12];
+		int[][] newRoom = new int[(int)(Math.random() * 7) + 12][(int)(Math.random() * 7) + 12];
+		
 		
 		for (int i = 0; i < newRoom[0].length; i ++){
 			newRoom[0][i] = wallID;
+			newRoom[newRoom.length - 1][i] = wallID;
 		}
 		
-		for (int i = 0; i < newRoom[0].length; i++){
-			newRoom[newRoom.length - 1][0] = wallID;
+		for (int i = 0; i < newRoom.length; i ++){
+			newRoom[i][0] = wallID;
+			newRoom[i][newRoom[0].length - 1] = wallID;
 		}
+		
 		
 		
 		
@@ -75,6 +80,14 @@ public class LevelGenerator {
 		
 		
 		return newLevel;
+	}
+	
+	public static void main(String [] args){
+		LevelGenerator l = new LevelGenerator();
+		
+		int[][] room1 = l.GenerateRoom();
+		System.out.println(room1[0].length);
+		System.out.print(Arrays.deepToString(room1));
 	}
 
 }
