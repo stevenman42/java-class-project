@@ -10,20 +10,17 @@ import java.awt.geom.Area;
 public class Overlay {
 
 	private Handler handler;
-	private ArcLight arc;
 	
-	public Overlay(Handler handler, ArcLight arc){
+	public Overlay(Handler handler){
 		this.handler = handler;
-		this.arc = arc;
 	}
 	
 	public void render(Graphics g){
 		
-		
+		/*
 		Graphics2D g2 = (Graphics2D) g.create();
 		GameObject tempObject;
 		Rectangle clipRect;
-		Arc2D clipArc;
 		Area out;
 		for(int i = 0; i < handler.object.size(); i++){
 			tempObject = handler.object.get(i);
@@ -44,16 +41,12 @@ public class Overlay {
 		g2.clip(out);
 		*/
 		
-		clipArc = (Arc2D)arc.getCircleBounds();
-		out  = new Area(new Rectangle(0,0,Game.WIDTH, Game.HEIGHT));
-		out.subtract(new Area(clipArc));
-		g2.clip(out);
-		
+		/*
 		g2.setColor(new Color(0,0,0, 255));
-		//g2.fillRect(0,0,Game.WIDTH,Game.HEIGHT);
+		g2.fillRect(0,0,Game.WIDTH,Game.HEIGHT);
 		
 		g2.setClip(0, 0, Game.WIDTH, Game.HEIGHT);
-		
+		*/
 	}
 	
 	public void tick(){
