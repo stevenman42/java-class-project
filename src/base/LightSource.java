@@ -7,6 +7,7 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
@@ -30,12 +31,12 @@ public class LightSource extends GameObject{
 				new Point((int)x,(int)y),
 				radius,
 				new float[]{0,1f},
-				new Color[]{new Color(0,0,0,0), new Color(0,0,0,255)});
+				new Color[]{new Color(50,50,0,0), new Color(0,0,0,255)});
 		g2.setPaint(p);
 		Arc2D.Double clipArc = ArcLight.arc;
 		Area out = new Area(new Rectangle(0,0,Game.WIDTH, Game.HEIGHT));
 		out.subtract(new Area(clipArc));
-		g2.clip(out);
+		g2.setClip(out);
 		g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
 		
 	}
@@ -73,5 +74,13 @@ public class LightSource extends GameObject{
 	public String toString(){
 		return "(" + x + ", " + y + ")  || r = " + staticRadius;  
 	}
+
+	@Override
+	public Arc2D getShapeBounds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

@@ -1,11 +1,12 @@
 package base;
 
-import java.awt.AlphaComposite;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Area;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,6 +33,7 @@ public class Game extends Canvas implements Runnable{
 	private Random r = new Random();
 	//make a handler
 	private Handler handler;
+	private MapHandler mapHandler;
 	
 	
 	//make the HUD
@@ -54,6 +56,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public Game(){
 		handler = new Handler();
+		mapHandler = new MapHandler();
 		
 		new Window(WIDTH, HEIGHT, "Elite Group Project", this);
 		
@@ -75,6 +78,7 @@ public class Game extends Canvas implements Runnable{
 		Player p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p);
+		handler.addObject(arcLight);
 		overlay = new Overlay(handler, arcLight);
 
 		
@@ -103,7 +107,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-			//	System.out.println("FPS: " + frames);
+				//System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 		}
@@ -131,10 +135,9 @@ public class Game extends Canvas implements Runnable{
 	public void tick(){
 		if(Game.State == Game.STATE.GAME){
 			handler.tick();
+			mapHandler.tick();
 		}
 		else{}
-		if(arcLight != null)
-			arcLight.tick();
 		
 	}
 	
@@ -154,7 +157,7 @@ public class Game extends Canvas implements Runnable{
 
 		
 		if(State == Game.STATE.GAME){
-			g.setColor(Color.yellow);
+			g2d.setColor(new Color(255,255,255,255));
 		}
 		else if(State == Game.STATE.PAUSE){
 			g.setColor(Color.red);
@@ -165,13 +168,24 @@ public class Game extends Canvas implements Runnable{
 		
 		//g.fillRect(0, 0, WIDTH, HEIGHT);
 		if(Game.State == Game.STATE.GAME){
-			//g.drawImage(background, 0,0,this);
+			g.setColor(Color.black);
 			g.fillRect(0, 0, WIDTH, HEIGHT);
+			Area in = new Area(new Rectangle());
+			for(int i = 0; i < handler.object.size(); i++){
+				GameObject tempObject = handler.object.get(i);
+				if(tempObject.id == ID.Light){
+					tempObject = (LightSource) tempObject;
+					in.add(new Area(tempObject.getBounds()));
+				}
+			}
+			Area arcIn = new Area(arcLight.getShapeBounds());
+			in.add(arcIn);
+			g2d.clip(in);
+			g2d.drawImage(background, 0,0,this);
 			
-			handler.render(g);
-			overlay.render(g);
-			if(arcLight != null)
-				arcLight.render(g2d);
+			g2d.setClip(null);
+			handler.render(g, g2d);
+			mapHandler.render(g, g2d);
 		}
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -188,5 +202,6 @@ public class Game extends Canvas implements Runnable{
 	public static void main(String args[]){
 		new Game();
 	}
+
 
 }

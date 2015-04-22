@@ -15,7 +15,7 @@ public class MapHandler {
 		}
 	}
 	
-	public void render(Graphics g){
+	public void render(Graphics g, Graphics g2){
 		for(int i = 0; i < object.size(); i++){ //renders all objects
 			MapObject tempObject = object.get(i); 
 			

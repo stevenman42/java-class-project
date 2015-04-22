@@ -20,7 +20,7 @@ public class Overlay {
 	
 	public void render(Graphics g){
 		
-		
+		/*
 		Graphics2D g2 = (Graphics2D) g.create();
 		GameObject tempObject;
 		Rectangle clipRect;
@@ -36,7 +36,7 @@ public class Overlay {
 			}
 
 		}
-		Arc2D.Double clipArc = (Arc2D.Double) arcL.getCircleBounds();
+		Arc2D.Double clipArc = (Arc2D.Double) arcL.getShapeBounds();
 		out = new Area(new Rectangle(0,0,Game.WIDTH, Game.HEIGHT));
 		out.subtract(new Area(clipArc));
 		g2.clip(out);
@@ -48,12 +48,12 @@ public class Overlay {
 		g2.clip(out);
 		*/
 		
-		
+		/*
 		g2.setColor(new Color(0,0,0, 255));
 		g2.fillRect(0,0,Game.WIDTH,Game.HEIGHT);
 		
 		g2.setClip(0, 0, Game.WIDTH, Game.HEIGHT);
-		
+		*/
 	}
 	
 	public void tick(){

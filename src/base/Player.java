@@ -2,9 +2,9 @@ package base;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
+import java.awt.Shape;
+import java.awt.geom.Arc2D;
 
 public class Player extends GameObject{
 	
@@ -41,7 +41,7 @@ public class Player extends GameObject{
 	}
 
 	
-	public Ellipse2D getCircleBounds() {
+	public Shape getCircleBounds() {
 		return null;
 	}
 	
@@ -61,6 +61,12 @@ public class Player extends GameObject{
 		}
 		
 		return ang;
+	}
+
+	@Override
+	public Arc2D getShapeBounds() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
