@@ -64,7 +64,7 @@ public class Game extends Canvas implements Runnable{
 	private ArcLight arcLight;
 	private Player p;
 	
-	private BufferedImage background;
+	private static BufferedImage background, missingTileImg, woodTileImg;
 
 	public static enum STATE{
 		MENU,
@@ -94,13 +94,15 @@ public class Game extends Canvas implements Runnable{
 		
 		try {
             background = ImageIO.read(new File("RES/Textures/tank.png"));
+            missingTileImg = ImageIO.read(new File("RES/Textures/missingTile.png"));
+            woodTileImg = ImageIO.read(new File("RES/Textures/woodTile.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 		
 		for(int i =0; i < 20; i++)
 			mapHandler.addObject(new Tile(3+i,4,TileID.bedRock));
-
+		mapHandler.addObject(new Tile(1,4,TileID.bedRock));
 		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
@@ -253,5 +255,15 @@ public class Game extends Canvas implements Runnable{
 		new Game();
 	}
 
+	
+	public static BufferedImage getIDImg(TileID tileID){
+		if(TileID.bedRock == tileID){
+			return missingTileImg;
+		}
+		else if(TileID.wood == tileID){
+			return null;
+		}
+		return missingTileImg;
+	}
 
 }

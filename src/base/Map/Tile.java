@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import base.Game;
+
 public class Tile extends MapObject{
 	
 
@@ -24,10 +26,13 @@ public class Tile extends MapObject{
 	}
 
 	public void render(Graphics2D g2) {
+		g2.drawImage(Game.getIDImg(id), (int)x, (int)y, null);
+		/*
 		Color tempColor = g2.getColor();
 		g2.setColor(Color.white);
 		g2.fillRect((int)x,(int)y,32,32);
 		g2.setColor(tempColor);
+		*/
 	}
 
 	public Rectangle getBounds() {
