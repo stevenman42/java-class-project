@@ -15,12 +15,15 @@ public class Player extends GameObject{
 	Handler handler;
 	LightSource playerLight;
 	private float playerWidth = 32, playerHeight = 32;
+	public static float staticX, staticY;
 
 	public Player(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
 		playerLight = new LightSource(x+playerWidth/2, y+playerHeight/2, ID.Light, 100, handler);
 		handler.addObject(playerLight);
+		staticX = x;
+		staticY = y;
 	}
 
 	public void tick() {
@@ -34,6 +37,8 @@ public class Player extends GameObject{
 			y += dY;
 		playerLight.setX(x+playerWidth/2);
 		playerLight.setY(y+playerHeight/2);
+		staticX = x;
+		staticY = y;
 		
 		
 				

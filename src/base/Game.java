@@ -100,9 +100,14 @@ public class Game extends Canvas implements Runnable{
             ex.printStackTrace();
         }
 		
-		for(int i =0; i < 20; i++)
-			mapHandler.addObject(new Tile(3+i,4,TileID.bedRock));
-		mapHandler.addObject(new Tile(1,4,TileID.bedRock));
+		for(int i =0; i < 80; i++){
+			for(int j = 0; j < 80; j++){
+				if(i == 0 || j == 0 || i == 79 || j == 79)
+					mapHandler.addObject(new Tile(i,j,TileID.bedRock));
+				else
+					mapHandler.addObject(new Tile(i,j,TileID.wood));
+			}
+		}
 		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
@@ -135,7 +140,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-				//System.out.println("FPS: " + frames);
+				System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 		}
@@ -163,7 +168,7 @@ public class Game extends Canvas implements Runnable{
 	public void tick(){
 		if(Game.State == Game.STATE.GAME){
 			handler.tick();
-			mapHandler.tick();
+			//mapHandler.tick();
 			for(int i = 0; i < handler.object.size(); i++){
 				if(handler.object.get(i).getId() == ID.Player){
 					cam.tick(handler.object.get(i));
@@ -202,7 +207,7 @@ public class Game extends Canvas implements Runnable{
 			g.setColor(Color.blue);
 		}
 		
-		//g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
 		if(Game.State == Game.STATE.GAME){
 			
 			g2d.translate(cam.getX(), cam.getY()); //begin cam
@@ -221,15 +226,14 @@ public class Game extends Canvas implements Runnable{
 			in.add(arcIn);
 			g2d.clip(in);
 			
-
 			g2d.drawImage(background, 0,0,this);
 			mapHandler.render(g, g2d);
+
 
 			
 			g2d.setClip(null);
 			
 			
-
 			handler.render(g, g2d);
 			
 
@@ -261,7 +265,7 @@ public class Game extends Canvas implements Runnable{
 			return missingTileImg;
 		}
 		else if(TileID.wood == tileID){
-			return null;
+			return woodTileImg;
 		}
 		return missingTileImg;
 	}
