@@ -7,6 +7,7 @@ import java.awt.Shape;
 import java.awt.geom.Arc2D;
 
 import base.Input.MouseMover;
+import base.Map.TileID;
 import base.Visual.LightSource;
 
 public class Player extends GameObject{
@@ -23,8 +24,14 @@ public class Player extends GameObject{
 	}
 
 	public void tick() {
-		x += dX;
-		y += dY;
+		if(dX > 0 && Physics.clearRight(this, TileID.bedRock))
+			x += dX;
+		if(dX < 0 && Physics.clearLeft(this, TileID.bedRock))
+			x += dX;
+		if(dY > 0 && Physics.clearUp(this, TileID.bedRock))
+			y += dY;
+		if(dY < 0 && Physics.clearDown(this, TileID.bedRock))
+			y += dY;
 		playerLight.setX(x+playerWidth/2);
 		playerLight.setY(y+playerHeight/2);
 		

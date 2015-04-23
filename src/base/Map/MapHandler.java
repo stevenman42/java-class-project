@@ -1,6 +1,7 @@
 package base.Map;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.LinkedList;
 
 public class MapHandler {
@@ -15,11 +16,12 @@ public class MapHandler {
 		}
 	}
 	
-	public void render(Graphics g, Graphics g2){
+	public void render(Graphics g, Graphics2D g2){
 		for(int i = 0; i < object.size(); i++){ //renders all objects
 			MapObject tempObject = object.get(i); 
 			
-			tempObject.render(g);
+			
+			tempObject.render(g2);
 		}
 		
 	}

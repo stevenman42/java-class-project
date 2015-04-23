@@ -5,12 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -18,7 +18,11 @@ import javax.imageio.ImageIO;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
+import base.Map.Map;
 import base.Map.MapHandler;
+import base.Map.Room;
+import base.Map.Tile;
+import base.Map.TileID;
 import base.Menus.HUD;
 import base.Menus.Menu;
 import base.Menus.Pause;
@@ -49,6 +53,7 @@ public class Game extends Canvas implements Runnable{
 	private Handler handler;
 	private MapHandler mapHandler;
 	private Camera cam;
+	private Map map;
 	
 	
 	//make the HUD
@@ -73,6 +78,8 @@ public class Game extends Canvas implements Runnable{
 	public Game(){
 		handler = new Handler();
 		mapHandler = new MapHandler();
+		map = new Map(mapHandler, new ArrayList<Room>(), new Tile[128][128]);
+
 		
 		new Window(WIDTH, HEIGHT, "Elite Group Project", this);
 		
@@ -86,11 +93,13 @@ public class Game extends Canvas implements Runnable{
 		cam = new Camera(0,0);
 		
 		try {
-            background = ImageIO.read(new File("tank.png"));
+            background = ImageIO.read(new File("RES/Textures/tank.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 		
+		for(int i =0; i < 20; i++)
+			mapHandler.addObject(new Tile(3+i,4,TileID.bedRock));
 
 		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
@@ -209,7 +218,11 @@ public class Game extends Canvas implements Runnable{
 			Area arcIn = new Area(arcLight.getShapeBounds());
 			in.add(arcIn);
 			g2d.clip(in);
+			
+
 			g2d.drawImage(background, 0,0,this);
+			mapHandler.render(g, g2d);
+
 			
 			g2d.setClip(null);
 			
@@ -218,9 +231,10 @@ public class Game extends Canvas implements Runnable{
 			handler.render(g, g2d);
 			
 
-			mapHandler.render(g, g2d);
 			
 			g2d.translate(-cam.getX(), -cam.getY()); //end of cam
+			
+
 
 		}
 		else if (Game.State == Game.STATE.MENU){
