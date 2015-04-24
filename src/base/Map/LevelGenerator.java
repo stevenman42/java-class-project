@@ -2,7 +2,6 @@ package base.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//test comment
 
 /**
  * 
@@ -63,7 +62,7 @@ public class LevelGenerator {
 		for (int i = 0; i < rooms.length; i ++){
 			rooms[i] = new TempRoom(GenerateRoom());
 			for (int j = 0; j < rooms[i].length; j ++){
-				System.out.println(Arrays.toString(rooms[i].roomArray[j]));
+				//System.out.println(Arrays.toString(rooms[i].roomArray[j]));
 			}
 		}
 		
@@ -90,7 +89,6 @@ public class LevelGenerator {
 		// lower right corners of all the rooms (actually one below and to the right of the corner)
 		int[] oppositeXList = new int[rooms.length];
 		int[] oppositeYList = new int [rooms.length];
-		int x = 0;
 		for (int i = 0; i < rooms.length; i ++){
 			
 			
@@ -101,24 +99,45 @@ public class LevelGenerator {
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
 			
-			System.out.print("(" + originXList[i] + ", " + originYList[i] + ") ");
-			System.out.println("[" + oppositeXList[i] + ", " + oppositeYList[i] + "] ");
+			//System.out.print("(" + originXList[i] + ", " + originYList[i] + ") ");
+			//System.out.println("[" + oppositeXList[i] + ", " + oppositeYList[i] + "] ");
 		}
 		
 		// this is the loop that actually merges the room matrices with the super level matrix 
-		for (int i = 0; i < newLevel.length; i ++){
-			for (int j = 0; j < newLevel[0].length; j ++){
-				
+		// wait no I'm pretty sure I don't need FIVE FOR LOOPS INSIDE EACH OTHER WHY
+		// let's try something else
+//		for (int i = 0; i < newLevel.length; i ++){
+//			for (int j = 0; j < newLevel[0].length; j ++){
+//				
+//				for (int a = 0; a < originXList.length; a ++){
+//					if (a == i){
+//						
+//						for (int b = a; b < oppositeXList[a] - originXList[a]; b ++){
+//							
+//						}
+//							
+//						
+//					}
+//				}
+//				
+//			}
+//		}
+		
+		// what is this
+		// answer: not 5 for loops
+		for (int a = 0; a < originXList.length; a ++){ // loops through the originXList (and YList I guess)
+			for (int i = originYList[a]; i < oppositeYList[a]; i ++){ // rows
+				for (int j = originXList[a]; j < oppositeXList[a]; j ++){ // columns
+					newLevel[i][j] = rooms[a].roomArray[i - originYList[a]][j - originXList[a]];
+					
+				}
 			}
+			
 		}
 		
-		for (int i = 0; i < newLevel.length; i ++){
-			for (int j = 0; j < newLevel[0].length; i ++){
-				
-			}
+		for (int[] stupid: newLevel){
+			System.out.println(Arrays.toString(stupid));
 		}
-		
-		
 		
 		
 		return newLevel;
