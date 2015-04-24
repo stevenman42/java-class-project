@@ -2,10 +2,11 @@ package base.Map;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Area;
 import java.util.LinkedList;
 
-import base.Game;
-import base.Player;
+import base.Visual.ArcLight;
+import base.Visual.LightSource;
 
 public class MapHandler {
 
@@ -23,8 +24,11 @@ public class MapHandler {
 	public void render(Graphics g, Graphics2D g2){
 		for(int i = 0; i < object.size(); i++){ //renders all objects
 			MapObject tempObject = object.get(i); 
-			if(tempObject.getX() > Player.staticX-Game.WIDTH/2 && tempObject.getX() < Player.staticX+Game.WIDTH/2 && tempObject.getY() < Player.staticY+Game.HEIGHT/2 && tempObject.getY() > Player.staticY-Game.HEIGHT/2)
-				tempObject.render(g2);
+			//if(tempObject.getX() > Player.staticX-Game.WIDTH/2 && tempObject.getX() < Player.staticX+Game.WIDTH/2 && tempObject.getY() < Player.staticY+Game.HEIGHT/2 && tempObject.getY() > Player.staticY-Game.HEIGHT/2)
+			Area a = new Area(tempObject.getShapeBounds());
+			if(ArcLight.arc != null && LightSource.circle != null)
+				if(ArcLight.arc.intersects(tempObject.getBounds()) || LightSource.rect.intersects(tempObject.getBounds()))
+					tempObject.render(g2);
 		}
 		
 	}

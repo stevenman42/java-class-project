@@ -3,6 +3,7 @@ package base.Map;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Shape;
 
 public abstract class MapObject {
 	
@@ -21,6 +22,7 @@ public abstract class MapObject {
 	public abstract void render(Graphics2D g2d);
 	
 	public abstract Rectangle getBounds();
+	public abstract Shape getShapeBounds();
 	
 	public Point getPoint(){
 		return tilePoint;

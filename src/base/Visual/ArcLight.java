@@ -22,7 +22,7 @@ public class ArcLight extends GameObject{
 	protected float glowCount = 0;
 	protected float dR = -1;
 	protected Player player;
-	protected static Arc2D.Double arc = new Arc2D.Double();
+	public static Arc2D.Double arc = new Arc2D.Double();
 	protected double pangle;
 	protected Handler handler;
 

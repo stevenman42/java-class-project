@@ -1,14 +1,8 @@
 package base.Map;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.awt.Shape;
 
 import base.Game;
 
@@ -37,6 +31,9 @@ public class Tile extends MapObject{
 
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,32,32);
+	}
+	public Shape getShapeBounds(){
+		return getBounds();
 	}
 	
 	public void addObject(){
