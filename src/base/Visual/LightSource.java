@@ -23,6 +23,8 @@ public class LightSource extends GameObject{
 	protected float glowCount = 0;
 	protected float dR = -1;
 	protected Handler handler;
+	public static Ellipse2D.Double circle;
+	public static Rectangle rect;
 
 	
 	public LightSource(float x, float y, ID id, float radius, Handler handler) {
@@ -69,6 +71,8 @@ public class LightSource extends GameObject{
 		}
 		glowCount++;
 
+		circle = getCircleBounds();
+		rect = getBounds();
 
 		
 	}
@@ -81,7 +85,7 @@ public class LightSource extends GameObject{
 		return new Rectangle((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
 	}
 	
-	public Ellipse2D getCircleBounds(){
+	public Ellipse2D.Double getCircleBounds(){
 		return new Ellipse2D.Double((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
 	}
 	

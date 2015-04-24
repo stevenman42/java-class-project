@@ -27,8 +27,10 @@ public class Handler {
 		}
 		for(int i = 0; i < object.size(); i++){ //renders player on top
 			GameObject tempObject = object.get(i); 
-			if(tempObject.getId() == ID.Player)
+			if(tempObject.getId() == ID.Player){
 				tempObject.render(g);
+				break;
+			}
 		}
 		
 		
