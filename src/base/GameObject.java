@@ -1,6 +1,7 @@
 package base;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 
@@ -31,6 +32,10 @@ public abstract class GameObject {
 	//test for if two objects intersect
 	public abstract Rectangle getBounds();
 	public abstract Shape getShapeBounds();
+	
+	public Point getNearestPoint(){
+		return new Point((int)(x+16)/32, (int)(y+16)/32);
+	}
 	
 	
 	//accesors and mutators for the vars

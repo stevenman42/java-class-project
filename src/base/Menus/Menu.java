@@ -10,6 +10,7 @@ import base.Game;
 
 
 public class Menu {
+	
 
 	public static Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
 	public static Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);

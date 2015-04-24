@@ -1,30 +1,37 @@
 package base.Map;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
 
 public abstract class MapObject {
 	
 	protected float x,y,dX,dY;
-	protected MapID id;
-	public MapObject(float x, float y, MapID id){
+	protected TileID id;
+	protected Point tilePoint;
+	public MapObject(float x, float y, TileID id){
 		this.x = x;
 		this.y = y;
 		this.id = id;
+		tilePoint = new Point((int)x,(int)y);
 		
 	}
 
 	public abstract void tick();
-	public abstract void render(Graphics g);
+	public abstract void render(Graphics2D g2d);
 	
 	public abstract Rectangle getBounds();
 	
-	
+	public Point getPoint(){
+		return tilePoint;
+	}
 	public void setX(float x){
 		this.x = x;
+		tilePoint = new Point((int)x,(int)y);
 	}
 	public void setY(float y){
 		this.y = y;
+		tilePoint = new Point((int)x,(int)y);
 	}
 	public float getX(){
 		return x;
@@ -32,10 +39,10 @@ public abstract class MapObject {
 	public float getY(){
 		return y;
 	}
-	public void setId(MapID id){
+	public void setId(TileID id){
 		this.id = id;
 	}
-	public MapID getId(){
+	public TileID getId(){
 		return id;
 	}
 	public void setDX(float dX){

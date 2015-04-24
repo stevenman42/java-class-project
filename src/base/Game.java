@@ -5,12 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -18,13 +18,18 @@ import javax.imageio.ImageIO;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
-import base.Light.ArcLight;
-import base.Light.LightSource;
-import base.Light.Overlay;
+import base.Map.Map;
 import base.Map.MapHandler;
+import base.Map.Room;
+import base.Map.Tile;
+import base.Map.TileID;
 import base.Menus.HUD;
 import base.Menus.Menu;
 import base.Menus.Pause;
+import base.Visual.ArcLight;
+import base.Visual.Camera;
+import base.Visual.LightSource;
+import base.Visual.Overlay;
 
 
 public class Game extends Canvas implements Runnable{
@@ -36,6 +41,8 @@ public class Game extends Canvas implements Runnable{
 	
 	//set window size
 	public static final int WIDTH = 720, HEIGHT = WIDTH / 14 * 9;
+	public static final int MAPWIDTH = 128*32, MAPHEIGHT = 128*32;
+
 
 	//make a running instance thread for the game(what it runs on)
 	private Thread thread;
@@ -45,6 +52,8 @@ public class Game extends Canvas implements Runnable{
 	//make a handler
 	private Handler handler;
 	private MapHandler mapHandler;
+	private Camera cam;
+	private Map map;
 	
 	
 	//make the HUD
@@ -53,8 +62,9 @@ public class Game extends Canvas implements Runnable{
 	private Pause pause;
 	private Overlay overlay;
 	private ArcLight arcLight;
+	private Player p;
 	
-	private BufferedImage background;
+	private static BufferedImage background, missingTileImg, woodTileImg;
 
 	public static enum STATE{
 		MENU,
@@ -68,6 +78,8 @@ public class Game extends Canvas implements Runnable{
 	public Game(){
 		handler = new Handler();
 		mapHandler = new MapHandler();
+		map = new Map(mapHandler, new ArrayList<Room>(), new Tile[128][128]);
+
 		
 		new Window(WIDTH, HEIGHT, "Elite Group Project", this);
 		
@@ -78,17 +90,27 @@ public class Game extends Canvas implements Runnable{
 		hud = new HUD();
 		menu = new Menu();
 		pause = new Pause();
+		cam = new Camera(0,0);
 		
 		try {
-            background = ImageIO.read(new File("tank.png"));
+            background = ImageIO.read(new File("RES/Textures/tank.png"));
+            missingTileImg = ImageIO.read(new File("RES/Textures/missingTile.png"));
+            woodTileImg = ImageIO.read(new File("RES/Textures/woodTile.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 		
-
-		Player p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
+		for(int i =0; i < 80; i++){
+			for(int j = 0; j < 80; j++){
+				if(i == 0 || j == 0 || i == 79 || j == 79)
+					mapHandler.addObject(new Tile(i,j,TileID.bedRock));
+				else
+					mapHandler.addObject(new Tile(i,j,TileID.wood));
+			}
+		}
+		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
-		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p);
+		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
 		handler.addObject(arcLight);
 		overlay = new Overlay(handler, arcLight);
 
@@ -118,7 +140,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-				//System.out.println("FPS: " + frames);
+				System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 		}
@@ -146,8 +168,17 @@ public class Game extends Canvas implements Runnable{
 	public void tick(){
 		if(Game.State == Game.STATE.GAME){
 			handler.tick();
-			mapHandler.tick();
+			//mapHandler.tick();
+			for(int i = 0; i < handler.object.size(); i++){
+				if(handler.object.get(i).getId() == ID.Player){
+					cam.tick(handler.object.get(i));
+				}
+			}
 		}
+		else if(Game.State == Game.STATE.MENU){
+			
+		}
+			
 		else{}
 		
 	}
@@ -165,7 +196,6 @@ public class Game extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g.create();
 		
-
 		
 		if(State == Game.STATE.GAME){
 			g2d.setColor(new Color(255,255,255,255));
@@ -177,10 +207,13 @@ public class Game extends Canvas implements Runnable{
 			g.setColor(Color.blue);
 		}
 		
-		//g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.fillRect(0, 0, WIDTH, HEIGHT);
 		if(Game.State == Game.STATE.GAME){
+			
+			g2d.translate(cam.getX(), cam.getY()); //begin cam
+			
 			g.setColor(Color.black);
-			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.fillRect(0, 0, MAPWIDTH, MAPHEIGHT);
 			Area in = new Area(new Rectangle());
 			for(int i = 0; i < handler.object.size(); i++){
 				GameObject tempObject = handler.object.get(i);
@@ -192,11 +225,23 @@ public class Game extends Canvas implements Runnable{
 			Area arcIn = new Area(arcLight.getShapeBounds());
 			in.add(arcIn);
 			g2d.clip(in);
+			
 			g2d.drawImage(background, 0,0,this);
+			mapHandler.render(g, g2d);
+
+
 			
 			g2d.setClip(null);
+			
+			
 			handler.render(g, g2d);
-			mapHandler.render(g, g2d);
+			
+
+			
+			g2d.translate(-cam.getX(), -cam.getY()); //end of cam
+			
+
+
 		}
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -214,5 +259,15 @@ public class Game extends Canvas implements Runnable{
 		new Game();
 	}
 
+	
+	public static BufferedImage getIDImg(TileID tileID){
+		if(TileID.bedRock == tileID){
+			return missingTileImg;
+		}
+		else if(TileID.wood == tileID){
+			return woodTileImg;
+		}
+		return missingTileImg;
+	}
 
 }

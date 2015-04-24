@@ -62,7 +62,7 @@ public class LevelGenerator {
 		for (int i = 0; i < rooms.length; i ++){
 			rooms[i] = new TempRoom(GenerateRoom());
 			for (int j = 0; j < rooms[i].length; j ++){
-				//System.out.println(Arrays.toString(rooms[i].roomArray[j]));
+				System.out.println(Arrays.toString(rooms[i].roomArray[j]));
 			}
 		}
 		
@@ -83,8 +83,12 @@ public class LevelGenerator {
 		int[][] newLevel = new int[128][128];
 		
 		TempRoom[] rooms = makeRooms();
+		// upper left corners of all the rooms
 		int[] originXList = new int[rooms.length];
 		int[] originYList = new int[rooms.length];
+		// lower right corners of all the rooms (actually one below and to the right of the corner)
+		int[] oppositeXList = new int[rooms.length];
+		int[] oppositeYList = new int [rooms.length];
 		int x = 0;
 		for (int i = 0; i < rooms.length; i ++){
 			
@@ -93,9 +97,14 @@ public class LevelGenerator {
 			int min = i * ((int) 110 / rooms.length) + 1;
 			originXList[i] = (int) (Math.random() * (max - min + 1) ) + min;
 			originYList[i] = (int)(Math.random() * (128) + 1);
+			oppositeXList[i] = originXList[i] + rooms[i].width;
+			oppositeYList[i] = originYList[i] + rooms[i].length;
+			
 			System.out.print("(" + originXList[i] + ", " + originYList[i] + ") ");
+			System.out.println("[" + oppositeXList[i] + ", " + oppositeYList[i] + "] ");
 		}
 		
+		// this is the loop that actually merges the room matrices with the super level matrix 
 		for (int i = 0; i < newLevel.length; i ++){
 			for (int j = 0; j < newLevel[0].length; j ++){
 				
@@ -138,10 +147,12 @@ class TempRoom{
 	
 	int[][] roomArray;
 	int length;
+	int width;
 	
 	public TempRoom(int[][] roomittyRoomRoomRoomerRoomRoomRoom){
 		roomArray = roomittyRoomRoomRoomerRoomRoomRoom;
 		length = roomArray.length;
+		width = roomArray[0].length;
 	}
 	
 	
