@@ -28,14 +28,15 @@ public class LevelGenerator {
 	 * This class only needs to be used when creating a "default" room with no parameters
 	 * Calm down bennett, we probably won't need this
 	 * I hate defualt constructors -Bennett
+	 * Fortunately this isn't even a constructor, it's a method, sooo.....
 	 * 
 	 * @return newRoom
 	 */
 	private int[][] GenerateRoom(){
 		
-		// creates a 2d array with a minimum length and with of 10, and a maximum of 16
-		// Note: this does not include the walls.  The total length and with are in [12, 18]
-		int[][] newRoom = new int[(int)(Math.random() * 7) + 12][(int)(Math.random() * 7) + 12];
+		// creates a 2d array with a minimum length and width of 10, and a maximum of 16
+		// Note: this does not include the walls.  The total length and width are in [12, 18]
+		int[][] newRoom = new int[(int)(Math.random() * 7) + 12][(int)(Math.random() * 7) + 12]; // 12 to 18 
 		
 		
 		for (int i = 0; i < newRoom[0].length; i ++){
@@ -48,12 +49,27 @@ public class LevelGenerator {
 			newRoom[i][newRoom[0].length - 1] = wallID;
 		}
 		
-		
-		
-		
-		
 		return newRoom;
 	}
+	
+	/** This just creates a random number of rooms, and then gives them to the CreateLevel method to make a level out of them
+	 * It's an array of TempRoom objects, because the other option was a 3D array, and that's not something you want to be messing with,
+	 * especially with rooms of different sizes
+	 * */
+	private TempRoom[] makeRooms(){
+		TempRoom[] rooms = new TempRoom[(int) (Math.random() * 6) + 5]; // 5 to 10 rooms
+		
+		for (int i = 0; i < rooms.length; i ++){
+			rooms[i] = new TempRoom(GenerateRoom());
+			for (int j = 0; j < rooms[i].length; j ++){
+				//System.out.println(Arrays.toString(rooms[i].roomArray[j]));
+			}
+		}
+		
+		return rooms;
+	}
+	
+
 	
 	
 	/**
@@ -66,7 +82,31 @@ public class LevelGenerator {
 	public int[][] CreateLevel(){
 		int[][] newLevel = new int[128][128];
 		
-		GenerateRoom();
+		TempRoom[] rooms = makeRooms();
+		int[] originXList = new int[rooms.length];
+		int[] originYList = new int[rooms.length];
+		int x = 0;
+		for (int i = 0; i < rooms.length; i ++){
+			
+			
+			int max = (i + 1) * ((int) 110 / rooms.length);
+			int min = i * ((int) 110 / rooms.length) + 1;
+			originXList[i] = (int) (Math.random() * (max - min + 1) ) + min;
+			originYList[i] = (int)(Math.random() * (128) + 1);
+			System.out.print("(" + originXList[i] + ", " + originYList[i] + ") ");
+		}
+		
+		for (int i = 0; i < newLevel.length; i ++){
+			for (int j = 0; j < newLevel[0].length; j ++){
+				
+			}
+		}
+		
+		for (int i = 0; i < newLevel.length; i ++){
+			for (int j = 0; j < newLevel[0].length; i ++){
+				
+			}
+		}
 		
 		
 		
@@ -75,11 +115,38 @@ public class LevelGenerator {
 	}
 	
 	public static void main(String [] args){
-		LevelGenerator l = new LevelGenerator();
 		
-		int[][] room1 = l.GenerateRoom();
-		System.out.println(room1[0].length);
-		System.out.print(Arrays.deepToString(room1));
+		
+		LevelGenerator l = new LevelGenerator();
+		l.CreateLevel();
+		
+
+		
+		// stoopid is now a list of TempRooms (essentially a list of 2D lists)
+		//TempRoom[] stoopid = l.makeRooms();
 	}
 
+}
+
+/**
+ * 
+ * @author Steven
+ * If you are using this class, and you're not generating levels, YOU ARE DOING SOMETHING WRONG AND YOU NEED TO STOP NOW STOP PLEASE DON'T DON'T DO THIS YOU THINK YOU KNOW WHAT YOU'RE DOING BUT YOU DON'T
+ *
+ */
+class TempRoom{
+	
+	int[][] roomArray;
+	int length;
+	
+	public TempRoom(int[][] roomittyRoomRoomRoomerRoomRoomRoom){
+		roomArray = roomittyRoomRoomRoomerRoomRoomRoom;
+		length = roomArray.length;
+	}
+	
+	
+	public String toString(){
+		return "This is not the Room you're looking for";
+	}
+	
 }
