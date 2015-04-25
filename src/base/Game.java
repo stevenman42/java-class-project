@@ -212,7 +212,7 @@ public class Game extends Canvas implements Runnable{
 			g.setColor(Color.red);
 		}
 		else{
-			g.setColor(new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256)));
+			g.setColor(Color.blue);
 		}
 		
 		g.fillRect(0, 0, WIDTH, HEIGHT);
