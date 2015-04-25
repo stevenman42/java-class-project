@@ -15,6 +15,7 @@ public class LevelGenerator {
 	private int floorID = 0;
 	private int wallID = 1;
 	private int doorID = 2;
+	private int hallID = 3;
 	
 	public int[][] CreateLevel(ArrayList<Room> rooms){ //the List of rooms is being created and handled by the MapHandler
 		int[][] newLevel = new int[128][128];
@@ -69,6 +70,44 @@ public class LevelGenerator {
 		return rooms;
 	}
 	
+	private int[][] makeHalls(int[] originXList, int[] originYList, int[] oppositeXList, int[] oppositeYList, int[][] level){
+		
+		int[] centerXList = new int[originXList.length];
+		int[] centerYList = new int[originXList.length];
+		
+		
+		// creates two lists with all the coordinates of the centers of the rooms
+		// the hallways are going to be drawn from center to center before the rooms are placed, and then the rooms are going to be placed over the halls
+		for (int i = 0; i < originXList.length; i ++){
+			centerXList[i] = (originXList[i] + oppositeXList[i]) / 2;
+			centerYList[i] = (originYList[i] + oppositeYList[i]) / 2;
+		}
+		
+		for (int a = 0; a < centerXList.length - 1; a ++){
+			
+			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
+				level[centerYList[a]][i] = hallID;
+			}
+			
+			if (centerYList[a] < centerYList[a + 1]){
+				for (int i = centerYList[a]; i < centerYList[a + 1]; i ++){
+					level[i][centerXList[a + 1]] = hallID;
+				}				
+			}
+			
+			else if (centerYList[a] > centerYList[a + 1]){
+				for (int i = centerYList[a]; i > centerYList[a + 1]; i --){
+					level[i][centerXList[a + 1]] = hallID;
+				}
+			}
+			
+			
+		}
+		
+		return level;
+		
+	}
+	
 
 	
 	
@@ -89,19 +128,17 @@ public class LevelGenerator {
 		// lower right corners of all the rooms (actually one below and to the right of the corner)
 		int[] oppositeXList = new int[rooms.length];
 		int[] oppositeYList = new int [rooms.length];
+		
 		for (int i = 0; i < rooms.length; i ++){
-			
-			
-			int max = (i + 1) * ((int) 110 / rooms.length);
+			int max = (i + 1) * ((int) 110 / rooms.length) - 2;
 			int min = i * ((int) 110 / rooms.length) + 1;
 			originXList[i] = (int) (Math.random() * (max - min + 1) ) + min;
 			originYList[i] = (int)(Math.random() * (110) );
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
-			
-			//System.out.print("(" + originXList[i] + ", " + originYList[i] + ") ");
-			//System.out.println("[" + oppositeXList[i] + ", " + oppositeYList[i] + "] ");
 		}
+		
+		newLevel = makeHalls(originXList, originYList, oppositeXList, oppositeYList, newLevel);
 		
 		
 		// what is this
@@ -116,9 +153,10 @@ public class LevelGenerator {
 			
 		}
 		
+		
 		// prints the giant honkin' level after it's made (testing purposes)
 		for (int[] stupid: newLevel){
-			//System.out.println(Arrays.toString(stupid));
+			System.out.println(Arrays.toString(stupid));
 		}
 		
 		
@@ -131,13 +169,7 @@ public class LevelGenerator {
 		LevelGenerator l = new LevelGenerator();
 		l.CreateLevel();
 		
-		int max = 10;
-		int min = 2;
-		
-		for (int i = 0; i < 10; i ++){
-			System.out.println((int)(Math.random() * (max - min) + 1) + min);
-		}
-		System.out.println("wat");
+	
 		
 
 	}
