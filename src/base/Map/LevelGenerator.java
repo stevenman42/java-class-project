@@ -31,9 +31,12 @@ public class LevelGenerator {
 	 */
 	private int[][] GenerateRoom(){
 		
-		// creates a 2d array with a minimum length and width of 10, and a maximum of 16
-		// Note: this does not include the walls.  The total length and width are in [12, 18]
-		int[][] newRoom = new int[(int)(Math.random() * 7) + 12][(int)(Math.random() * 7) + 12]; // 12 to 18 
+		int maxRoomSize = 18;
+		int minRoomSize = 12;
+		
+		// creates a 2d array with a minimum length and width of maxRoomSize - 2, and a maximum of minRoomSize - 2
+		// Note: this does not include the walls.  The total length and width are in [maxRoomSize, minRoomSize]
+		int[][] newRoom = new int[(int)(Math.random() * (maxRoomSize - minRoomSize + 1)) + minRoomSize][(int)(Math.random() * (maxRoomSize - minRoomSize + 1)) + minRoomSize];
 		
 		
 		for (int i = 0; i < newRoom[0].length; i ++){
@@ -92,7 +95,7 @@ public class LevelGenerator {
 			int max = (i + 1) * ((int) 110 / rooms.length);
 			int min = i * ((int) 110 / rooms.length) + 1;
 			originXList[i] = (int) (Math.random() * (max - min + 1) ) + min;
-			originYList[i] = (int)(Math.random() * (128) + 1);
+			originYList[i] = (int)(Math.random() * (128) );
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
 			
@@ -115,7 +118,7 @@ public class LevelGenerator {
 		
 		// prints the giant honkin' level after it's made (testing purposes)
 		for (int[] stupid: newLevel){
-			System.out.println(Arrays.toString(stupid));
+			//System.out.println(Arrays.toString(stupid));
 		}
 		
 		
