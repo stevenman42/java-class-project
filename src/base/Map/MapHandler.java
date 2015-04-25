@@ -2,9 +2,12 @@ package base.Map;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Area;
 import java.util.LinkedList;
 
+import base.Game;
+import base.Player;
 import base.Visual.ArcLight;
 import base.Visual.LightSource;
 
