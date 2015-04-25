@@ -95,7 +95,7 @@ public class LevelGenerator {
 			int max = (i + 1) * ((int) 110 / rooms.length);
 			int min = i * ((int) 110 / rooms.length) + 1;
 			originXList[i] = (int) (Math.random() * (max - min + 1) ) + min;
-			originYList[i] = (int)(Math.random() * (128) );
+			originYList[i] = (int)(Math.random() * (110) );
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
 			
