@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import base.Game;
+import base.audio.Audio;
 
 
 public class Menu {
@@ -61,7 +62,7 @@ public class Menu {
 		/*
 		Font font0 = new Font("arial", Font.BOLD, 100);
 		g.setFont(font0);
-		g.setColor(Color.white);
+		g.setColor(new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256)));
 		g.drawString("Evader!", Game.WIDTH/2 - 180, Game.HEIGHT/2 -100);
 		g2d.draw(playButton);
 		g2d.draw(quitButton);
