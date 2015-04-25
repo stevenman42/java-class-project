@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * 
  * @author Steven
- * Takes a bunch of rooms, which are either 2d arrays, or objects that have a field that's a 2d array
+ * Makes a bunch of rooms, which are either 2d arrays, or objects that have a field that's a 2d array
  * Then it builds a level by putting together the rooms
  * 
  */
@@ -26,9 +26,6 @@ public class LevelGenerator {
 	/**
 	 * 
 	 * This class only needs to be used when creating a "default" room with no parameters
-	 * Calm down bennett, we probably won't need this
-	 * I hate defualt constructors -Bennett
-	 * Fortunately this isn't even a constructor, it's a method, sooo.....
 	 * 
 	 * @return newRoom
 	 */
@@ -103,28 +100,9 @@ public class LevelGenerator {
 			//System.out.println("[" + oppositeXList[i] + ", " + oppositeYList[i] + "] ");
 		}
 		
-		// this is the loop that actually merges the room matrices with the super level matrix 
-		// wait no I'm pretty sure I don't need FIVE FOR LOOPS INSIDE EACH OTHER WHY
-		// let's try something else
-//		for (int i = 0; i < newLevel.length; i ++){
-//			for (int j = 0; j < newLevel[0].length; j ++){
-//				
-//				for (int a = 0; a < originXList.length; a ++){
-//					if (a == i){
-//						
-//						for (int b = a; b < oppositeXList[a] - originXList[a]; b ++){
-//							
-//						}
-//							
-//						
-//					}
-//				}
-//				
-//			}
-//		}
 		
 		// what is this
-		// answer: not 5 for loops
+		// answer: not 5 FRICKEN FOR LOOPS
 		for (int a = 0; a < originXList.length; a ++){ // loops through the originXList (and YList I guess)
 			for (int i = originYList[a]; i < oppositeYList[a]; i ++){ // rows
 				for (int j = originXList[a]; j < oppositeXList[a]; j ++){ // columns
@@ -135,6 +113,7 @@ public class LevelGenerator {
 			
 		}
 		
+		// prints the giant honkin' level after it's made (testing purposes)
 		for (int[] stupid: newLevel){
 			System.out.println(Arrays.toString(stupid));
 		}
@@ -157,9 +136,6 @@ public class LevelGenerator {
 		}
 		
 
-		
-		// stoopid is now a list of TempRooms (essentially a list of 2D lists)
-		//TempRoom[] stoopid = l.makeRooms();
 	}
 
 }
