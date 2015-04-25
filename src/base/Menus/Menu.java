@@ -61,7 +61,11 @@ public class Menu {
 	public MouseListener getMenuMouseListener(){
 		MouseListener ml = new MouseListener(){
 			public void mouseClicked(MouseEvent e){}
-			public void mousePressed(MouseEvent e){}
+			public void mousePressed(MouseEvent e){
+				if(Game.State == Game.STATE.MENU){
+					
+				}
+			}
 			public void mouseReleased(MouseEvent e){}
 			public void mouseEntered(MouseEvent e){}
 			public void mouseExited(MouseEvent e){}

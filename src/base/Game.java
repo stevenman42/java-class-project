@@ -89,6 +89,7 @@ public class Game extends Canvas implements Runnable{
 		
 		hud = new HUD();
 		menu = new Menu();
+		addMouseListener(menu.getMenuMouseListener());
 		pause = new Pause();
 		cam = new Camera(0,0);
 		
