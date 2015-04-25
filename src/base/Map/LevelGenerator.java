@@ -2,12 +2,11 @@ package base.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//test comment
 
 /**
  * 
  * @author Steven
- * Takes a bunch of rooms, which are either 2d arrays, or objects that have a field that's a 2d array
+ * Makes a bunch of rooms, which are either 2d arrays, or objects that have a field that's a 2d array
  * Then it builds a level by putting together the rooms
  * 
  */
@@ -27,17 +26,17 @@ public class LevelGenerator {
 	/**
 	 * 
 	 * This class only needs to be used when creating a "default" room with no parameters
-	 * Calm down bennett, we probably won't need this
-	 * I hate defualt constructors -Bennett
-	 * Fortunately this isn't even a constructor, it's a method, sooo.....
 	 * 
 	 * @return newRoom
 	 */
 	private int[][] GenerateRoom(){
 		
-		// creates a 2d array with a minimum length and width of 10, and a maximum of 16
-		// Note: this does not include the walls.  The total length and width are in [12, 18]
-		int[][] newRoom = new int[(int)(Math.random() * 7) + 12][(int)(Math.random() * 7) + 12]; // 12 to 18 
+		int maxRoomSize = 18;
+		int minRoomSize = 12;
+		
+		// creates a 2d array with a minimum length and width of maxRoomSize - 2, and a maximum of minRoomSize - 2
+		// Note: this does not include the walls.  The total length and width are in [maxRoomSize, minRoomSize]
+		int[][] newRoom = new int[(int)(Math.random() * (maxRoomSize - minRoomSize + 1)) + minRoomSize][(int)(Math.random() * (maxRoomSize - minRoomSize + 1)) + minRoomSize];
 		
 		
 		for (int i = 0; i < newRoom[0].length; i ++){
@@ -63,7 +62,7 @@ public class LevelGenerator {
 		for (int i = 0; i < rooms.length; i ++){
 			rooms[i] = new TempRoom(GenerateRoom());
 			for (int j = 0; j < rooms[i].length; j ++){
-				System.out.println(Arrays.toString(rooms[i].roomArray[j]));
+				//System.out.println(Arrays.toString(rooms[i].roomArray[j]));
 			}
 		}
 		
@@ -90,35 +89,37 @@ public class LevelGenerator {
 		// lower right corners of all the rooms (actually one below and to the right of the corner)
 		int[] oppositeXList = new int[rooms.length];
 		int[] oppositeYList = new int [rooms.length];
-		int x = 0;
 		for (int i = 0; i < rooms.length; i ++){
 			
 			
 			int max = (i + 1) * ((int) 110 / rooms.length);
 			int min = i * ((int) 110 / rooms.length) + 1;
 			originXList[i] = (int) (Math.random() * (max - min + 1) ) + min;
-			originYList[i] = (int)(Math.random() * (128) + 1);
+			originYList[i] = (int)(Math.random() * (128) );
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
 			
-			System.out.print("(" + originXList[i] + ", " + originYList[i] + ") ");
-			System.out.println("[" + oppositeXList[i] + ", " + oppositeYList[i] + "] ");
+			//System.out.print("(" + originXList[i] + ", " + originYList[i] + ") ");
+			//System.out.println("[" + oppositeXList[i] + ", " + oppositeYList[i] + "] ");
 		}
 		
-		// this is the loop that actually merges the room matrices with the super level matrix 
-		for (int i = 0; i < newLevel.length; i ++){
-			for (int j = 0; j < newLevel[0].length; j ++){
-				
+		
+		// what is this
+		// answer: not 5 FRICKEN FOR LOOPS
+		for (int a = 0; a < originXList.length; a ++){ // loops through the originXList (and YList I guess)
+			for (int i = originYList[a]; i < oppositeYList[a]; i ++){ // rows
+				for (int j = originXList[a]; j < oppositeXList[a]; j ++){ // columns
+					newLevel[i][j] = rooms[a].roomArray[i - originYList[a]][j - originXList[a]];
+					
+				}
 			}
+			
 		}
 		
-		for (int i = 0; i < newLevel.length; i ++){
-			for (int j = 0; j < newLevel[0].length; i ++){
-				
-			}
+		// prints the giant honkin' level after it's made (testing purposes)
+		for (int[] stupid: newLevel){
+			//System.out.println(Arrays.toString(stupid));
 		}
-		
-		
 		
 		
 		return newLevel;
@@ -130,10 +131,14 @@ public class LevelGenerator {
 		LevelGenerator l = new LevelGenerator();
 		l.CreateLevel();
 		
-
+		int max = 10;
+		int min = 2;
 		
-		// stoopid is now a list of TempRooms (essentially a list of 2D lists)
-		//TempRoom[] stoopid = l.makeRooms();
+		for (int i = 0; i < 10; i ++){
+			System.out.println((int)(Math.random() * (max - min) + 1) + min);
+		}
+		
+
 	}
 
 }

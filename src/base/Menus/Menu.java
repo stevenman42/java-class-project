@@ -5,15 +5,36 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import base.Game;
+import base.audio.Audio;
 
 
 public class Menu {
-	
+
 
 	public static Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
 	public static Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);
+
+	private boolean audioPlaying = false;	
+	private Audio audio;
+	
+	public void inil(){
+		
+	}
+	
+	public void openMenu(){
+		audio = new Audio("RES/Audio/Background1.wav");
+		audio.play();
+		audioPlaying = true;
+		
+	}
+	
+	public void closeMenu(){
+		audio.stop();
+	}
 	
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
@@ -28,5 +49,24 @@ public class Menu {
 		g.setFont(font1);
 		g.drawString("Play", playButton.x + 25, playButton.y + 35);
 		g.drawString("Quit", quitButton.x + 25, quitButton.y + 35);
+
+		if(!audioPlaying){
+			audio = new Audio("RES/Audio/Background1.wav");
+			audio.play();
+			audioPlaying = true;
+		}
+
 	}
+	
+	public MouseListener getMenuMouseListener(){
+		MouseListener ml = new MouseListener(){
+			public void mouseClicked(MouseEvent e){}
+			public void mousePressed(MouseEvent e){}
+			public void mouseReleased(MouseEvent e){}
+			public void mouseEntered(MouseEvent e){}
+			public void mouseExited(MouseEvent e){}
+		};
+		return ml;
+	}
+	
 }
