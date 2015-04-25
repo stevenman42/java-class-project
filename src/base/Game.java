@@ -89,6 +89,8 @@ public class Game extends Canvas implements Runnable{
 		
 		hud = new HUD();
 		menu = new Menu();
+		menu.inil();
+		menu.openMenu();//the first gamestate is defaultly menu, therefore openMenu should be called
 		addMouseListener(menu.getMenuMouseListener());
 		pause = new Pause();
 		cam = new Camera(0,0);
@@ -210,7 +212,8 @@ public class Game extends Canvas implements Runnable{
 			g.setColor(Color.red);
 		}
 		else{
-			g.setColor(Color.blue);
+			g.setColor(Color.BLUE);
+
 		}
 		
 		g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -251,7 +254,8 @@ public class Game extends Canvas implements Runnable{
 		}
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);
-			menu.render(g);
+			if(menu != null)
+				menu.render(g);
 		}
 		
 		
