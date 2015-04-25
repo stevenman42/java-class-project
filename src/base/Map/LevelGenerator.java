@@ -149,6 +149,13 @@ public class LevelGenerator {
 		LevelGenerator l = new LevelGenerator();
 		l.CreateLevel();
 		
+		int max = 10;
+		int min = 2;
+		
+		for (int i = 0; i < 10; i ++){
+			System.out.println((int)(Math.random() * (max - min) + 1) + min);
+		}
+		
 
 		
 		// stoopid is now a list of TempRooms (essentially a list of 2D lists)
