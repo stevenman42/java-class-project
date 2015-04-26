@@ -29,7 +29,7 @@ public class Button extends AbstractGuiComponent{
 		if(!text.equals("")){
 			Font font1 = new Font("arial", Font.BOLD, 25);
 			g2d.setFont(font1);
-			g2d.drawString(text, x + (length / 2), y + (height / 2));
+			g2d.drawString(text, x + (length / 5), y + (height / 2));
 		}
 		
 	}

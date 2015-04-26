@@ -26,7 +26,7 @@ public class Menu {
 	public void inil(){
 		
 		Button play = new Button(Game.WIDTH/2-50, 200, 100, 50);
-		play.setText("PLAY");
+		play.setText("123");
 		
 		Button quit = new Button(Game.WIDTH/2 -50, 300, 100, 50);
 		quit.setText("QUIT");
