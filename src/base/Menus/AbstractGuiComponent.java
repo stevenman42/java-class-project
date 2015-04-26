@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public abstract class AbstractGuiComponent{
-	
+
 	private ArrayList<ActionListener> actionListeners;
-	
+
 	public AbstractGuiComponent(){
 		actionListeners = new ArrayList<ActionListener>();
 	}
-	
+
 	/**
 	 * adds an ActionListener to the GuiComponent
 	 * @param al
@@ -20,7 +20,7 @@ public abstract class AbstractGuiComponent{
 	public void addActionListener(ActionListener al){
 		actionListeners.add(al);
 	}
-	
+
 	/**
 	 * removes the ActionListener from the GuiComponent
 	 * @param al
@@ -28,7 +28,7 @@ public abstract class AbstractGuiComponent{
 	public void removeActionListener(ActionListener al){
 		actionListeners.remove(al);
 	}
-	
+
 	/**
 	 * calls the actionPerformed methods
 	 * @param e
@@ -38,7 +38,7 @@ public abstract class AbstractGuiComponent{
 			al.actionPerformed(e);
 		}
 	}
-	
+
 	public abstract void render(Graphics2D g2d);
 	public abstract void tick();
 	public abstract boolean isMouseInBounds(int mx, int my);
