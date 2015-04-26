@@ -1,5 +1,6 @@
 package base.Menus;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -26,6 +27,8 @@ public class Button extends AbstractGuiComponent{
 		
 		g2d.draw(rect);
 		if(!text.equals("")){
+			Font font1 = new Font("arial", Font.BOLD, 25);
+			g2d.setFont(font1);
 			g2d.drawString(text, x + (length / 2), y + (height / 2));
 		}
 		
