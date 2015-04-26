@@ -24,14 +24,19 @@ public class Menu {
 	public static Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
 	public static Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);
 	
-	private Image image;
+	private Image image, image2, image3;
 	
 	private boolean audioPlaying = false;	
 	private Audio audio;
 
 	public void inil(){
-
-		Button play = new Button(Game.WIDTH/2-50, 200, 100, 50);
+		
+		image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
+		image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp2.gif");
+		image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp3.gif");
+		
+		//Button play = new ButtonImage(Game.WIDTH/2-50, 200, 100, 50, image2);
+		Button play = new ButtonImage(Game.WIDTH/2-200, 200, 400, 50, image2);
 		play.setText("PLAY");
 		play.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -40,7 +45,8 @@ public class Menu {
 			}		
 		});
 		
-		Button quit = new Button(Game.WIDTH/2 -50, 300, 100, 50);
+		//Button quit = new Button(Game.WIDTH/2 -50, 300, 100, 50);
+		Button quit = new ButtonImage(Game.WIDTH/2-200, 300, 400, 50, image3);
 		quit.setText("QUIT");
 		quit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -50,8 +56,6 @@ public class Menu {
 		
 		guiComponents.add(play);
 		guiComponents.add(quit);
-		
-		image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
 		
 	}
 
@@ -114,5 +118,5 @@ public class Menu {
 		};
 		return ml;
 	}
-
+	
 }

@@ -21,7 +21,7 @@ public class Button extends AbstractGuiComponent{
 		this.height = height;
 		rect = new Rectangle(x, y, length, height);
 	}
-
+	
 	public void setText(String str){
 		text = str;
 	}
@@ -30,20 +30,26 @@ public class Button extends AbstractGuiComponent{
 
 		g2d.draw(rect);
 		if(!text.equals("")){
-			
-			Font font1 = new Font("arial", Font.BOLD, 25);
-			g2d.setFont(font1);
-
-			FontMetrics fm = g2d.getFontMetrics();
-			int cx = (x + (length / 2)) - (fm.stringWidth(text) / 2);
-			int cy = (y + (height / 2)) + (fm.getHeight() / 3);
-			
-			g2d.drawString(text, cx, cy);
-
+			renderText(g2d);
 		}
 
 	}
+	
+	protected void renderText(Graphics2D g2d){
+		Font font1 = new Font("arial", Font.BOLD, 25);
+		g2d.setFont(font1);
 
+		FontMetrics fm = g2d.getFontMetrics();
+		int cx = (x + (length / 2)) - (fm.stringWidth(text) / 2);
+		int cy = (y + (height / 2)) + (fm.getHeight() / 3);
+		
+		g2d.drawString(text, cx, cy);
+	}
+	
+	protected void renderBorder(Graphics2D g2d){
+		g2d.drawRect(x, y, length, height);
+	}
+	
 	public void tick(){
 
 	}
@@ -54,5 +60,21 @@ public class Button extends AbstractGuiComponent{
 		}
 		return false;
 	}	
-
+	
+	protected int getX(){
+		return x;
+	}
+	
+	protected int getY(){
+		return y;
+	}
+	
+	protected int getLength(){
+		return length;
+	}
+	
+	protected int getHeight(){
+		return height;
+	}
+	
 }
