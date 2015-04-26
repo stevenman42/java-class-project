@@ -61,7 +61,7 @@ public class Menu {
 
 	public void openMenu(){
 		audio = new Audio("RES/Audio/Background1.wav");
-		audio.play();
+		audio.loop();
 		audioPlaying = true;
 
 	}
