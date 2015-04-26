@@ -1,11 +1,13 @@
 package base.Menus;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 public class Button extends AbstractGuiComponent{
 	
 	private int x, y, length, height;
 	private String text = "";
+	private Rectangle rect;
 	
 	public Button(int x, int y, int length, int height){
 		super();
@@ -13,15 +15,19 @@ public class Button extends AbstractGuiComponent{
 		this.y = y;
 		this.length = length;
 		this.height = height;
+		rect = new Rectangle(x, y, length, height);
 	}
 	
 	public void setText(String str){
 		text = str;
 	}
 	
-	public void render(Graphics g) {
+	public void render(Graphics2D g2D) {
+		
+		
 		
 	}
+	
 	public void tick(){
 		
 	}

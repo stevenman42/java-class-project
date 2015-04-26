@@ -25,7 +25,13 @@ public class Menu {
 	public void inil(){
 		
 		Button play = new Button(Game.WIDTH/2-50, 200, 100, 50);
+		play.setText("PLAY");
+		
 		Button quit = new Button(Game.WIDTH/2 -50, 300, 100, 50);
+		quit.setText("QUIT");
+		
+		guiComponents.add(play);
+		guiComponents.add(quit);
 		
 	}
 	
@@ -42,7 +48,17 @@ public class Menu {
 	
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-
+				
+		Font font0 = new Font("arial", Font.BOLD, 100);
+		g.setFont(font0);
+		g.setColor(Color.white);
+		g.drawString("Evader!", Game.WIDTH/2 - 180, Game.HEIGHT/2 -100);
+		
+		for(AbstractGuiComponent agc : guiComponents){
+			agc.render(g2d);
+		}
+		
+		/*
 		Font font0 = new Font("arial", Font.BOLD, 100);
 		g.setFont(font0);
 		g.setColor(Color.white);
@@ -53,13 +69,25 @@ public class Menu {
 		g.setFont(font1);
 		g.drawString("Play", playButton.x + 25, playButton.y + 35);
 		g.drawString("Quit", quitButton.x + 25, quitButton.y + 35);
-
+		*/
+		
+		
+		
 		if(!audioPlaying){
 			audio = new Audio("RES/Audio/Background1.wav");
 			audio.play();
 			audioPlaying = true;
 		}
-
+		
+		
+	}
+	
+	public void tick(){
+		
+		for(AbstractGuiComponent agc : guiComponents){
+			agc.tick();
+		}
+		
 	}
 	
 	public MouseListener getMenuMouseListener(){
