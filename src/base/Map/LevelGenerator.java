@@ -17,16 +17,13 @@ public class LevelGenerator {
 	private int doorID = 2;
 	private int hallID = 3;
 	
-	public int[][] CreateLevel(ArrayList<Room> rooms){ //the List of rooms is being created and handled by the MapHandler
-		int[][] newLevel = new int[128][128];
-		
-		return newLevel;
-	};
-	
-	
+	private int minRooms = 4;
+	private int maxRooms = 7;
+
 	/**
 	 * 
 	 * This class only needs to be used when creating a "default" room with no parameters
+	 * Actually it looks like it's going to be the main class used when creating a room
 	 * 
 	 * @return newRoom
 	 */
@@ -58,7 +55,10 @@ public class LevelGenerator {
 	 * especially with rooms of different sizes
 	 * */
 	private TempRoom[] makeRooms(){
-		TempRoom[] rooms = new TempRoom[(int) (Math.random() * 6) + 5]; // 5 to 10 rooms
+		
+
+		
+		TempRoom[] rooms = new TempRoom[(int) (Math.random() * (maxRooms - minRooms + 1)) + minRooms];
 		
 		for (int i = 0; i < rooms.length; i ++){
 			rooms[i] = new TempRoom(GenerateRoom());
@@ -113,13 +113,15 @@ public class LevelGenerator {
 	
 	/**
 	 * 
-	 * This overloaded method doesn't take parameters because it just generates a bunch of empty rooms
+	 * This method doesn't take parameters because it just generates a bunch of empty rooms
 	 * You don't have to have created any rooms to use it
 	 * 
 	 * @return newLevel
 	 */
 	public int[][] CreateLevel(){
-		int[][] newLevel = new int[128][128];
+		int[][] newLevel = new int[64][128];
+		int min;
+		int max;
 		
 		TempRoom[] rooms = makeRooms();
 		// upper left corners of all the rooms
@@ -130,12 +132,22 @@ public class LevelGenerator {
 		int[] oppositeYList = new int [rooms.length];
 		
 		for (int i = 0; i < rooms.length; i ++){
-			int max = (i + 1) * ((int) 110 / rooms.length) - 2;
-			int min = i * ((int) 110 / rooms.length) + 1;
-			originXList[i] = (int) (Math.random() * (max - min + 1) ) + min;
-			originYList[i] = (int)(Math.random() * (110) );
+			
+			min = i * ((int) (64-18) / rooms.length) + 1;
+			
+			if (i > 0)
+				min = originXList[i - 1] + rooms[i].roomArray[0].length + 1;
+			
+			
+			//int max = (i + 1) * ((int) (64-18) / rooms.length) - 2;
+			max = min + 3;
+			
+			originXList[i] = (int)(Math.random() * (max - min + 1) ) + min;
+			originYList[i] = (int)(Math.random() * (64 - 18) );
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
+			
+			System.out.println("The max was " + max + " and the min was " + min + ", so I created the origin at (" + originXList[i] + ", " + originYList[i] + ")");
 		}
 		
 		newLevel = makeHalls(originXList, originYList, oppositeXList, oppositeYList, newLevel);
@@ -143,10 +155,17 @@ public class LevelGenerator {
 		
 		// what is this
 		// answer: not 5 FRICKEN FOR LOOPS
+		// also: it's the bit that actually puts the stupid rooms into the stupid level
 		for (int a = 0; a < originXList.length; a ++){ // loops through the originXList (and YList I guess)
 			for (int i = originYList[a]; i < oppositeYList[a]; i ++){ // rows
 				for (int j = originXList[a]; j < oppositeXList[a]; j ++){ // columns
-					newLevel[i][j] = rooms[a].roomArray[i - originYList[a]][j - originXList[a]];
+					if (newLevel[i][j] == hallID && rooms[a].roomArray[i - originYList[a]][j-originXList[a]] == wallID)
+						newLevel[i][j] = hallID;
+					else if (newLevel[i][j] == wallID && rooms[a].roomArray[i - originYList[a]][j - originXList[a]] == floorID)
+						newLevel[i][j] = floorID;
+					else
+						newLevel[i][j] = rooms[a].roomArray[i - originYList[a]][j - originXList[a]];
+					
 					
 				}
 			}
