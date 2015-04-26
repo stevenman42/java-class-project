@@ -22,9 +22,12 @@ public class Button extends AbstractGuiComponent{
 		text = str;
 	}
 	
-	public void render(Graphics2D g2D) {
+	public void render(Graphics2D g2d) {
 		
-		
+		g2d.draw(rect);
+		if(!text.equals("")){
+			g2d.drawString(text, x + (length / 2), y + (height / 2));
+		}
 		
 	}
 	
