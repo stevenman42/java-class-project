@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import base.Game;
 import base.audio.Audio;
@@ -14,7 +15,8 @@ import base.audio.Audio;
 
 public class Menu {
 
-
+	private ArrayList<AbstractGuiComponent> guiComponents = new ArrayList<AbstractGuiComponent>();
+	
 	public static Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
 	public static Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);
 
@@ -22,6 +24,9 @@ public class Menu {
 	private Audio audio;
 	
 	public void inil(){
+		
+		Button play = new Button(Game.WIDTH/2-50, 200, 100, 50);
+		Button quit = new Button(Game.WIDTH/2 -50, 300, 100, 50);
 		
 	}
 	

@@ -89,6 +89,8 @@ public class Game extends Canvas implements Runnable{
 		
 		hud = new HUD();
 		menu = new Menu();
+		menu.inil();
+		menu.openMenu();//the first gamestate is defaultly menu, therefore openMenu should be called
 		addMouseListener(menu.getMenuMouseListener());
 		pause = new Pause();
 		cam = new Camera(0,0);
