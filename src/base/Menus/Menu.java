@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,7 +23,9 @@ public class Menu {
 
 	public static Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
 	public static Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);
-
+	
+	private Image image;
+	
 	private boolean audioPlaying = false;	
 	private Audio audio;
 
@@ -46,7 +50,9 @@ public class Menu {
 		
 		guiComponents.add(play);
 		guiComponents.add(quit);
-
+		
+		image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
+		
 	}
 
 	public void openMenu(){
@@ -62,7 +68,11 @@ public class Menu {
 
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-
+		
+		if(image != null){
+			g2d.drawImage(image, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+		}
+		
 		Font font0 = new Font("arial", Font.BOLD, 100);
 		g.setFont(font0);
 		g.setColor(Color.white);
