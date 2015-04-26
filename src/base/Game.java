@@ -81,13 +81,13 @@ public class Game extends Canvas implements Runnable{
 		map = new Map(mapHandler, new ArrayList<Room>(), new Tile[128][128]);
 
 		
-		new Window(WIDTH, HEIGHT, "Elite Group Project", this);
+		new Window(WIDTH, HEIGHT, "Elite Group Project  ©lololololol", this);
 		
 		addKeyListener(new KeyInput(handler));
 		addMouseMotionListener(new MouseMover());
 		addMouseListener(new MouseInput());
 		
-		hud = new HUD();
+		hud = new HUD(this);
 		menu = new Menu();
 		menu.inil();
 		menu.openMenu();//the first gamestate is defaultly menu, therefore openMenu should be called
@@ -125,6 +125,11 @@ public class Game extends Canvas implements Runnable{
 		
 	}
 	
+	private int fps = 0;
+	
+	public int getFPS(){
+		return fps;
+	}
 	
 	public void run() {
 		
@@ -149,6 +154,7 @@ public class Game extends Canvas implements Runnable{
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
 				System.out.println("FPS: " + frames);
+				fps = frames;
 				frames = 0;
 			}
 		}
@@ -249,7 +255,7 @@ public class Game extends Canvas implements Runnable{
 			
 			g2d.translate(-cam.getX(), -cam.getY()); //end of cam
 			
-
+			hud.render(g2d);
 
 		}
 		else if (Game.State == Game.STATE.MENU){
