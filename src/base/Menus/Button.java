@@ -34,6 +34,7 @@ public class Button extends AbstractGuiComponent{
 	public void tick(){
 		
 	}
+	
 	public boolean isMouseInBounds() {
 		return false;
 	}
