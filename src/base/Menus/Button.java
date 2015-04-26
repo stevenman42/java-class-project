@@ -10,6 +10,8 @@ public class Button extends AbstractGuiComponent{
 	private String text = "";
 	private Rectangle rect;
 	
+	
+	
 	public Button(int x, int y, int length, int height){
 		super();
 		this.x = x;
@@ -38,10 +40,11 @@ public class Button extends AbstractGuiComponent{
 		
 	}
 	
-	public boolean isMouseInBounds() {
+	public boolean isMouseInBounds(int mx, int my){
+		if(((mx > x) && (mx < x + length)) && ((my > y) && (my < y + height))){
+			return true;
+		}
 		return false;
-	}
-	
-	
+	}	
 	
 }
