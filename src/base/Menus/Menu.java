@@ -38,7 +38,12 @@ public class Menu {
 		
 		Button quit = new Button(Game.WIDTH/2 -50, 300, 100, 50);
 		quit.setText("QUIT");
-
+		quit.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.exit(1);
+			}
+		});
+		
 		guiComponents.add(play);
 		guiComponents.add(quit);
 
@@ -67,28 +72,6 @@ public class Menu {
 			agc.render(g2d);
 		}
 
-		/*
-		Font font0 = new Font("arial", Font.BOLD, 100);
-		g.setFont(font0);
-		g.setColor(new Color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256)));
-		g.drawString("Evader!", Game.WIDTH/2 - 180, Game.HEIGHT/2 -100);
-		g2d.draw(playButton);
-		g2d.draw(quitButton);
-		Font font1 = new Font("arial", Font.BOLD, 25);
-		g.setFont(font1);
-		g.drawString("Play", playButton.x + 25, playButton.y + 35);
-		g.drawString("Quit", quitButton.x + 25, quitButton.y + 35);
-		 */
-
-
-		/*
-		if(!audioPlaying){
-			audio = new Audio("RES/Audio/Background1.wav");
-			audio.play();
-			audioPlaying = true;
-		}
-		 */
-
 	}
 
 	public void tick(){
@@ -112,23 +95,7 @@ public class Menu {
 							agc.actionPerformed(null);
 						}
 					}
-					
-					/*
-					if(mx >= Game.WIDTH/2-50 && mx <= Game.WIDTH/2 -50 + 100){
-						if(my >= 200 && my <= 250){
-							//Pressed play/resume
-							//Game.State = Game.STATE.GAME;
-							//closeMenu();
-						}
-					}
-					
-					if(mx >= Game.WIDTH/2-50 && mx <= Game.WIDTH/2 -50 + 100){
-						if(my >= 300 && my <= 350){
-							//Pressed quit
-							System.exit(1);
-						}
-					}
-					*/	
+						
 				}
 			}
 			public void mouseReleased(MouseEvent e){}
