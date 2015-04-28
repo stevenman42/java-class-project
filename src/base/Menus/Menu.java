@@ -76,7 +76,7 @@ public class Menu {
 		if(image != null){
 			g2d.drawImage(image, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		}else{
-			System.err.println("coulden't render background image!");
+			System.err.println("Could not render background image!");
 		}
 		
 		Font font0 = new Font("arial", Font.BOLD, 100);

@@ -4,9 +4,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import base.Game;
-import base.GameObject;
 import base.Handler;
-import base.ID;
+import base.Entities.GameObject;
+import base.Entities.ID;
 import base.Game.STATE;
 
 

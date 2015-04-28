@@ -1,4 +1,4 @@
-package base;
+package base.Entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,6 +6,9 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
 
+import base.Game;
+import base.Handler;
+import base.Physics;
 import base.Input.MouseMover;
 import base.Map.TileID;
 import base.Visual.LightSource;

@@ -11,10 +11,10 @@ import java.awt.Shape;
 import java.awt.geom.Arc2D;
 
 import base.Game;
-import base.GameObject;
 import base.Handler;
-import base.ID;
-import base.Player;
+import base.Entities.GameObject;
+import base.Entities.ID;
+import base.Entities.Player;
 
 public class ArcLight extends GameObject{
 

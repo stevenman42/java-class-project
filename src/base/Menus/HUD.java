@@ -17,7 +17,8 @@ public class HUD {
 	public void render(Graphics2D g2d){
 		
 		if(showDebugData){
-			g2d.drawString("FPS:" + game.getFPS(), 1, 10);
+			int fps = game.getFPS();
+			g2d.drawString("FPS:" + fps, Game.WIDTH-((""+fps).length()*6+37), Game.HEIGHT-35);
 		}
 		
 	}
