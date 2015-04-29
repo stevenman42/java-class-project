@@ -1,4 +1,4 @@
-package base;
+package base.Entities;
 
 public enum ID {
 	
@@ -6,6 +6,8 @@ public enum ID {
 	Player(), //use commas between lines (its a list)
 	Light(),
 	ArcLight(),
+	Enemy(),
+	Enemy_Knight(),
 	Trail();
 
 }

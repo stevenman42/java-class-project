@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import base.Entities.GameObject;
 import base.Map.Map;
 import base.Map.MapID;
 import base.Map.MapObject;

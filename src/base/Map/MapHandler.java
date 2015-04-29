@@ -7,7 +7,7 @@ import java.awt.geom.Area;
 import java.util.LinkedList;
 
 import base.Game;
-import base.Player;
+import base.Entities.Player;
 import base.Visual.ArcLight;
 import base.Visual.LightSource;
 

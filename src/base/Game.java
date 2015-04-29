@@ -15,6 +15,10 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import base.Entities.Enemy_Knight;
+import base.Entities.GameObject;
+import base.Entities.ID;
+import base.Entities.Player;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
@@ -105,6 +109,7 @@ public class Game extends Canvas implements Runnable{
             ex.printStackTrace();
         }
 		
+		//manual map making!!!!!!!!!!!!!!!!!!
 		for(int i =0; i < 80; i++){
 			for(int j = 0; j < 80; j++){
 				if(i == 0 || j == 0 || i == 79 || j == 79)
@@ -116,11 +121,16 @@ public class Game extends Canvas implements Runnable{
 					mapHandler.addObject(new Tile(i,j,TileID.wood));
 			}
 		}
+		
 		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
 		handler.addObject(arcLight);
 		overlay = new Overlay(handler, arcLight);
+		
+		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
+		handler.addObject(new Enemy_Knight(20, 20, ID.Enemy_Knight, 32, 32));
+		
 
 		
 	}
@@ -153,7 +163,7 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-				System.out.println("FPS: " + frames);
+				//System.out.println("FPS: " + frames);
 				fps = frames;
 				frames = 0;
 			}
@@ -232,7 +242,7 @@ public class Game extends Canvas implements Runnable{
 			Area in = new Area(new Rectangle());
 			for(int i = 0; i < handler.object.size(); i++){
 				GameObject tempObject = handler.object.get(i);
-				if(tempObject.id == ID.Light){
+				if(tempObject.getId() == ID.Light){
 					tempObject = (LightSource) tempObject;
 					in.add(new Area(tempObject.getBounds()));
 				}
@@ -242,20 +252,16 @@ public class Game extends Canvas implements Runnable{
 			g2d.clip(in);
 			
 			g2d.drawImage(background, 0,0,this);
-			mapHandler.render(g, g2d);
-
-
-			
-			g2d.setClip(null);
-			
-			
-			handler.render(g, g2d);
+			mapHandler.render(g, g2d);		
 			
 
 			
 			g2d.translate(-cam.getX(), -cam.getY()); //end of cam
-			
+			handler.render(g, g2d);
+			g2d.setClip(null);
+
 			hud.render(g2d);
+			p.render(g2d);
 
 		}
 		else if (Game.State == Game.STATE.MENU){

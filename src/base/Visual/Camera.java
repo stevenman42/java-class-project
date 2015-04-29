@@ -1,7 +1,7 @@
 package base.Visual;
 
 import base.Game;
-import base.GameObject;
+import base.Entities.GameObject;
 
 public class Camera {
 	

@@ -12,10 +12,10 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 
 import base.Game;
-import base.GameObject;
 import base.Handler;
-import base.ID;
-import base.Player;
+import base.Entities.GameObject;
+import base.Entities.ID;
+import base.Entities.Player;
 
 public class LightSource extends GameObject{
 	
