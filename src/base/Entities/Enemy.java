@@ -1,7 +1,7 @@
 package base.Entities;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
 
@@ -18,11 +18,11 @@ public abstract class Enemy extends GameObject{
 	
 
 	
-	public void render(Graphics g) {
-		Color temp = g.getColor();
-		g.setColor(Color.red);
-		g.fillRect((int)x, (int)y, (int)width, (int)height);
-		g.setColor(temp);
+	public void render(Graphics2D g2) {
+		Color temp = g2.getColor();
+		g2.setColor(Color.red);
+		g2.fillRect((int)x, (int)y, (int)width, (int)height);
+		g2.setColor(temp);
 	}
 
 	

@@ -2,6 +2,7 @@ package base.Entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
@@ -30,6 +31,9 @@ public class Player extends GameObject{
 	}
 
 	public void tick() {
+		if(Physics.collision(this, Game.EnemyIDList, handler)){
+			Game.State = Game.STATE.MENU;
+		}
 		if(dX > 0 && Physics.clearRight(this, TileID.bedRock))
 			x += dX;
 		if(dX < 0 && Physics.clearLeft(this, TileID.bedRock))
@@ -47,11 +51,9 @@ public class Player extends GameObject{
 				
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics g, Graphics2D g2) {
 		g.setColor(Color.green);
-		g.fillRect((int)(Game.WIDTH/2), (int)(Game.HEIGHT/2), (int)playerWidth, (int)playerHeight);
-		
-		
+		g.fillRect((int)(Game.WIDTH/2), (int)(Game.HEIGHT/2), (int)playerWidth, (int)playerHeight);		
 	}
 
 	public Rectangle getBounds() {
