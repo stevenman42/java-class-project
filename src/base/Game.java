@@ -4,6 +4,7 @@ import game.saveData.SaveDataHandler;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -16,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import base.Entities.Enemy_Knight;
 import base.Entities.GameObject;
@@ -279,6 +283,30 @@ public class Game extends Canvas implements Runnable{
 	}
 
 	public static void main(String args[]){
+		new LoadMenu();
+		int w = 720, h = 405;
+		JFrame j = new JFrame("Loader");
+		JButton newGame = new JButton("Create New Game");
+		JButton load1 = new JButton("Load Game 1");
+		JButton load2 = new JButton("Load Game 2");
+		JButton load3 = new JButton("Load Game 3");
+		//newGame.addActionListener(this);
+		j.setPreferredSize(new Dimension(w, h));
+		j.setMaximumSize(new Dimension(w,h));
+		j.setMinimumSize(new Dimension(w,h));
+		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //makes Exit button work
+		j.setResizable(false); //makes game window not resizable (fixes strecthes)
+		j.setLocationRelativeTo(null); //not needed but window would start in topleft otherwise
+		j.setVisible(true); // have to see it
+		JPanel jp = new JPanel();
+		jp.add(newGame);
+		jp.add(load1);
+		jp.add(load2);
+		jp.add(load3);
+		j.add(jp);
+		
+		
+		
 		new Game();
 	}
 
