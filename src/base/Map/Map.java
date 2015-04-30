@@ -9,14 +9,11 @@ import base.Game;
 public class Map {
 	
 	public static Tile[][] tileMap = new Tile[128][128];
-	protected ArrayList<Room> rooms;
 	protected MapHandler mapHandler;
 	public static boolean rendered = false;
 	public static BufferedImage mapImage;
 	
-	public Map(MapHandler mapHandler, ArrayList<Room> rooms, Tile[][] tileMap){
-		//this.tileMap = tileMap;
-		this.rooms = rooms;
+	public Map(MapHandler mapHandler){
 		this.mapHandler = mapHandler;
 		for(int r  = 0; r < tileMap.length; r++){
 			for(int c = 0; c < tileMap[0].length; c++){
@@ -25,11 +22,15 @@ public class Map {
 					tileMap[r][c] = new Tile(r,c,TileID.bedRock);
 				}
 				else if(tileMap[r][c] == null){
-					tileMap[r][c] = new Tile(r,c,TileID.missing);
+					tileMap[r][c] = new Tile(r,c,TileID.wood);
 				}
 				//mapHandler.addObject(tileMap[r][c]);
 				
 			}
+			
+			tileMap[5][10] = new Tile(10,10,TileID.bedRock);
+			tileMap[10][10] = new Tile(10,10,TileID.bedRock);
+			tileMap[10][0] = new Tile(10,10,TileID.bedRock);
 		}
 		
 		
@@ -50,13 +51,6 @@ public class Map {
 		
 	}
 	
-	
-	public Tile[][] getTileMap(){
-		return tileMap;
-	}
-	
-	public ArrayList<Room> getRooms(){
-		return rooms;
-	}
+
 
 }

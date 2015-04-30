@@ -11,7 +11,7 @@ public class Tile extends MapObject{
 
 	public Tile(float x, float y, TileID id) {
 		super(x*32, y*32, id);
-		Map.tileMap[(int)y][(int)x] = this;
+		Map.tileMap[(int)x][(int)y] = this;
 		// TODO Auto-generated constructor stub
 	}
 

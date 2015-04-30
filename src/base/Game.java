@@ -93,7 +93,9 @@ public class Game extends Canvas implements Runnable{
 		
 		handler = new Handler();
 		mapHandler = new MapHandler();
-		map = new Map(mapHandler, new ArrayList<Room>(), new Tile[128][128]);
+		map = new Map(mapHandler);
+		
+		
 
 
 		
@@ -288,7 +290,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public static BufferedImage getIDImg(TileID tileID){
 		if(TileID.bedRock == tileID){
-			return missingTileImg;
+			return cobbleTileImg;
 		}
 		else if(TileID.wood == tileID){
 			return woodTileImg;
