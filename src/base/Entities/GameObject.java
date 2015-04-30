@@ -84,6 +84,10 @@ public abstract class GameObject {
 		this.ddY = ddY;
 	}
 	
+	public String toString(){
+		return id + "/"  + x + "/"  + y + "/"  + dX + "/"  + dY + "/"  + ddX + "/"  + ddY;
+	}
+	
 	
 }
 	

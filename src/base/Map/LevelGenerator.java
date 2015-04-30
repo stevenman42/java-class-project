@@ -119,7 +119,7 @@ public class LevelGenerator {
 	 * @return newLevel
 	 */
 	public int[][] CreateLevel(){
-		int[][] newLevel = new int[64][128];
+		int[][] newLevel = new int[128][128];
 		int min;
 		int max;
 		
@@ -181,7 +181,7 @@ public class LevelGenerator {
 		
 		return newLevel;
 	}
-	
+	/*
 	public static void main(String [] args){
 		
 		
@@ -192,7 +192,7 @@ public class LevelGenerator {
 		
 
 	}
-
+	*/
 }
 // test another test
 

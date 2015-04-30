@@ -11,8 +11,8 @@ public class Enemy_Knight extends Enemy{
 
 	public Enemy_Knight(float x, float y, ID id, float width, float height) {
 		super(x, y, id, width, height);
-		setDX(1);
-		setDY(2);
+		//setDX(1);
+		//setDY(2);
 	}
 
 	public void tick() {

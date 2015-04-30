@@ -20,13 +20,12 @@ public class Map {
 		this.mapHandler = mapHandler;
 		for(int r  = 0; r < tileMap.length; r++){
 			for(int c = 0; c < tileMap[0].length; c++){
-				if(r == 0 || c == 0 || r == tileMap.length-1 || c == tileMap[0].length -1){
-					tileMap[r][c] = new Tile(r,c,TileID.bedRock);
+				if(r == 0 || c == 0 || r == tileMap.length-1 || c == tileMap[0].length - 1){
+					mapHandler.addObject(new Tile(r,c,TileID.bedRock));
 				}
 				else if(tileMap[r][c] == null){
-					tileMap[r][c] = new Tile(r,c,TileID.wood);
+					mapHandler.addObject(new Tile(r,c,TileID.wood));
 				}
-				//mapHandler.addObject(tileMap[r][c]);
 			}
 		}
 		mapImage = new BufferedImage(3000,3000, BufferedImage.TYPE_INT_ARGB);

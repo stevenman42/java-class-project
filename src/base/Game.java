@@ -4,7 +4,6 @@ import game.saveData.SaveDataHandler;
 
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -17,9 +16,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import base.Entities.Enemy_Knight;
 import base.Entities.GameObject;
@@ -28,6 +24,7 @@ import base.Entities.Player;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
+import base.Map.LevelGenerator;
 import base.Map.Map;
 import base.Map.MapHandler;
 import base.Map.Room;
@@ -86,7 +83,6 @@ public class Game extends Canvas implements Runnable{
 	
 	public static STATE State = STATE.MENU;
 
-	
 	public Game(){
 		
 		StaticGame.setGame(this);
@@ -98,6 +94,7 @@ public class Game extends Canvas implements Runnable{
 		handler = new Handler();
 		mapHandler = new MapHandler();
 		map = new Map(mapHandler, new ArrayList<Room>(), new Tile[128][128]);
+
 
 		
 		new Window(WIDTH, HEIGHT, "Elite Group Project  ©lololololol", this);
@@ -116,7 +113,7 @@ public class Game extends Canvas implements Runnable{
 		
 		try {
             background = ImageIO.read(new File("RES/Textures/tank.png"));
-            missingTileImg = ImageIO.read(new File("RES/Textures/missingTile.png"));
+            missingTileImg = ImageIO.read(new File("RES/Textures/cobbleTile.png"));
             woodTileImg = ImageIO.read(new File("RES/Textures/woodTile.png"));
             cobbleTileImg = ImageIO.read(new File("RES/Textures/cobbleTile.png"));
             doorClosedTileImg = ImageIO.read(new File("RES/Textures/doorClosedTile.png"));
@@ -125,6 +122,7 @@ public class Game extends Canvas implements Runnable{
         }
 		
 		//manual map making!!!!!!!!!!!!!!!!!!
+		/*
 		for(int i =0; i < 80; i++){
 			for(int j = 0; j < 80; j++){
 				if(i == 0 || j == 0 || i == 79 || j == 79)
@@ -136,13 +134,14 @@ public class Game extends Canvas implements Runnable{
 					mapHandler.addObject(new Tile(i,j,TileID.wood));
 			}
 		}
+		*/
 		
 		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
 		handler.addObject(arcLight);
 		overlay = new Overlay(handler, arcLight);
-		
+		System.out.println(p);
 		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
 		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32));
 		
@@ -284,30 +283,6 @@ public class Game extends Canvas implements Runnable{
 
 	public static void main(String args[]){
 		new LoadMenu();
-		int w = 720, h = 405;
-		JFrame j = new JFrame("Loader");
-		JButton newGame = new JButton("Create New Game");
-		JButton load1 = new JButton("Load Game 1");
-		JButton load2 = new JButton("Load Game 2");
-		JButton load3 = new JButton("Load Game 3");
-		//newGame.addActionListener(this);
-		j.setPreferredSize(new Dimension(w, h));
-		j.setMaximumSize(new Dimension(w,h));
-		j.setMinimumSize(new Dimension(w,h));
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //makes Exit button work
-		j.setResizable(false); //makes game window not resizable (fixes strecthes)
-		j.setLocationRelativeTo(null); //not needed but window would start in topleft otherwise
-		j.setVisible(true); // have to see it
-		JPanel jp = new JPanel();
-		jp.add(newGame);
-		jp.add(load1);
-		jp.add(load2);
-		jp.add(load3);
-		j.add(jp);
-		
-		
-		
-		new Game();
 	}
 
 	
@@ -321,7 +296,7 @@ public class Game extends Canvas implements Runnable{
 		else if(TileID.cobble == tileID){
 			return cobbleTileImg;
 		}
-		return missingTileImg;
+		return woodTileImg;
 	}
 
 	
