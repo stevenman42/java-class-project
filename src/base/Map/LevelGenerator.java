@@ -19,6 +19,9 @@ public class LevelGenerator {
 	
 	private int minRooms = 4;
 	private int maxRooms = 7;
+	
+	private int maxRoomSize = 18;
+	private int minRoomSize = 12;
 
 	/**
 	 * 
@@ -28,9 +31,6 @@ public class LevelGenerator {
 	 * @return newRoom
 	 */
 	private int[][] GenerateRoom(){
-		
-		int maxRoomSize = 18;
-		int minRoomSize = 12;
 		
 		// creates a 2d array with a minimum length and width of maxRoomSize - 2, and a maximum of minRoomSize - 2
 		// Note: this does not include the walls.  The total length and width are in [maxRoomSize, minRoomSize]
@@ -118,8 +118,8 @@ public class LevelGenerator {
 	 * 
 	 * @return newLevel
 	 */
-	public int[][] CreateLevel(){
-		int[][] newLevel = new int[128][128];
+	public int[][] createLevel(int width, int height){
+		int[][] newLevel = new int[width][height];
 		int min;
 		int max;
 		
@@ -133,7 +133,7 @@ public class LevelGenerator {
 		
 		for (int i = 0; i < rooms.length; i ++){
 			
-			min = i * ((int) (64-18) / rooms.length) + 1;
+			min = i * ((int) (width-maxRoomSize) / rooms.length) + 1;
 			
 			if (i > 0)
 				min = originXList[i - 1] + rooms[i].roomArray[0].length + 1;
@@ -143,7 +143,7 @@ public class LevelGenerator {
 			max = min + 3;
 			
 			originXList[i] = (int)(Math.random() * (max - min + 1) ) + min;
-			originYList[i] = (int)(Math.random() * (64 - 18) );
+			originYList[i] = (int)(Math.random() * (height - maxRoomSize) );
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
 			
