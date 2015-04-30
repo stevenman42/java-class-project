@@ -113,7 +113,7 @@ public class Game extends Canvas implements Runnable{
 		
 		try {
             background = ImageIO.read(new File("RES/Textures/tank.png"));
-            missingTileImg = ImageIO.read(new File("RES/Textures/cobbleTile.png"));
+            missingTileImg = ImageIO.read(new File("RES/Textures/missingTile.png"));
             woodTileImg = ImageIO.read(new File("RES/Textures/woodTile.png"));
             cobbleTileImg = ImageIO.read(new File("RES/Textures/cobbleTile.png"));
             doorClosedTileImg = ImageIO.read(new File("RES/Textures/doorClosedTile.png"));
@@ -296,7 +296,7 @@ public class Game extends Canvas implements Runnable{
 		else if(TileID.cobble == tileID){
 			return cobbleTileImg;
 		}
-		return woodTileImg;
+		return missingTileImg;
 	}
 
 	
