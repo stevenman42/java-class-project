@@ -1,0 +1,5 @@
+//Comment			\/the value
+KEY_MOVEMENT_FORWARD=69
+// ^the key			^assignmen
+PREMMISION_TO_FUCK_YOUR_MOTHER=yes
+TEST=696969

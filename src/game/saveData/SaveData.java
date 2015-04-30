@@ -38,4 +38,8 @@ public class SaveData {
 		return data;
 	}
 	
+	public String toString(){
+		return "SaveData \"" + key + "=" + data + "\"";
+	}
+	
 }

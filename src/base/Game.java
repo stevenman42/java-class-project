@@ -1,5 +1,7 @@
 package base;
 
+import game.saveData.SaveDataHandler;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -59,6 +61,7 @@ public class Game extends Canvas implements Runnable{
 	private Camera cam;
 	private Map map;
 	public static ID[] EnemyIDList = {ID.Enemy, ID.Enemy_Knight};
+	private SaveDataHandler sdh;
 	
 	
 	//make the HUD
@@ -81,6 +84,11 @@ public class Game extends Canvas implements Runnable{
 
 	
 	public Game(){
+		
+		//must inil first in order to get the option values
+		sdh = new SaveDataHandler();
+		sdh.readSaveData("RES/Options.txt");
+		
 		handler = new Handler();
 		mapHandler = new MapHandler();
 		map = new Map(mapHandler, new ArrayList<Room>(), new Tile[128][128]);
