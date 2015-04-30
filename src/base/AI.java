@@ -2,6 +2,7 @@ package base;
 
 import java.awt.Point;
 import java.util.Arrays;
+import base.Map.LevelGenerator;
 
 import base.Entities.Player;
 
@@ -38,6 +39,9 @@ public class AI {
 	}
 
 	public static void main(String [] args){
+		
+		LevelGenerator hue = new LevelGenerator();
+		
 		int[][] testLevel = new int[][]
 		{
 			{0,0,0,0,0},
@@ -46,8 +50,9 @@ public class AI {
 			{0,0,0,0,0},
 			{0,0,0,0,0}
 		};
+		int[][] newLevel = hue.CreateLevel();
 		AI bennett = new AI();
-		bennett.CalculateHeuristic(testLevel, 1, 1, 1);
+		bennett.CalculateHeuristic(newLevel, 1, 50, 50);
 		
 		// sweet it works
 
