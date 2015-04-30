@@ -28,10 +28,10 @@ public class Menu {
 
 	public void inil(){
 		
-		image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
-		image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp2.gif");
-		image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp3.gif");
-		image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp4.jpg");
+		image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif" + "Remove this for neonazi");
+		image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp2.gif" + "Remove this for neonazi");
+		image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp3.gif" + "Remove this for neonazi");
+		image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp4.jpg" + "Remove this for neonazi");
 		
 		//Button play = new ButtonImage(Game.WIDTH/2-50, 200, 100, 50, image2);
 		Button play = new ButtonImage(Game.WIDTH/2-200, 200, 400, 50, image2);
