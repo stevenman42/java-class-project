@@ -39,5 +39,9 @@ public class Tile extends MapObject{
 	public void addObject(){
 	}
 	
+	public String toString(){
+		return id + "";
+	}
+	
 
 }
