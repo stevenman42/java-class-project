@@ -14,6 +14,15 @@ public class SaveDataHandler {
 		dataModified = false;
 	}
 	
+	public SaveData getDataFromKey(String key){
+		for(SaveData sd : data){
+			if(sd.getKey().equals(key)){
+				return sd;
+			}
+		}
+		return null;
+	}
+	
 	public void readSaveData(String dir){
 		File f = new File(dir);
 		if(f.exists()){
