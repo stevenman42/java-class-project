@@ -21,13 +21,6 @@ public class SaveDataHandler {
 		}
 	}
 	
-	public void writeSaveData(String dir){
-		File f = new File(dir);
-		if(f.exists()){
-			writeSaveData(f);
-		}
-	}
-	
 	public void readSaveData(File file){
 		
 		FileReader fr = new FileReader(file);
@@ -40,6 +33,7 @@ public class SaveDataHandler {
 		for(String s : read){
 			if(s.startsWith("//")){
 				data.add(new SaveData("COMMENT", s.replaceFirst("//", "")));
+				System.out.println("     +" + data.get(data.size() - 1));
 			}else{
 				String[] r = s.split("=");
 				if(r.length != 2){
@@ -52,9 +46,12 @@ public class SaveDataHandler {
 		
 	}
 	
-	public void writeSaveData(File file){
+	public void writeSaveData(String s){
 		
-		
+		FileWriter fw = new FileWriter(s);
+		for(int i = 0; i < data.size(); i++){
+			fw.printLn(data.get(i).format());
+		}
 		
 	}
 	

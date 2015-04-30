@@ -9,7 +9,7 @@ public class FileReader {
 	private Scanner scanner;
 	
     private static final java.util.Locale usLocale = new java.util.Locale("en", "US");
-	
+    
 	public FileReader(File file){
 		try {
 			scanner = new Scanner(file);

@@ -38,8 +38,23 @@ public class SaveData {
 		return data;
 	}
 	
+	/**
+	 * default toString
+	 */
 	public String toString(){
 		return "SaveData \"" + key + "=" + data + "\"";
+	}
+	
+	/**
+	 * formats for re-writing
+	 * @return
+	 */
+	public String format(){
+		if(key.equals("COMMENT")){
+			return "//" + data;
+		}else{
+			return key + "=" + data;
+		}
 	}
 	
 }
