@@ -12,10 +12,10 @@ import java.util.Arrays;
  */
 public class LevelGenerator {
 	
-	private int floorID = 0;
-	private int wallID = 1;
-	private int doorID = 2;
-	private int hallID = 3;
+	private int floorID = 0; //wood floor
+	private int wallID = 1; //bedrock
+	private int doorID = 2; //door
+	private int hallID = 3; //cobble floor
 	
 	private int minRooms = 4;
 	private int maxRooms = 7;

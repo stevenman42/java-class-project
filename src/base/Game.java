@@ -103,9 +103,7 @@ public class Game extends Canvas implements Runnable{
 		
 		mapHandler = new MapHandler();
 		map = new Map(mapHandler);
-		
-		for(int j = 0; j < 25; j++)
-			System.out.println(Arrays.toString(Map.tileMap[j]));
+
 		addKeyListener(new KeyInput(handler));
 		addMouseMotionListener(new MouseMover());
 		addMouseListener(new MouseInput());
