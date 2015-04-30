@@ -1,5 +1,7 @@
 package base;
 
+import game.saveData.SaveDataHandler;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -58,6 +60,8 @@ public class Game extends Canvas implements Runnable{
 	private MapHandler mapHandler;
 	private Camera cam;
 	private Map map;
+	public static ID[] EnemyIDList = {ID.Enemy, ID.Enemy_Knight};
+	private SaveDataHandler sdh;
 	
 	
 	//make the HUD
@@ -80,6 +84,13 @@ public class Game extends Canvas implements Runnable{
 
 	
 	public Game(){
+		
+		StaticGame.setGame(this);
+		
+		//must inil first in order to get the option values
+		sdh = new SaveDataHandler();
+		sdh.readSaveData("RES/Options.txt");
+		
 		handler = new Handler();
 		mapHandler = new MapHandler();
 		map = new Map(mapHandler, new ArrayList<Room>(), new Tile[128][128]);
@@ -129,9 +140,7 @@ public class Game extends Canvas implements Runnable{
 		overlay = new Overlay(handler, arcLight);
 		
 		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
-		handler.addObject(new Enemy_Knight(20, 20, ID.Enemy_Knight, 32, 32));
-		
-
+		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32));
 		
 	}
 	
@@ -239,29 +248,21 @@ public class Game extends Canvas implements Runnable{
 			
 			g.setColor(Color.black);
 			g.fillRect(0, 0, MAPWIDTH, MAPHEIGHT);
-			Area in = new Area(new Rectangle());
-			for(int i = 0; i < handler.object.size(); i++){
-				GameObject tempObject = handler.object.get(i);
-				if(tempObject.getId() == ID.Light){
-					tempObject = (LightSource) tempObject;
-					in.add(new Area(tempObject.getBounds()));
-				}
-			}
-			Area arcIn = new Area(arcLight.getShapeBounds());
-			in.add(arcIn);
+			Area in = clipArea(handler);
 			g2d.clip(in);
 			
-			g2d.drawImage(background, 0,0,this);
+			if(!Map.rendered)
+				g2d.drawImage(background, 0,0,this);
 			mapHandler.render(g, g2d);		
-			
+			g2d.setClip(null);
+
+			handler.render(g, g2d);
 
 			
 			g2d.translate(-cam.getX(), -cam.getY()); //end of cam
-			handler.render(g, g2d);
 			g2d.setClip(null);
 
 			hud.render(g2d);
-			p.render(g2d);
 
 		}
 		else if (Game.State == Game.STATE.MENU){
@@ -295,4 +296,27 @@ public class Game extends Canvas implements Runnable{
 		return missingTileImg;
 	}
 
+	
+	public static Area clipArea(Handler handler){
+		ArcLight arcLight = null;
+		Area in = new Area(new Rectangle());
+		for(int i = 0; i < handler.object.size(); i++){
+			GameObject tempObject = handler.object.get(i);
+			if(tempObject.getId() == ID.Light){
+				tempObject = (LightSource) tempObject;
+				in.add(new Area(tempObject.getBounds()));
+			}
+			if(tempObject.getId() == ID.ArcLight){
+				arcLight = (ArcLight)tempObject;
+			}
+		}
+		Area arcIn = new Area(arcLight.getShapeBounds());
+		in.add(arcIn);
+		return in;
+	}
+	
+	public SaveDataHandler getSaveDataHandler(){
+		return sdh;
+	}
+	
 }

@@ -1,6 +1,7 @@
 package base.Entities;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -28,7 +29,7 @@ public abstract class GameObject {
 	
 	//pass abstract classes to children
 	public abstract void tick();
-	public abstract void render(Graphics g);
+	public abstract void render(Graphics g, Graphics2D g2);
 	
 	//test for if two objects intersect
 	public abstract Rectangle getBounds();
