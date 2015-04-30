@@ -1,6 +1,7 @@
 package base;
 
 import java.awt.Point;
+import java.util.Arrays;
 
 import base.Entities.Player;
 
@@ -15,13 +16,19 @@ public class AI {
 		int[][] h_vals = new int[level.length][level[0].length];
 
 		for (int i = 0; i < level.length; i ++){ // y
-			for (int j = 0; j < level[0].length; i ++){ // x
+			for (int j = 0; j < level[0].length; j ++){ // x
 				int dx = Math.abs(j - target_node_X);
 				int dy = Math.abs(i - target_node_Y);
 				h_vals[i][j] = cost_of_movement * (dx + dy);
 			}
 		}
 
+		
+		
+		for (int[] i: h_vals){
+			System.out.println(Arrays.toString(i));
+		}
+		
 		return h_vals;
 
 	}
@@ -38,9 +45,12 @@ public class AI {
 			{0,0,0,0,0},
 			{0,0,0,0,0},
 			{0,0,0,0,0}
-		}
+		};
+		AI bennett = new AI();
+		bennett.CalculateHeuristic(testLevel, 1, 1, 1);
+		
+		// sweet it works
 
-		System.out.println(CalculateHeuristic(testLevel, 1, 3, 3));
 	}
 
 }
