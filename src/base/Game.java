@@ -74,7 +74,13 @@ public class Game extends Canvas implements Runnable{
 	private ArcLight arcLight;
 	private Player p;
 	
-	private static BufferedImage background, missingTileImg, woodTileImg, cobbleTileImg, doorClosedTileImg;
+	private static BufferedImage background,
+								 missingTileImg, 
+								 woodTileImg, 
+								 woodTile2Img, 
+								 cobbleTileImg, 
+								 cobbleTile2Img, 
+								 doorClosedTileImg;
 
 	public static enum STATE{
 		MENU,
@@ -120,7 +126,9 @@ public class Game extends Canvas implements Runnable{
             background = ImageIO.read(new File("RES/Textures/tank.png"));
             missingTileImg = ImageIO.read(new File("RES/Textures/missingTile.png"));
             woodTileImg = ImageIO.read(new File("RES/Textures/woodTile.png"));
+            woodTile2Img = ImageIO.read(new File("RES/Textures/woodTile2.png"));
             cobbleTileImg = ImageIO.read(new File("RES/Textures/cobbleTile.png"));
+            cobbleTile2Img = ImageIO.read(new File("RES/Textures/cobbleTile2.png"));
             doorClosedTileImg = ImageIO.read(new File("RES/Textures/doorClosedTile.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -293,7 +301,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public static BufferedImage getIDImg(TileID tileID){
 		if(TileID.bedRock == tileID){
-			return cobbleTileImg;
+			return cobbleTile2Img;
 		}
 		else if(TileID.wood == tileID){
 			return woodTileImg;
