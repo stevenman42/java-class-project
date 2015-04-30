@@ -18,7 +18,9 @@ public class Map {
 		for(int r  = 0; r < tileMap.length; r++){
 			for(int c = 0; c < tileMap[0].length; c++){
 				
-				if(r == 0 || c == 0 || r == tileMap.length-1 || c == tileMap[0].length -1){
+				//if(r == 0 || c == 0 || r == tileMap.length-1 || c == tileMap[0].length -1){
+				if(r == 0 || c == 0 || r == 20 || c == 20){
+
 					tileMap[r][c] = new Tile(r,c,TileID.bedRock);
 				}
 				else if(tileMap[r][c] == null){
@@ -27,10 +29,6 @@ public class Map {
 				//mapHandler.addObject(tileMap[r][c]);
 				
 			}
-			
-			tileMap[5][10] = new Tile(10,10,TileID.bedRock);
-			tileMap[10][10] = new Tile(10,10,TileID.bedRock);
-			tileMap[10][0] = new Tile(10,10,TileID.bedRock);
 		}
 		
 		

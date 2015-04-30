@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -92,15 +93,19 @@ public class Game extends Canvas implements Runnable{
 		sdh.readSaveData("RES/Options.txt");
 		
 		handler = new Handler();
-		mapHandler = new MapHandler();
-		map = new Map(mapHandler);
 		
+	
 		
 
 
 		
 		new Window(WIDTH, HEIGHT, "Elite Group Project  ©lololololol", this);
 		
+		mapHandler = new MapHandler();
+		map = new Map(mapHandler);
+		
+		for(int j = 0; j < 25; j++)
+			System.out.println(Arrays.toString(Map.tileMap[j]));
 		addKeyListener(new KeyInput(handler));
 		addMouseMotionListener(new MouseMover());
 		addMouseListener(new MouseInput());

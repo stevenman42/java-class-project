@@ -52,6 +52,7 @@ public class Physics {
 		Rectangle goRect = (Rectangle) go.getBounds().clone();
 		Point goCoor = go.getNearestPoint();
 		goRect.setLocation((int)go.getX()-1,(int)go.getY());
+		System.out.println(goCoor);
 		notClear = Map.tileMap[goCoor.y][goCoor.x -1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y][goCoor.x - 1].getBounds());
 		return !notClear;
 	}
