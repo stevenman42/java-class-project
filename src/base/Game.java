@@ -140,8 +140,6 @@ public class Game extends Canvas implements Runnable{
 		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
 		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32));
 		
-
-		
 	}
 	
 	private int fps = 0;
