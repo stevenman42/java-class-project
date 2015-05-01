@@ -25,6 +25,7 @@ import base.Input.MouseInput;
 import base.Input.MouseMover;
 import base.Map.Map;
 import base.Map.MapHandler;
+import base.Map.Tile;
 import base.Map.TileID;
 import base.Menus.HUD;
 import base.Menus.Menu;
@@ -105,6 +106,17 @@ public class Game extends Canvas implements Runnable{
 		
 		mapHandler = new MapHandler();
 		map = new Map(mapHandler);
+		Map.tileMap[10][5] = new Tile(10,5,TileID.wood);
+		Map.tileMap[11][5] = new Tile(11,5,TileID.wood);
+		Map.tileMap[12][5] = new Tile(12,5,TileID.wood);
+		Map.tileMap[10][6] = new Tile(10,6,TileID.wood);
+		Map.tileMap[11][6] = new Tile(11,6,TileID.wood);
+		Map.tileMap[12][6] = new Tile(12,6,TileID.wood);
+		Map.tileMap[10][7] = new Tile(10,7,TileID.wood);
+		Map.tileMap[11][7] = new Tile(11,7,TileID.wood);
+		Map.tileMap[12][7] = new Tile(12,7,TileID.wood);
+
+
 
 		addKeyListener(new KeyInput(handler));
 		addMouseMotionListener(new MouseMover());
