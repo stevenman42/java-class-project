@@ -12,10 +12,11 @@ import java.util.Arrays;
  */
 public class LevelGenerator {
 	
-	private int floorID = 0; //wood floor
-	private int wallID = 1; //bedrock
-	private int doorID = 2; //door
-	private int hallID = 3; //cobble floor
+	private int nullID = 0; // this is the empty spaces in the map
+	private int floorID = 1; //wood floor
+	private int wallID = 2; //bedrock
+	private int doorID = 3; //door
+	private int hallID = 4; //cobble floor
 	
 	private int minRooms = 4;
 	private int maxRooms = 7;
@@ -86,18 +87,25 @@ public class LevelGenerator {
 		for (int a = 0; a < centerXList.length - 1; a ++){
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
+				// creates the horizontal halls
 				level[centerYList[a]][i] = hallID;
+				level[centerYList[a]-1][i] = hallID;
+				level[centerYList[a]+1][i] = hallID;
 			}
 			
 			if (centerYList[a] < centerYList[a + 1]){
 				for (int i = centerYList[a]; i < centerYList[a + 1]; i ++){
 					level[i][centerXList[a + 1]] = hallID;
+					level[i][centerXList[a + 1]-1] = hallID;
+					level[i][centerXList[a + 1]+1] = hallID;
 				}				
 			}
 			
 			else if (centerYList[a] > centerYList[a + 1]){
 				for (int i = centerYList[a]; i > centerYList[a + 1]; i --){
 					level[i][centerXList[a + 1]] = hallID;
+					level[i][centerXList[a + 1]+1] = hallID;
+					level[i][centerXList[a + 1]-1] = hallID;
 				}
 			}
 			
@@ -120,6 +128,7 @@ public class LevelGenerator {
 	 */
 	public int[][] createLevel(int width, int height){
 		int[][] newLevel = new int[width][height];
+
 		int min;
 		int max;
 		
@@ -138,27 +147,21 @@ public class LevelGenerator {
 			if (i > 0)
 				min = originXList[i - 1] + rooms[i].roomArray[0].length + 1;
 			
-			
-			//int max = (i + 1) * ((int) (64-18) / rooms.length) - 2;
 			max = min + 3;
 			
 			originXList[i] = (int)(Math.random() * (max - min + 1) ) + min;
 			originYList[i] = (int)(Math.random() * (height - maxRoomSize) );
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
-			
-			System.out.println("The max was " + max + " and the min was " + min + ", so I created the origin at (" + originXList[i] + ", " + originYList[i] + ")");
 		}
 		
 		newLevel = makeHalls(originXList, originYList, oppositeXList, oppositeYList, newLevel);
 		
-		
-		// what is this
-		// answer: not 5 FRICKEN FOR LOOPS
-		// also: it's the bit that actually puts the stupid rooms into the stupid level
+		// this is the bit that actually puts the stupid rooms into the stupid level
 		for (int a = 0; a < originXList.length; a ++){ // loops through the originXList (and YList I guess)
 			for (int i = originYList[a]; i < oppositeYList[a]; i ++){ // rows
 				for (int j = originXList[a]; j < oppositeXList[a]; j ++){ // columns
+					
 					if (newLevel[i][j] == hallID && rooms[a].roomArray[i - originYList[a]][j-originXList[a]] == wallID)
 						newLevel[i][j] = hallID;
 					else if (newLevel[i][j] == wallID && rooms[a].roomArray[i - originYList[a]][j - originXList[a]] == floorID)
@@ -181,18 +184,18 @@ public class LevelGenerator {
 		
 		return newLevel;
 	}
-	/*
+	
 	public static void main(String [] args){
 		
 		
 		LevelGenerator l = new LevelGenerator();
-		l.CreateLevel();
+		l.createLevel(128, 128);
 		
 	
 		
 
 	}
-	*/
+	
 }
 // test another test
 
