@@ -20,11 +20,8 @@ import base.audio.Audio;
 public class Menu {
 
 	private ArrayList<AbstractGuiComponent> guiComponents = new ArrayList<AbstractGuiComponent>();
-
-	public static Rectangle playButton = new Rectangle(Game.WIDTH/2-50, 200, 100, 50);
-	public static Rectangle quitButton = new Rectangle(Game.WIDTH/2 -50, 300, 100, 50);
 	
-	private Image image, image2, image3;
+	private Image image, image2, image3, image4;
 	
 	private boolean audioPlaying = false;	
 	private Audio audio;
@@ -34,6 +31,7 @@ public class Menu {
 		image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
 		image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp2.gif");
 		image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp3.gif");
+		image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp4.jpg");
 		
 		//Button play = new ButtonImage(Game.WIDTH/2-50, 200, 100, 50, image2);
 		Button play = new ButtonImage(Game.WIDTH/2-200, 200, 400, 50, image2);
@@ -54,8 +52,17 @@ public class Menu {
 			}
 		});
 		
+		Button options = new ButtonImage(Game.WIDTH - 35, 3, 25, 25, image4);
+		options.setText("");
+		options.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+			}		
+		});
+		
 		guiComponents.add(play);
 		guiComponents.add(quit);
+		guiComponents.add(options);
 		
 	}
 
