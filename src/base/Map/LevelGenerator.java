@@ -47,6 +47,13 @@ public class LevelGenerator {
 			newRoom[i][0] = wallID;
 			newRoom[i][newRoom[0].length - 1] = wallID;
 		}
+		for(int r = 0; r < newRoom.length;r++){
+			for(int c = 0; c < newRoom[r].length; c++){
+				if(newRoom[r][c] == 0){
+					newRoom[r][c] = floorID;
+				}
+			}
+		}
 		
 		return newRoom;
 	}
@@ -184,7 +191,7 @@ public class LevelGenerator {
 		
 		return newLevel;
 	}
-	
+	/*
 	public static void main(String [] args){
 		
 		
@@ -195,7 +202,7 @@ public class LevelGenerator {
 		
 
 	}
-	
+	*/
 }
 // test another test
 

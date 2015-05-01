@@ -12,8 +12,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -25,10 +23,8 @@ import base.Entities.Player;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
-import base.Map.LevelGenerator;
 import base.Map.Map;
 import base.Map.MapHandler;
-import base.Map.Room;
 import base.Map.Tile;
 import base.Map.TileID;
 import base.Menus.HUD;
@@ -79,7 +75,8 @@ public class Game extends Canvas implements Runnable{
 								 woodTileImg, 
 								 woodTile2Img, 
 								 cobbleTileImg, 
-								 cobbleTile2Img, 
+								 cobbleTile2Img,
+								 blackTileImg,
 								 doorClosedTileImg;
 
 	public static enum STATE{
@@ -109,6 +106,17 @@ public class Game extends Canvas implements Runnable{
 		
 		mapHandler = new MapHandler();
 		map = new Map(mapHandler);
+		Map.tileMap[10][5] = new Tile(10,5,TileID.wood);
+		Map.tileMap[11][5] = new Tile(11,5,TileID.wood);
+		Map.tileMap[12][5] = new Tile(12,5,TileID.wood);
+		Map.tileMap[10][6] = new Tile(10,6,TileID.wood);
+		Map.tileMap[11][6] = new Tile(11,6,TileID.wood);
+		Map.tileMap[12][6] = new Tile(12,6,TileID.wood);
+		Map.tileMap[10][7] = new Tile(10,7,TileID.wood);
+		Map.tileMap[11][7] = new Tile(11,7,TileID.wood);
+		Map.tileMap[12][7] = new Tile(12,7,TileID.wood);
+
+
 
 		addKeyListener(new KeyInput(handler));
 		addMouseMotionListener(new MouseMover());
@@ -130,6 +138,11 @@ public class Game extends Canvas implements Runnable{
             cobbleTileImg = ImageIO.read(new File("RES/Textures/cobbleTile.png"));
             cobbleTile2Img = ImageIO.read(new File("RES/Textures/cobbleTile2.png"));
             doorClosedTileImg = ImageIO.read(new File("RES/Textures/doorClosedTile.png"));
+            blackTileImg = new BufferedImage(32,32,BufferedImage.TYPE_INT_RGB);
+            Graphics gtemp = blackTileImg.createGraphics();
+            gtemp.setColor(Color.black);
+            gtemp.fillRect(0, 0, 32, 32);
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -295,7 +308,7 @@ public class Game extends Canvas implements Runnable{
 	}
 
 	public static void main(String args[]){
-		//new LoadMenu();
+		new LoadMenu();
 	}
 
 	
@@ -308,6 +321,12 @@ public class Game extends Canvas implements Runnable{
 		}
 		else if(TileID.cobble == tileID){
 			return cobbleTileImg;
+		}
+		else if(TileID.doorClose == tileID){
+			return doorClosedTileImg;
+		}
+		else if(TileID.black == tileID){
+			return blackTileImg;
 		}
 		return missingTileImg;
 	}

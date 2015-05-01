@@ -25,13 +25,15 @@ public class Map {
 				}
 				else{
 					if(LG[r][c] == 0)
-						tileMap[r][c] = new Tile(r,c,TileID.wood);
-					else if(LG[r][c] == 3)
-						tileMap[r][c] = new Tile(r,c,TileID.cobble);
+						tileMap[r][c] = new Tile(r,c,TileID.black);
 					else if(LG[r][c] == 1)
-						tileMap[r][c] = new Tile(r,c,TileID.bedRock);
+						tileMap[r][c] = new Tile(r,c,TileID.wood);
 					else if(LG[r][c] == 2)
+						tileMap[r][c] = new Tile(r,c,TileID.bedRock);
+					else if(LG[r][c] == 3)
 						tileMap[r][c] = new Tile(r,c,TileID.doorClose);
+					else if(LG[r][c] == 4)
+						tileMap[r][c] = new Tile(r,c,TileID.cobble);
 					else
 						tileMap[r][c] = new Tile(r,c,TileID.missing);
 				
