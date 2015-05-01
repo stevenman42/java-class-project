@@ -220,7 +220,7 @@ class TempRoom{
 	
 	
 	public String toString(){
-		return "This is not the Room you're looking for";
+		return "This is not the Room you're looking for.  Unless it is, which I guess it could be, but it really isn't.";
 	}
 	
 }
