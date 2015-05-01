@@ -85,6 +85,8 @@ public class Game extends Canvas implements Runnable{
 	
 	public Game(){
 		
+		StaticGame.setGame(this);
+		
 		//must inil first in order to get the option values
 		sdh = new SaveDataHandler();
 		sdh.readSaveData("RES/Options.txt");
@@ -312,4 +314,9 @@ public class Game extends Canvas implements Runnable{
 		in.add(arcIn);
 		return in;
 	}
+	
+	public SaveDataHandler getSaveDataHandler(){
+		return sdh;
+	}
+	
 }

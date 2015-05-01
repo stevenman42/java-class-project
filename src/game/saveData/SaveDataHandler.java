@@ -47,9 +47,10 @@ public class SaveDataHandler {
 				String[] r = s.split("=");
 				if(r.length != 2){
 					System.err.println("Faulty Option: \"" + s + "\"");
+				}else{
+					data.add(new SaveData(r[0], r[1]));
+					System.out.println("     +" + data.get(data.size() - 1));
 				}
-				data.add(new SaveData(r[0], r[1]));
-				System.out.println("     +" + data.get(data.size() - 1));
 			}
 		}
 		
