@@ -20,19 +20,28 @@ import base.audio.Audio;
 public class Menu {
 
 	private ArrayList<AbstractGuiComponent> guiComponents = new ArrayList<AbstractGuiComponent>();
-	
+
 	private Image image, image2, image3, image4;
-	
+
 	private boolean audioPlaying = false;	
 	private Audio audio;
 
+	private boolean neo = false;
+
 	public void inil(){
-		
-		image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif" + "Remove this for neonazi");
-		image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp2.gif" + "Remove this for neonazi");
-		image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp3.gif" + "Remove this for neonazi");
-		image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp4.jpg" + "Remove this for neonazi");
-		
+
+		if(neo){
+			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
+			image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp2.gif");
+			image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp3.gif");
+			image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp4.jpg");
+		}else{
+			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuzTemp.gif");
+			image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuzTemp2.gif");
+			image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuzTemp3.gif");
+			image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuzTemp4.jpg");
+		}
+
 		//Button play = new ButtonImage(Game.WIDTH/2-50, 200, 100, 50, image2);
 		Button play = new ButtonImage(Game.WIDTH/2-200, 200, 400, 50, image2);
 		play.setText("PLAY");
@@ -42,7 +51,7 @@ public class Menu {
 				closeMenu();
 			}		
 		});
-		
+
 		//Button quit = new Button(Game.WIDTH/2 -50, 300, 100, 50);
 		Button quit = new ButtonImage(Game.WIDTH/2-200, 300, 400, 50, image3);
 		quit.setText("QUIT");
@@ -51,19 +60,19 @@ public class Menu {
 				System.exit(1);
 			}
 		});
-		
+
 		Button options = new ButtonImage(Game.WIDTH - 35, 3, 25, 25, image4);
 		options.setText("");
 		options.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
+
 			}		
 		});
-		
+
 		guiComponents.add(play);
 		guiComponents.add(quit);
 		guiComponents.add(options);
-		
+
 	}
 
 	public void openMenu(){
@@ -79,13 +88,13 @@ public class Menu {
 
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-		
+
 		if(image != null){
 			g2d.drawImage(image, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		}else{
 			System.err.println("Could not render background image!");
 		}
-		
+
 		Font font0 = new Font("arial", Font.BOLD, 100);
 		g.setFont(font0);
 		g.setColor(Color.white);
@@ -112,13 +121,13 @@ public class Menu {
 				if(Game.State == Game.STATE.MENU){
 					int mx = e.getX();
 					int my = e.getY();
-					
+
 					for(AbstractGuiComponent agc : guiComponents){
 						if(agc.isMouseInBounds(mx, my)){
 							agc.actionPerformed(null);
 						}
 					}
-						
+
 				}
 			}
 			public void mouseReleased(MouseEvent e){}
@@ -127,5 +136,5 @@ public class Menu {
 		};
 		return ml;
 	}
-	
+
 }
