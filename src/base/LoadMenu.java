@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 public class LoadMenu extends JFrame implements ActionListener {
 	
+	private static final long serialVersionUID = 3282828537337888361L;
 	public LoadMenu(){
 		int w = 720, h = 405;
 		final JFrame j = new JFrame("Loader");
