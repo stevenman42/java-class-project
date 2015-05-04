@@ -16,7 +16,7 @@ public class LevelGenerator {
 	private int floorID = 1; //wood floor
 	private int wallID = 2; //bedrock
 	private int doorID = 3; //door
-	private int hallID = 4; //cobble floor
+	private int hallID = 4; //gravel floor
 	
 	private int minRooms = 4;
 	private int maxRooms = 7;
