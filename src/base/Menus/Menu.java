@@ -1,17 +1,12 @@
 package base.Menus;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import base.Game;
 import base.audio.Audio;
@@ -19,16 +14,22 @@ import base.audio.Audio;
 
 public class Menu {
 
-	private ArrayList<AbstractGuiComponent> guiComponents = new ArrayList<AbstractGuiComponent>();
-
-	private Image image, image2, image3, image4;
+	//private ArrayList<AbstractGuiComponent> guiComponents = new ArrayList<AbstractGuiComponent>();
 
 	private boolean audioPlaying = false;	
 	private Audio audio;
 
 	private boolean neo = false;
 
+	private MenuItem current;
+
+	private MenuItem main;
+
 	public void inil(){
+		
+		main = new MenuItem();
+		
+		Image image, image2, image3, image4;
 
 		if(neo){
 			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
@@ -36,10 +37,10 @@ public class Menu {
 			image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp3.gif");
 			image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp4.jpg");
 		}else{
-			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuzTemp.gif");
-			image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuzTemp2.gif");
-			image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuzTemp3.gif");
-			image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuzTemp4.jpg");
+			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/.gif");
+			image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/.gif");
+			image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/.gif");
+			image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/.jpg");
 		}
 
 		//Button play = new ButtonImage(Game.WIDTH/2-50, 200, 100, 50, image2);
@@ -65,13 +66,19 @@ public class Menu {
 		options.setText("");
 		options.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
+				
 			}		
 		});
 
-		guiComponents.add(play);
-		guiComponents.add(quit);
-		guiComponents.add(options);
+		//guiComponents.add(play);
+		//guiComponents.add(quit);
+		//guiComponents.add(options);
+		
+		main.addAbstractGuiComponent(play);
+		main.addAbstractGuiComponent(quit);
+		main.addAbstractGuiComponent(options);
+		
+		current = main;
 
 	}
 
@@ -86,9 +93,7 @@ public class Menu {
 		audio.stop();
 	}
 
-	public void render(Graphics g){
-		Graphics2D g2d = (Graphics2D) g;
-
+	/*
 		if(image != null){
 			g2d.drawImage(image, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		}else{
@@ -103,15 +108,14 @@ public class Menu {
 		for(AbstractGuiComponent agc : guiComponents){
 			agc.render(g2d);
 		}
+	 */
 
+	public void render(Graphics2D g2d){
+		current.render(g2d);
 	}
 
 	public void tick(){
-
-		for(AbstractGuiComponent agc : guiComponents){
-			agc.tick();
-		}
-
+		current.tick();
 	}
 
 	public MouseListener getMenuMouseListener(){
@@ -122,7 +126,7 @@ public class Menu {
 					int mx = e.getX();
 					int my = e.getY();
 
-					for(AbstractGuiComponent agc : guiComponents){
+					for(AbstractGuiComponent agc : current.getGuiComponents()){
 						if(agc.isMouseInBounds(mx, my)){
 							agc.actionPerformed(null);
 						}

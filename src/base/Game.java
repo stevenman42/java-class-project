@@ -297,7 +297,7 @@ public class Game extends Canvas implements Runnable{
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);
 			if(menu != null)
-				menu.render(g);
+				menu.render(g2d);
 		}
 		
 		

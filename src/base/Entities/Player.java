@@ -7,11 +7,13 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
+import java.util.ArrayList;
 
 import base.Game;
 import base.Handler;
 import base.Physics;
 import base.Input.MouseMover;
+import base.Items.GameItem;
 import base.Map.Map;
 import base.Map.TileID;
 import base.Visual.LightSource;
@@ -26,6 +28,7 @@ public class Player extends GameObject{
 	boolean leftFoot = true;
 	private float playerWidth = 32, playerHeight = 32;
 	public static float staticX, staticY;
+	public ArrayList<GameItem> items;
 
 	public Player(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
@@ -34,7 +37,10 @@ public class Player extends GameObject{
 		handler.addObject(playerLight);
 		staticX = x;
 		staticY = y;
+		items = new ArrayList<GameItem>();
 	}
+	
+	
 
 	public void tick() {
 		if(Physics.collision(this, Game.EnemyIDList, handler)){
