@@ -17,6 +17,7 @@ public class ButtonImage extends Button{
 		if(image != null){
 			g2d.drawImage(image, getX(), getY(), getLength(), getHeight(), null);
 		}else{
+			super.renderBackground(g2d);
 			System.err.println("couldent render an image");
 		}
 		super.renderBorder(g2d);
