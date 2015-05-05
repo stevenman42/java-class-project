@@ -26,6 +26,9 @@ public class LevelGenerator {
 	
 	private int maxRoomSize = 18;
 	private int minRoomSize = 12;
+	
+	private int[] centerXList;
+	private int[] centerYList;
 
 	/**
 	 * 
@@ -83,8 +86,8 @@ public class LevelGenerator {
 	
 	private int[][] makeHalls(int[] originXList, int[] originYList, int[] oppositeXList, int[] oppositeYList, int[][] level){
 		
-		int[] centerXList = new int[originXList.length];
-		int[] centerYList = new int[originXList.length];
+		centerXList = new int[originXList.length];
+		centerYList = new int[originXList.length];
 		
 		
 		// creates two lists with all the coordinates of the centers of the rooms
@@ -240,7 +243,15 @@ public class LevelGenerator {
 		return newLevel;
 	}
 	
+	public int[] getSpawnPoint(){
+		int[] spawn = new int[2];
+		spawn[0] = centerXList[0];
+		spawn[1] = centerYList[0];
+		
+		return spawn;
+	}
 	
+	/*
 	public static void main(String [] args){
 		
 		
@@ -248,7 +259,7 @@ public class LevelGenerator {
 		l.createLevel(128, 128);
 
 	}
-	
+	*/
 	
 }
 
