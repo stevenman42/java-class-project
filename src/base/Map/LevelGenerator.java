@@ -22,7 +22,7 @@ public class LevelGenerator {
 	
 	//i changed this number and now nothing works
 	//gg
-	private int maxRooms = 15;
+	private int maxRooms = 5;
 	
 	private int maxRoomSize = 18;
 	private int minRoomSize = 12;
@@ -98,9 +98,22 @@ public class LevelGenerator {
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
+<<<<<<< HEAD
 				level[centerYList[a]][i] = hallID;
 				level[centerYList[a]-1][i] = hallID;
 				level[centerYList[a]+1][i] = hallID;
+=======
+				
+				try{
+					level[centerYList[a]][i] = hallID;
+					level[centerYList[a]-1][i] = hallID;
+					level[centerYList[a]+1][i] = hallID;
+				}catch(ArrayIndexOutOfBoundsException e){
+					System.out.println("yeahhhhh...");
+					System.out.println(i);
+					System.out.println(Arrays.toString(centerXList));
+				}
+>>>>>>> origin/master
 			}
 			
 			if (centerYList[a] < centerYList[a + 1]){
@@ -139,10 +152,17 @@ public class LevelGenerator {
 	public int[][] createLevel(int width, int height){
 		int[][] newLevel = new int[width][height];
 
-		int min;
-		int max;
+
+		
+		int minY = 0;
+		int maxY = (int)(newLevel.length / 2) - maxRoomSize;
 		
 		TempRoom[] rooms = makeRooms();
+		
+		int min = 0;
+		int max = 10;
+		
+		
 		// upper left corners of all the rooms
 		int[] originXList = new int[rooms.length];
 		int[] originYList = new int[rooms.length];
@@ -152,15 +172,43 @@ public class LevelGenerator {
 		
 		for (int i = 0; i < rooms.length; i ++){
 			
-			min = i * ((int) (width-maxRoomSize) / rooms.length) + 1;
+			//min = i * ((int) (width-maxRoomSize) / rooms.length) + 1;
 			
-			if (i > 0)
-				min = originXList[i - 1] + rooms[i].roomArray[0].length + 1;
+			//if (i > 0)
+			//	min = originXList[i - 1] + rooms[i].roomArray[0].length + 1;
 			
-			max = min + 3;
+			//max = min + 3;
+			
+			max += maxRoomSize / 2 + 2;
+			min += maxRoomSize / 2 + 2;
+			
+			//System.out.println("max " + max);
+			//System.out.println("min " + min);
+			
+			if (minY == 0)
+				minY = (int)(newLevel.length / 2) - maxRoomSize;
+			else
+				minY = 0;
+			
+			if (maxY == (int)(newLevel.length / 2) - maxRoomSize)
+				maxY = newLevel.length - maxRoomSize;
+			else
+				maxY = (int)(newLevel.length / 2) - maxRoomSize;
+			
 			
 			originXList[i] = (int)(Math.random() * (max - min + 1) ) + min;
-			originYList[i] = (int)(Math.random() * (height - maxRoomSize) );
+			originYList[i] = (int)(Math.random() * (maxY - minY + 1) ) + minY;
+			while (originXList[i] > (128 - maxRoomSize)){
+				
+				for (int x = 0; x < i; x ++){
+					originXList[x] = (int) (originXList[x] * .9);
+					//System.out.print(originXList[x] + " " + x);
+				}
+				//System.out.println();
+				
+			}
+				
+				
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
 		}
@@ -188,27 +236,24 @@ public class LevelGenerator {
 		
 		// prints the giant honkin' level after it's made (testing purposes)
 		for (int[] stupid: newLevel){
-			System.out.println(Arrays.toString(stupid));
+			//System.out.println(Arrays.toString(stupid));
 		}
 		
 		
 		return newLevel;
 	}
-	/*
+	
+	
 	public static void main(String [] args){
 		
 		
 		LevelGenerator l = new LevelGenerator();
 		l.createLevel(128, 128);
-		
-	
-		
 
 	}
-	*/
+	
+	
 }
-// test another test
-
 
 /**
  * 
