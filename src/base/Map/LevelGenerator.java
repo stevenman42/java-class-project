@@ -22,7 +22,7 @@ public class LevelGenerator {
 	
 	//i changed this number and now nothing works
 	//gg
-	private int maxRooms = 15;
+	private int maxRooms = 5;
 	
 	private int maxRoomSize = 18;
 	private int minRoomSize = 12;
@@ -176,8 +176,8 @@ public class LevelGenerator {
 			max += maxRoomSize / 2 + 2;
 			min += maxRoomSize / 2 + 2;
 			
-			System.out.println("max " + max);
-			System.out.println("min " + min);
+			//System.out.println("max " + max);
+			//System.out.println("min " + min);
 			
 			if (minY == 0)
 				minY = (int)(newLevel.length / 2) - maxRoomSize;
@@ -230,27 +230,24 @@ public class LevelGenerator {
 		
 		// prints the giant honkin' level after it's made (testing purposes)
 		for (int[] stupid: newLevel){
-			System.out.println(Arrays.toString(stupid));
+			//System.out.println(Arrays.toString(stupid));
 		}
 		
 		
 		return newLevel;
 	}
 	
+	
 	public static void main(String [] args){
 		
 		
 		LevelGenerator l = new LevelGenerator();
 		l.createLevel(128, 128);
-		
-	
-		
 
 	}
 	
+	
 }
-// test another test
-
 
 /**
  * 
