@@ -101,11 +101,15 @@ public class LevelGenerator {
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
+				level[centerYList[a]-2][i] = wallID;
+				level[centerYList[a]+2][i] = wallID;
 				level[centerYList[a]][i] = hallID;
 				level[centerYList[a]-1][i] = hallID;
 				level[centerYList[a]+1][i] = hallID;
 				
 				try{
+					level[centerYList[a]+2][i] = hallID;
+					level[centerYList[a]-2][i] = hallID;
 					level[centerYList[a]][i] = hallID;
 					level[centerYList[a]-1][i] = hallID;
 					level[centerYList[a]+1][i] = hallID;
@@ -118,6 +122,8 @@ public class LevelGenerator {
 			
 			if (centerYList[a] < centerYList[a + 1]){
 				for (int i = centerYList[a]; i < centerYList[a + 1]; i ++){
+					level[i][centerXList[a + 1]+2] = hallID;
+					level[i][centerXList[a + 1]-2] = hallID;
 					level[i][centerXList[a + 1]] = hallID;
 					level[i][centerXList[a + 1]-1] = hallID;
 					level[i][centerXList[a + 1]+1] = hallID;
