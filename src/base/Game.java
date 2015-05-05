@@ -106,15 +106,20 @@ public class Game extends Canvas implements Runnable{
 		
 		mapHandler = new MapHandler();
 		map = new Map(mapHandler);
-		Map.tileMap[10][5] = new Tile(10,5,TileID.wood);
-		Map.tileMap[11][5] = new Tile(11,5,TileID.wood);
-		Map.tileMap[12][5] = new Tile(12,5,TileID.wood);
-		Map.tileMap[10][6] = new Tile(10,6,TileID.wood);
-		Map.tileMap[11][6] = new Tile(11,6,TileID.wood);
-		Map.tileMap[12][6] = new Tile(12,6,TileID.wood);
-		Map.tileMap[10][7] = new Tile(10,7,TileID.wood);
-		Map.tileMap[11][7] = new Tile(11,7,TileID.wood);
-		Map.tileMap[12][7] = new Tile(12,7,TileID.wood);
+		boolean searching = true;
+		int px = 50, py = 50;
+		for(int r = 0; r < Map.tileMap.length; r++){
+			for(int c = 0; c < Map.tileMap[r].length; c++){
+				if(Map.tileMap[r][c].getId() == TileID.wood){
+					if(searching){
+						searching = false;
+						px = c*32;
+						py = r*32;
+					}
+						
+				}
+			}
+		}
 
 
 
@@ -162,7 +167,7 @@ public class Game extends Canvas implements Runnable{
 		}
 		*/
 		
-		p = new Player(50,Game.HEIGHT/2,ID.Player, handler);
+		p = new Player(px, py,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
 		handler.addObject(arcLight);
