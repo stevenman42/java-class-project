@@ -65,14 +65,10 @@ public class Button extends AbstractGuiComponent{
 	}
 	
 	protected void renderBackground(Graphics2D g2d){
-		System.out.println("b");
-		if(backgroundColor != null){
-			System.out.println("y");
-			Color prev = g2d.getColor();
-			g2d.setColor(backgroundColor);
-			g2d.draw(rect);
-			g2d.setColor(prev);
-		}
+		Color prev = g2d.getColor();
+		g2d.setColor(backgroundColor);
+		g2d.fill(rect);
+		g2d.setColor(prev);
 	}
 	
 	protected void renderBorder(Graphics2D g2d){

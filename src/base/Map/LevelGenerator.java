@@ -98,6 +98,9 @@ public class LevelGenerator {
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
+				level[centerYList[a]][i] = hallID;
+				level[centerYList[a]-1][i] = hallID;
+				level[centerYList[a]+1][i] = hallID;
 				
 				try{
 					level[centerYList[a]][i] = hallID;

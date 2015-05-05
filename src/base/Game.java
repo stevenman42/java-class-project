@@ -169,7 +169,7 @@ public class Game extends Canvas implements Runnable{
 		overlay = new Overlay(handler, arcLight);
 		System.out.println(p);
 		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
-		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32));
+		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32, 100));
 		
 	}
 	
