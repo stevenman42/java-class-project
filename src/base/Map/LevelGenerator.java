@@ -98,70 +98,16 @@ public class LevelGenerator {
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
-				/*
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-//				 * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODESTEVEN FIX YOUR STUPID FUCKIGN CODESTEVEN FIX YOUR STUPID FUCKIGN CODESTEVEN FIX YOUR STUPID FUCKIGN CODESTEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE
- * STEVEN FIX YOUR STUPID FUCKIGN CODE				 * 
-				 * 
-				 * 
-				 */
-				//wHIY IS YOUR FREAKING CLASS NOT DYNAMIC STEVEN.  
-				level[centerYList[a]][i] = hallID;
-				level[centerYList[a]-1][i] = hallID;
-				level[centerYList[a]+1][i] = hallID;
+				
+				try{
+					level[centerYList[a]][i] = hallID;
+					level[centerYList[a]-1][i] = hallID;
+					level[centerYList[a]+1][i] = hallID;
+				}catch(ArrayIndexOutOfBoundsException e){
+					System.out.println("yeahhhhh...");
+					System.out.println(i);
+					System.out.println(Arrays.toString(centerXList));
+				}
 			}
 			
 			if (centerYList[a] < centerYList[a + 1]){
@@ -200,10 +146,17 @@ public class LevelGenerator {
 	public int[][] createLevel(int width, int height){
 		int[][] newLevel = new int[width][height];
 
-		int min;
-		int max;
+
+		
+		int minY = 0;
+		int maxY = (int)(newLevel.length / 2) - maxRoomSize;
 		
 		TempRoom[] rooms = makeRooms();
+		
+		int min = 0;
+		int max = 10;
+		
+		
 		// upper left corners of all the rooms
 		int[] originXList = new int[rooms.length];
 		int[] originYList = new int[rooms.length];
@@ -213,15 +166,43 @@ public class LevelGenerator {
 		
 		for (int i = 0; i < rooms.length; i ++){
 			
-			min = i * ((int) (width-maxRoomSize) / rooms.length) + 1;
+			//min = i * ((int) (width-maxRoomSize) / rooms.length) + 1;
 			
-			if (i > 0)
-				min = originXList[i - 1] + rooms[i].roomArray[0].length + 1;
+			//if (i > 0)
+			//	min = originXList[i - 1] + rooms[i].roomArray[0].length + 1;
 			
-			max = min + 3;
+			//max = min + 3;
+			
+			max += maxRoomSize / 2 + 2;
+			min += maxRoomSize / 2 + 2;
+			
+			System.out.println("max " + max);
+			System.out.println("min " + min);
+			
+			if (minY == 0)
+				minY = (int)(newLevel.length / 2) - maxRoomSize;
+			else
+				minY = 0;
+			
+			if (maxY == (int)(newLevel.length / 2) - maxRoomSize)
+				maxY = newLevel.length - maxRoomSize;
+			else
+				maxY = (int)(newLevel.length / 2) - maxRoomSize;
+			
 			
 			originXList[i] = (int)(Math.random() * (max - min + 1) ) + min;
-			originYList[i] = (int)(Math.random() * (height - maxRoomSize) );
+			originYList[i] = (int)(Math.random() * (maxY - minY + 1) ) + minY;
+			while (originXList[i] > (128 - maxRoomSize)){
+				
+				for (int x = 0; x < i; x ++){
+					originXList[x] = (int) (originXList[x] * .9);
+					//System.out.print(originXList[x] + " " + x);
+				}
+				//System.out.println();
+				
+			}
+				
+				
 			oppositeXList[i] = originXList[i] + rooms[i].width;
 			oppositeYList[i] = originYList[i] + rooms[i].length;
 		}
@@ -255,7 +236,7 @@ public class LevelGenerator {
 		
 		return newLevel;
 	}
-	/*
+	
 	public static void main(String [] args){
 		
 		
@@ -266,7 +247,7 @@ public class LevelGenerator {
 		
 
 	}
-	*/
+	
 }
 // test another test
 
