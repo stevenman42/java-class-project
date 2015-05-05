@@ -9,8 +9,8 @@ import base.Map.TileID;
 
 public class Enemy_Knight extends Enemy{
 
-	public Enemy_Knight(float x, float y, ID id, float width, float height) {
-		super(x, y, id, width, height);
+	public Enemy_Knight(float x, float y, ID id, float width, float height, int health) {
+		super(x, y, id, width, height, health);
 		//setDX(1);
 		//setDY(2);
 	}
