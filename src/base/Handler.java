@@ -27,9 +27,7 @@ public class Handler {
 			tempObject.render(g,g2);
 			g2.setClip(null);
 		}
-		
-		
-		
+				
 	}
 	
 	//public void 

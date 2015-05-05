@@ -1,5 +1,6 @@
 package base.Menus;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -11,7 +12,8 @@ public class Button extends AbstractGuiComponent{
 	private String text = "";
 	private Rectangle rect;
 	
-	
+	private Font font = new Font("arial", Font.BOLD, 25);;
+	private Color textColor = Color.BLACK, borderColor = Color.BLACK, backgroundColor = Color.WHITE;
 
 	public Button(int x, int y, int length, int height){
 		super();
@@ -35,15 +37,29 @@ public class Button extends AbstractGuiComponent{
 
 	}
 	
+	//Font font1 = new Font("arial", Font.BOLD, 25);
+	
 	protected void renderText(Graphics2D g2d){
-		Font font1 = new Font("arial", Font.BOLD, 25);
-		g2d.setFont(font1);
+		Font prev = null;
+		if(font != null){
+			prev = g2d.getFont();
+			g2d.setFont(font);
+		}
 
 		FontMetrics fm = g2d.getFontMetrics();
 		int cx = (x + (length / 2)) - (fm.stringWidth(text) / 2);
 		int cy = (y + (height / 2)) + (fm.getHeight() / 3);
 		
 		g2d.drawString(text, cx, cy);
+		
+		if(prev != null){
+			g2d.setFont(prev);
+		}
+		
+	}
+	
+	protected void renderBackground(Graphics2D g2d){
+		
 	}
 	
 	protected void renderBorder(Graphics2D g2d){
@@ -75,6 +91,22 @@ public class Button extends AbstractGuiComponent{
 	
 	protected int getHeight(){
 		return height;
+	}
+	
+	public void setFont(Font f){
+		font = f;
+	}
+	
+	public void setTextColor(Color c){
+		textColor = c;
+	}
+	
+	public void setBorderColor(Color c){
+		borderColor = c;
+	}
+	
+	public void setBackgroundColor(Color c){
+		backgroundColor = c;
 	}
 	
 }

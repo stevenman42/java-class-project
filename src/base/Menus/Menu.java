@@ -1,5 +1,6 @@
 package base.Menus;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -30,6 +31,7 @@ public class Menu {
 		main = new MenuItem();
 		
 		Image image, image2, image3, image4;
+		//Font buttonFont = new Font("arial", Font.BOLD, 25);
 
 		if(neo){
 			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
@@ -46,6 +48,7 @@ public class Menu {
 		//Button play = new ButtonImage(Game.WIDTH/2-50, 200, 100, 50, image2);
 		Button play = new ButtonImage(Game.WIDTH/2-200, 200, 400, 50, image2);
 		play.setText("PLAY");
+		//play.setFont(buttonFont);
 		play.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Game.State = Game.STATE.GAME;
@@ -56,6 +59,7 @@ public class Menu {
 		//Button quit = new Button(Game.WIDTH/2 -50, 300, 100, 50);
 		Button quit = new ButtonImage(Game.WIDTH/2-200, 300, 400, 50, image3);
 		quit.setText("QUIT");
+		//play.setFont(buttonFont);
 		quit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(1);
