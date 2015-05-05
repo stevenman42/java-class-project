@@ -162,7 +162,7 @@ public class Game extends Canvas implements Runnable{
 		}
 		*/
 		
-		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
+		p = new Player(50,Game.HEIGHT/2,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
 		handler.addObject(arcLight);
