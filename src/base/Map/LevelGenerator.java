@@ -98,11 +98,9 @@ public class LevelGenerator {
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
-<<<<<<< HEAD
 				level[centerYList[a]][i] = hallID;
 				level[centerYList[a]-1][i] = hallID;
 				level[centerYList[a]+1][i] = hallID;
-=======
 				
 				try{
 					level[centerYList[a]][i] = hallID;
@@ -113,7 +111,6 @@ public class LevelGenerator {
 					System.out.println(i);
 					System.out.println(Arrays.toString(centerXList));
 				}
->>>>>>> origin/master
 			}
 			
 			if (centerYList[a] < centerYList[a + 1]){
