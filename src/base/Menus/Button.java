@@ -10,8 +10,8 @@ public class Button extends AbstractGuiComponent{
 	private int x, y, length, height;
 	private String text = "";
 	private Rectangle rect;
-
-
+	
+	
 
 	public Button(int x, int y, int length, int height){
 		super();
