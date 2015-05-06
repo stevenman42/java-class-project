@@ -84,7 +84,7 @@ public class Menu {
 		main.addAbstractGuiComponent(play);
 		main.addAbstractGuiComponent(quit);
 		main.addAbstractGuiComponent(options);
-		main.addAbstractGuiComponent(title);
+		//main.addAbstractGuiComponent(title);
 		
 		current = main;
 
