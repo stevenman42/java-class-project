@@ -28,7 +28,7 @@ public class Player extends GameObject{
 	boolean leftFoot = true;
 	private float playerWidth = 32, playerHeight = 32;
 	public static float staticX, staticY;
-	public ArrayList<GameItem> items;
+	public static ArrayList<GameItem> items;
 
 	public Player(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
@@ -95,7 +95,7 @@ public class Player extends GameObject{
 		return null;
 	}
 	
-	public double getAngle(){
+	public static double getAngle(){
 		double ang = 0, adj, opp, dist;
 		
 		adj = MouseMover.mX - (Game.WIDTH/2 +16);

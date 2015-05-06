@@ -4,11 +4,12 @@ public abstract class GameItem {
 	
 	private String name;
 	private ItemID id;
-	
+	private boolean isActive;
 	
 	public GameItem(String name, ItemID id){
 		this.name = name;
-		this.id = id;		
+		this.id = id;	
+		isActive = false;
 	}
 	
 	public void setName(String name){
@@ -22,6 +23,12 @@ public abstract class GameItem {
 	}
 	public ItemID getID(){
 		return id;
+	}
+	public void setIsActive(boolean b){
+		isActive = b;
+	}
+	public boolean isActive(){
+		return isActive;
 	}
 	
 	

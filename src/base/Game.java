@@ -25,7 +25,6 @@ import base.Input.MouseInput;
 import base.Input.MouseMover;
 import base.Map.Map;
 import base.Map.MapHandler;
-import base.Map.Tile;
 import base.Map.TileID;
 import base.Menus.HUD;
 import base.Menus.Menu;
@@ -69,6 +68,7 @@ public class Game extends Canvas implements Runnable{
 	private Overlay overlay;
 	private ArcLight arcLight;
 	private Player p;
+	public static Graphics2D g2Static;
 	
 	private static BufferedImage background,
 								 missingTileImg, 
@@ -262,6 +262,8 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g.create();
+		g2Static = g2d;
+
 		
 		
 		if(State == Game.STATE.GAME){
@@ -358,6 +360,10 @@ public class Game extends Canvas implements Runnable{
 	
 	public SaveDataHandler getSaveDataHandler(){
 		return sdh;
+	}
+	
+	public static void swapGameState(Enum<STATE> e){
+		Game.State = (STATE) e;
 	}
 	
 }

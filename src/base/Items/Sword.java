@@ -10,7 +10,7 @@ public class Sword extends GameItem{
 		this.swordDmg = swordDmg;
 	}
 	
-	public int swingSword(){
+	public int swingSword(){            
 		if(swordCoolDown <= 0){
 			swordCoolDown = 100;
 			return swordDmg;

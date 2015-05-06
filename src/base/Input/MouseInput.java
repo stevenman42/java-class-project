@@ -1,8 +1,15 @@
 package base.Input;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import base.Game;
+import base.Entities.Player;
+import base.Items.GameItem;
+import base.Items.ItemID;
 
 
 public class MouseInput implements MouseListener{
@@ -23,8 +30,7 @@ public class MouseInput implements MouseListener{
 	}
 
 	public void mousePressed(MouseEvent e) {
-		//int mx = e.getX();
-		//int my = e.getY();
+
 	}
 
 	public void mouseReleased(MouseEvent e) {
