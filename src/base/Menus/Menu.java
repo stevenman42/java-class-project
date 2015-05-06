@@ -25,10 +25,14 @@ public class Menu {
 	private MenuItem current;
 
 	private MenuItem main;
+	
+	private Options optMenu;
 
 	public void inil(){
 		
 		main = new MenuItem();
+		
+		optMenu = new Options();
 		
 		Image image, image2, image3, image4;
 		//Font buttonFont = new Font("arial", Font.BOLD, 25);
@@ -66,11 +70,11 @@ public class Menu {
 			}
 		});
 		
-		Button options = new ButtonImage(Game.WIDTH - 35, 3, 25, 25, image4);
+		 Button options = new ButtonImage(Game.WIDTH - 35, 3, 25, 25, image4);
 		options.setText("");
 		options.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
+				optMenu.open();
 			}		
 		});
 		

@@ -251,8 +251,8 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void render(){
-		this.requestFocus();
-	
+		//this.requestFocus();
+		//LEAVE THIS OUT SO THE OPTIONS MENU CAN WORK
 		
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
