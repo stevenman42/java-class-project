@@ -83,8 +83,6 @@ public class LevelGenerator {
 		
 		return rooms;
 	}
-<<<<<<< HEAD
-=======
 	
 	private int[][] makeHalls(int[] originXList, int[] originYList, int[] oppositeXList, int[] oppositeYList, int[][] level){
 		
@@ -147,7 +145,7 @@ public class LevelGenerator {
 		
 	}
 	
->>>>>>> 32a5735103aba54de2cd47a4c84b9f6a4e57c569
+
 
 	
 	
