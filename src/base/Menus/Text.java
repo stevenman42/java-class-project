@@ -13,6 +13,7 @@ public class Text extends AbstractGuiComponent{
 	private Color color;
 	
 	public Text(String text, int x, int y){
+		this.text = text;
 		this.x = x;
 		this.y = y;
 		font = new Font("arial", Font.BOLD, 25);
@@ -21,12 +22,20 @@ public class Text extends AbstractGuiComponent{
 	
 	public void render(Graphics2D g2d){
 		
+		Font prevF = g2d.getFont();
+		g2d.setFont(font);
+		
+		Color prevC = g2d.getColor();
+		g2d.setColor(color);
+		
 		FontMetrics fm = g2d.getFontMetrics();
 		int cx = x - (fm.stringWidth(text) / 2);
 		int cy = y + (fm.getHeight() / 3);
 		
 		g2d.drawString(text, cx, cy);
 		
+		g2d.setFont(prevF);
+		g2d.setColor(prevC);
 	}
 
 	public void tick() {
@@ -39,6 +48,14 @@ public class Text extends AbstractGuiComponent{
 	
 	public String getText(){
 		return text;
+	}
+	
+	public void setFont(Font f){
+		font = f;
+	}
+	
+	public void setColor(Color c){
+		color = c;
 	}
 	
 }

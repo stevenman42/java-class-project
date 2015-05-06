@@ -65,7 +65,7 @@ public class Menu {
 				System.exit(1);
 			}
 		});
-
+		
 		Button options = new ButtonImage(Game.WIDTH - 35, 3, 25, 25, image4);
 		options.setText("");
 		options.addActionListener(new ActionListener(){
@@ -74,8 +74,8 @@ public class Menu {
 			}		
 		});
 		
-		Text title = new Text("Evader!", Game.WIDTH/2 - 180, Game.HEIGHT/2 -100);
-		
+		Text title = new Text("Evader!", Game.WIDTH/2, Game.HEIGHT/2 - Game.HEIGHT/4);
+		title.setFont(new Font("arial", Font.BOLD, 75));
 		
 		//guiComponents.add(play);
 		//guiComponents.add(quit);
@@ -84,12 +84,12 @@ public class Menu {
 		main.addAbstractGuiComponent(play);
 		main.addAbstractGuiComponent(quit);
 		main.addAbstractGuiComponent(options);
-		//main.addAbstractGuiComponent(title);
+		main.addAbstractGuiComponent(title);
 		
 		current = main;
 
 	}
-
+	
 	public void openMenu(){
 		audio = new Audio("RES/Audio/Background1.wav");
 		audio.loop();
