@@ -73,7 +73,10 @@ public class Menu {
 				
 			}		
 		});
-
+		
+		Text title = new Text("Evader!", Game.WIDTH/2 - 180, Game.HEIGHT/2 -100);
+		
+		
 		//guiComponents.add(play);
 		//guiComponents.add(quit);
 		//guiComponents.add(options);
@@ -81,6 +84,7 @@ public class Menu {
 		main.addAbstractGuiComponent(play);
 		main.addAbstractGuiComponent(quit);
 		main.addAbstractGuiComponent(options);
+		main.addAbstractGuiComponent(title);
 		
 		current = main;
 

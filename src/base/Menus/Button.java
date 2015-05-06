@@ -12,7 +12,7 @@ public class Button extends AbstractGuiComponent{
 	private String text = "";
 	private Rectangle rect;
 	
-	private Font font = new Font("arial", Font.BOLD, 25);;
+	private Font font;
 	private Color textColor, borderColor, backgroundColor;
 
 	public Button(int x, int y, int length, int height){
@@ -22,6 +22,7 @@ public class Button extends AbstractGuiComponent{
 		this.length = length;
 		this.height = height;
 		rect = new Rectangle(x, y, length, height);
+		font = new Font("arial", Font.BOLD, 25);
 		textColor = Color.BLACK;
 		borderColor = Color.BLACK;
 		backgroundColor = Color.WHITE;
