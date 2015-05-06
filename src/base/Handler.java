@@ -4,6 +4,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
 
+import base.Entities.GameObject;
+import base.Entities.ID;
+
 public class Handler {
 
 	public LinkedList<GameObject> object = new LinkedList<GameObject>();
@@ -18,22 +21,13 @@ public class Handler {
 	
 	public void render(Graphics g, Graphics2D g2){
 		for(int i = 0; i < object.size(); i++){ //renders all objects
-			GameObject tempObject = object.get(i); 
-			if(tempObject.getId() == ID.Light || tempObject.getId() == ID.ArcLight){
-				tempObject.render(g2);
-			}
-			else
-				tempObject.render(g);
+			GameObject tempObject = object.get(i);
+			if(tempObject.getId() != ID.Light)
+				g2.setClip(Game.clipArea(this));
+			tempObject.render(g,g2);
+			g2.setClip(null);
 		}
-		for(int i = 0; i < object.size(); i++){ //renders player on top
-			GameObject tempObject = object.get(i); 
-			if(tempObject.getId() == ID.Player){
-				tempObject.render(g);
-				break;
-			}
-		}
-		
-		
+				
 	}
 	
 	//public void 

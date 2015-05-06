@@ -10,6 +10,8 @@ public enum TileID {
 	doorOpen(),
 	doorClose(),
 	spawner(),
+	missing(),
+	black(),
 	ladder();
 	
 

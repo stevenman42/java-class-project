@@ -9,12 +9,13 @@ import java.awt.RadialGradientPaint;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
+import java.awt.geom.Area;
 
 import base.Game;
-import base.GameObject;
 import base.Handler;
-import base.ID;
-import base.Player;
+import base.Entities.GameObject;
+import base.Entities.ID;
+import base.Entities.Player;
 
 public class ArcLight extends GameObject{
 
@@ -48,15 +49,16 @@ public class ArcLight extends GameObject{
 		arc.setArcByCenter(x, y, radius, pangle-spread, 2*spread, Arc2D.PIE);
 		}
 
-	public void render(Graphics2D g2) {
+	public void render(Graphics g, Graphics2D g2) {
 		Paint p = new RadialGradientPaint(
 				new Point((int)x,(int)y),
 				radius,
 				new float[]{0,1f},
 				new Color[]{new Color(50,50,0,50), new Color(0,0,0,255)});
-		g2.setPaint(p);
 		g2.setClip(arc);
+		g2.setPaint(p);
 		g2.fillRect(0,0,Game.MAPWIDTH,Game.MAPHEIGHT);
+		g2.setPaint(null);
 	}
 
 	public Rectangle getBounds() {
@@ -65,10 +67,6 @@ public class ArcLight extends GameObject{
 
 	public Shape getShapeBounds() {
 		return arc;
-	}
-
-	public void render(Graphics g) {
-		render((Graphics2D)g.create());
 	}
 	
 	public double getStartAngle(){

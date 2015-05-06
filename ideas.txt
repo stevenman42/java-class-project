@@ -5,15 +5,19 @@ puzzles:
 
 light game (the one on a 3x3 grid and you're trying to get all the lights to one color)
 ---i already made this one on my calculator. it will take almost no time
+-- is that supposed to be a good thing or a bad thing
 
 tic tac toe (but the trick is that you can go outside the grid)
 ---what about that tictactoeception? (also somewhat simple though)
+-- maybe
 
 game where you have to slide blocks around to get a specific block outside of the box
 ---(i kinda hated those games)
+-- you don't have to play them
 
 sliding tiles game
 ---elaborate?
+-- only if you're stupid
 
 
 
@@ -24,4 +28,4 @@ rip-off:
 		pokemon
 		pacman
 		frogger
-		
+test

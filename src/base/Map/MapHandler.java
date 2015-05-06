@@ -2,9 +2,12 @@ package base.Map;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Area;
 import java.util.LinkedList;
 
+import base.Game;
+import base.Entities.Player;
 import base.Visual.ArcLight;
 import base.Visual.LightSource;
 
@@ -22,6 +25,14 @@ public class MapHandler {
 	}
 	
 	public void render(Graphics g, Graphics2D g2){
+		
+		if(!Map.rendered){
+			Map.renderMap();
+		}
+		else{
+			g2.drawImage(Map.mapImage, 0, 0, null);
+		}
+		/*
 		for(int i = 0; i < object.size(); i++){ //renders all objects
 			MapObject tempObject = object.get(i); 
 			//if(tempObject.getX() > Player.staticX-Game.WIDTH/2 && tempObject.getX() < Player.staticX+Game.WIDTH/2 && tempObject.getY() < Player.staticY+Game.HEIGHT/2 && tempObject.getY() > Player.staticY-Game.HEIGHT/2)
@@ -30,6 +41,7 @@ public class MapHandler {
 				if(ArcLight.arc.intersects(tempObject.getBounds()) || LightSource.rect.intersects(tempObject.getBounds()))
 					tempObject.render(g2);
 		}
+		*/
 		
 	}
 	

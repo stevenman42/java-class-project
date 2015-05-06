@@ -5,8 +5,10 @@ import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import base.Entities.GameObject;
+import base.Entities.ID;
+import base.Entities.Player;
 import base.Map.Map;
-import base.Map.MapID;
 import base.Map.MapObject;
 import base.Map.TileID;
 
@@ -28,17 +30,16 @@ public class Physics {
 	 * 
 	 * @return Returns the direction(s) in which a collision will occur within a move of a pixel of object A in that direction
 	 */
-	public static boolean[] collisionDirection(GameObject go, TileID id){
-		boolean[] directions = new boolean[4];
-		Arrays.fill(directions, false);
-		Rectangle goRect = go.getBounds();
-		Point goCoor = go.getNearestPoint();
-		goRect.setLocation((int)go.getX(),(int)go.getY()+1);
-		if(Map.tileMap[goCoor.x][goCoor.y].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.x][goCoor.y].getBounds())){
-			
+
+	public static boolean collision(Player p, ID[] id, Handler handler){
+		for(int i = 0; i < handler.object.size(); i++){
+			GameObject tempObject = handler.object.get(i);
+			for(ID Id: id)
+				if(tempObject.getId() == Id && tempObject.getBounds().intersects(p.getBounds())){
+					return true;
+				}
 		}
-			
-		return directions;
+		return false;
 	}
 	
 	

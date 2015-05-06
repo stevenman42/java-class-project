@@ -10,9 +10,8 @@ public class Tile extends MapObject{
 	
 
 	public Tile(float x, float y, TileID id) {
-		super(x*32, y*32, id);
-		Map.tileMap[(int)y][(int)x] = this;
-		// TODO Auto-generated constructor stub
+		super(y*32, x*32, id);
+		//Map.tileMap[(int)y][(int)x] = this;
 	}
 
 	public void tick() {
@@ -37,6 +36,31 @@ public class Tile extends MapObject{
 	}
 	
 	public void addObject(){
+	}
+	
+	public String toString(){
+		if(id == TileID.bedRock){
+			return "bedRock";
+		}
+		if(id == TileID.wood){
+			return "wood";
+		}
+		if(id == TileID.cobble){
+			return "cobble";
+		}
+		if(id == TileID.chest){
+			return "chest";
+		}
+		if(id == TileID.missing){
+			return "missing";
+		}
+		if(id == TileID.doorClose){
+			return "doorclose";
+		}
+		if(id == TileID.doorOpen){
+			return "dooropen";
+		}
+		return "???";
 	}
 	
 

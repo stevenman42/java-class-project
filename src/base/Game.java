@@ -1,5 +1,7 @@
 package base;
 
+import game.saveData.SaveDataHandler;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,17 +12,19 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import base.Entities.Enemy_Knight;
+import base.Entities.GameObject;
+import base.Entities.ID;
+import base.Entities.Player;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
 import base.Map.Map;
 import base.Map.MapHandler;
-import base.Map.Room;
 import base.Map.Tile;
 import base.Map.TileID;
 import base.Menus.HUD;
@@ -54,6 +58,8 @@ public class Game extends Canvas implements Runnable{
 	private MapHandler mapHandler;
 	private Camera cam;
 	private Map map;
+	public static ID[] EnemyIDList = {ID.Enemy, ID.Enemy_Knight};
+	private SaveDataHandler sdh;
 	
 	
 	//make the HUD
@@ -64,7 +70,14 @@ public class Game extends Canvas implements Runnable{
 	private ArcLight arcLight;
 	private Player p;
 	
-	private static BufferedImage background, missingTileImg, woodTileImg, cobbleTileImg, doorClosedTileImg;
+	private static BufferedImage background,
+								 missingTileImg, 
+								 woodTileImg, 
+								 woodTile2Img, 
+								 cobbleTileImg, 
+								 cobbleTile2Img,
+								 blackTileImg,
+								 doorClosedTileImg;
 
 	public static enum STATE{
 		MENU,
@@ -74,21 +87,51 @@ public class Game extends Canvas implements Runnable{
 	
 	public static STATE State = STATE.MENU;
 
-	
 	public Game(){
+		
+		StaticGame.setGame(this);
+		
+		//must inil first in order to get the option values
+		sdh = new SaveDataHandler();
+		sdh.readSaveData("RES/Options.txt");
+		
 		handler = new Handler();
-		mapHandler = new MapHandler();
-		map = new Map(mapHandler, new ArrayList<Room>(), new Tile[128][128]);
+		
+	
+		
+
 
 		
-		new Window(WIDTH, HEIGHT, "Elite Group Project", this);
+		new Window(WIDTH, HEIGHT, "Elite Group Project  ©lololololol", this);
 		
+		mapHandler = new MapHandler();
+		map = new Map(mapHandler);
+		boolean searching = true;
+		int px = 50, py = 50;
+		for(int r = 0; r < Map.tileMap.length; r++){
+			for(int c = 0; c < Map.tileMap[r].length; c++){
+				if(Map.tileMap[r][c].getId() == TileID.wood){
+					if(searching){
+						searching = false;
+						px = c*32;
+						py = r*32;
+					}
+						
+				}
+			}
+		}
+
+
+
 		addKeyListener(new KeyInput(handler));
 		addMouseMotionListener(new MouseMover());
 		addMouseListener(new MouseInput());
 		
-		hud = new HUD();
+		hud = new HUD(this);
 		menu = new Menu();
+		menu.inil();
+		menu.openMenu();//the first gamestate is defaultly menu, therefore openMenu should be called
+		addMouseListener(menu.getMenuMouseListener());
 		pause = new Pause();
 		cam = new Camera(0,0);
 		
@@ -96,12 +139,21 @@ public class Game extends Canvas implements Runnable{
             background = ImageIO.read(new File("RES/Textures/tank.png"));
             missingTileImg = ImageIO.read(new File("RES/Textures/missingTile.png"));
             woodTileImg = ImageIO.read(new File("RES/Textures/woodTile.png"));
+            woodTile2Img = ImageIO.read(new File("RES/Textures/woodTile2.png"));
             cobbleTileImg = ImageIO.read(new File("RES/Textures/cobbleTile.png"));
+            cobbleTile2Img = ImageIO.read(new File("RES/Textures/cobbleTile2.png"));
             doorClosedTileImg = ImageIO.read(new File("RES/Textures/doorClosedTile.png"));
+            blackTileImg = new BufferedImage(32,32,BufferedImage.TYPE_INT_RGB);
+            Graphics gtemp = blackTileImg.createGraphics();
+            gtemp.setColor(Color.black);
+            gtemp.fillRect(0, 0, 32, 32);
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 		
+		//manual map making!!!!!!!!!!!!!!!!!!
+		/*
 		for(int i =0; i < 80; i++){
 			for(int j = 0; j < 80; j++){
 				if(i == 0 || j == 0 || i == 79 || j == 79)
@@ -113,15 +165,24 @@ public class Game extends Canvas implements Runnable{
 					mapHandler.addObject(new Tile(i,j,TileID.wood));
 			}
 		}
-		p = new Player(Game.WIDTH/2,Game.HEIGHT/2,ID.Player, handler);
+		*/
+		
+		p = new Player(px, py,ID.Player, handler);
 		handler.addObject(p);
 		arcLight = new ArcLight(p.getX()+16, p.getY()+16, ID.ArcLight, 300, 10, p, handler);
 		handler.addObject(arcLight);
 		overlay = new Overlay(handler, arcLight);
-
+		System.out.println(p);
+		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
+		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32, 100));
 		
 	}
 	
+	private int fps = 0;
+	
+	public int getFPS(){
+		return fps;
+	}
 	
 	public void run() {
 		
@@ -145,7 +206,8 @@ public class Game extends Canvas implements Runnable{
 			
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-				System.out.println("FPS: " + frames);
+				//System.out.println("FPS: " + frames);
+				fps = frames;
 				frames = 0;
 			}
 		}
@@ -189,8 +251,8 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void render(){
-		this.requestFocus();
-	
+		//this.requestFocus();
+		//LEAVE THIS OUT SO THE OPTIONS MENU CAN WORK
 		
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
@@ -209,7 +271,8 @@ public class Game extends Canvas implements Runnable{
 			g.setColor(Color.red);
 		}
 		else{
-			g.setColor(Color.blue);
+			g.setColor(Color.BLUE);
+
 		}
 		
 		g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -219,38 +282,27 @@ public class Game extends Canvas implements Runnable{
 			
 			g.setColor(Color.black);
 			g.fillRect(0, 0, MAPWIDTH, MAPHEIGHT);
-			Area in = new Area(new Rectangle());
-			for(int i = 0; i < handler.object.size(); i++){
-				GameObject tempObject = handler.object.get(i);
-				if(tempObject.id == ID.Light){
-					tempObject = (LightSource) tempObject;
-					in.add(new Area(tempObject.getBounds()));
-				}
-			}
-			Area arcIn = new Area(arcLight.getShapeBounds());
-			in.add(arcIn);
+			Area in = clipArea(handler);
 			g2d.clip(in);
 			
-			g2d.drawImage(background, 0,0,this);
-			mapHandler.render(g, g2d);
-
-
-			
+			if(!Map.rendered)
+				g2d.drawImage(background, 0,0,this);
+			mapHandler.render(g, g2d);		
 			g2d.setClip(null);
-			
-			
+
 			handler.render(g, g2d);
-			
 
 			
 			g2d.translate(-cam.getX(), -cam.getY()); //end of cam
-			
+			g2d.setClip(null);
 
+			hud.render(g2d);
 
 		}
 		else if (Game.State == Game.STATE.MENU){
 			g.fillRect(0, 0, WIDTH, HEIGHT);
-			menu.render(g);
+			if(menu != null)
+				menu.render(g2d);
 		}
 		
 		
@@ -261,13 +313,14 @@ public class Game extends Canvas implements Runnable{
 	}
 
 	public static void main(String args[]){
-		new Game();
+		new LoadMenu();
+		//because steven sucks
 	}
 
 	
 	public static BufferedImage getIDImg(TileID tileID){
 		if(TileID.bedRock == tileID){
-			return missingTileImg;
+			return cobbleTile2Img;
 		}
 		else if(TileID.wood == tileID){
 			return woodTileImg;
@@ -275,7 +328,36 @@ public class Game extends Canvas implements Runnable{
 		else if(TileID.cobble == tileID){
 			return cobbleTileImg;
 		}
+		else if(TileID.doorClose == tileID){
+			return doorClosedTileImg;
+		}
+		else if(TileID.black == tileID){
+			return blackTileImg;
+		}
 		return missingTileImg;
 	}
 
+	
+	public static Area clipArea(Handler handler){
+		ArcLight arcLight = null;
+		Area in = new Area(new Rectangle());
+		for(int i = 0; i < handler.object.size(); i++){
+			GameObject tempObject = handler.object.get(i);
+			if(tempObject.getId() == ID.Light){
+				tempObject = (LightSource) tempObject;
+				in.add(new Area(tempObject.getBounds()));
+			}
+			if(tempObject.getId() == ID.ArcLight){
+				arcLight = (ArcLight)tempObject;
+			}
+		}
+		Area arcIn = new Area(arcLight.getShapeBounds());
+		in.add(arcIn);
+		return in;
+	}
+	
+	public SaveDataHandler getSaveDataHandler(){
+		return sdh;
+	}
+	
 }

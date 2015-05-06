@@ -7,15 +7,15 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 
 import base.Game;
-import base.GameObject;
 import base.Handler;
-import base.ID;
-import base.Player;
+import base.Entities.GameObject;
+import base.Entities.ID;
 
 public class LightSource extends GameObject{
 	
@@ -34,8 +34,7 @@ public class LightSource extends GameObject{
 		this.handler = handler;
 	}
 
-	public void render(Graphics2D g2){
-		
+	public void render(Graphics g,Graphics2D g2){
 		Paint p = new RadialGradientPaint(
 				new Point((int)x,(int)y),
 				radius,
@@ -47,7 +46,6 @@ public class LightSource extends GameObject{
 		out.subtract(new Area(clipArc));
 		g2.setClip(out);
 		g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
-		
 	}
 	
 	public void tick(){
