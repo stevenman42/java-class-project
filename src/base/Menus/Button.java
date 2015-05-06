@@ -13,7 +13,7 @@ public class Button extends AbstractGuiComponent{
 	private Rectangle rect;
 	
 	private Font font = new Font("arial", Font.BOLD, 25);;
-	private Color textColor = Color.BLACK, borderColor = Color.BLACK, backgroundColor = Color.WHITE;
+	private Color textColor, borderColor, backgroundColor;
 
 	public Button(int x, int y, int length, int height){
 		super();
@@ -22,6 +22,9 @@ public class Button extends AbstractGuiComponent{
 		this.length = length;
 		this.height = height;
 		rect = new Rectangle(x, y, length, height);
+		textColor = Color.BLACK;
+		borderColor = Color.BLACK;
+		backgroundColor = Color.WHITE;
 	}
 	
 	public void setText(String str){
@@ -29,12 +32,15 @@ public class Button extends AbstractGuiComponent{
 	}
 
 	public void render(Graphics2D g2d) {
-
+		
+		if(backgroundColor != null){
+			renderBackground(g2d);
+		}
+		
 		g2d.draw(rect);
 		if(!text.equals("")){
 			renderText(g2d);
 		}
-
 	}
 	
 	//Font font1 = new Font("arial", Font.BOLD, 25);
@@ -59,7 +65,14 @@ public class Button extends AbstractGuiComponent{
 	}
 	
 	protected void renderBackground(Graphics2D g2d){
-		
+		System.out.println("b");
+		if(backgroundColor != null){
+			System.out.println("y");
+			Color prev = g2d.getColor();
+			g2d.setColor(backgroundColor);
+			g2d.draw(rect);
+			g2d.setColor(prev);
+		}
 	}
 	
 	protected void renderBorder(Graphics2D g2d){

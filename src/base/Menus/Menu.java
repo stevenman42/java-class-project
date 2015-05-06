@@ -115,7 +115,7 @@ public class Menu {
 	 */
 
 	public void render(Graphics2D g2d){
-		current.render(g2d);
+		main.render(g2d);
 	}
 
 	public void tick(){
