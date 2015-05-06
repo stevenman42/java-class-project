@@ -65,7 +65,6 @@ public class LevelGenerator {
 		
 		return rooms;
 	}
-	
 
 	
 	
