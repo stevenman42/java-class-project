@@ -108,8 +108,8 @@ public class LevelGenerator {
 				level[centerYList[a]+1][i] = hallID;
 				
 				try{
-					level[centerYList[a]+2][i] = hallID;
-					level[centerYList[a]-2][i] = hallID;
+					level[centerYList[a]+2][i] = wallID;
+					level[centerYList[a]-2][i] = wallID;
 					level[centerYList[a]][i] = hallID;
 					level[centerYList[a]-1][i] = hallID;
 					level[centerYList[a]+1][i] = hallID;
@@ -122,8 +122,8 @@ public class LevelGenerator {
 			
 			if (centerYList[a] < centerYList[a + 1]){
 				for (int i = centerYList[a]; i < centerYList[a + 1]; i ++){
-					level[i][centerXList[a + 1]+2] = hallID;
-					level[i][centerXList[a + 1]-2] = hallID;
+					level[i][centerXList[a + 1]+2] = wallID;
+					level[i][centerXList[a + 1]-2] = wallID;
 					level[i][centerXList[a + 1]] = hallID;
 					level[i][centerXList[a + 1]-1] = hallID;
 					level[i][centerXList[a + 1]+1] = hallID;
@@ -243,7 +243,7 @@ public class LevelGenerator {
 		
 		// prints the giant honkin' level after it's made (testing purposes)
 		for (int[] stupid: newLevel){
-			//System.out.println(Arrays.toString(stupid));
+			System.out.println(Arrays.toString(stupid));
 		}
 		
 		
@@ -258,15 +258,15 @@ public class LevelGenerator {
 		return spawn;
 	}
 	
-	/*
+	
 	public static void main(String [] args){
 		
-		
+		System.out.println("hur");
 		LevelGenerator l = new LevelGenerator();
 		l.createLevel(128, 128);
 
 	}
-	*/
+	
 	
 }
 
