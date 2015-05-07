@@ -6,8 +6,13 @@ public class Katana_Sword extends Sword{
 		super(name, id, swordDmg);
 	}
 	
-	public Katana_Sword(int dmg){
-		this("Shadow Fang", ItemID.Sword, dmg);
+	public Katana_Sword(String name, ItemID id, int swordDmg, int code) {
+		super(name, id, swordDmg);
+		setName("Shadow Fang");
+		setSwordDmg(Integer.MAX_VALUE);
 	}
+	
+
+
 
 }
