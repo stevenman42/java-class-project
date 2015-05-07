@@ -103,12 +103,12 @@ public class LevelGenerator {
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
 				if (level[centerYList[a] + 2][i] == 0)
-					level[centerYList[(a + (int)(Math.random() * (1 - -1 + 1)) + -1)] + 2][i] = wallID;
+					level[centerYList[a] + 2][i] = wallID;
 				if (level[centerYList[a] - 2][i] == 0) 
-					level[centerYList[(a + (int)(Math.random() * (1 - -1 + 1)) + -1)] - 2][i] = wallID;
-				level[centerYList[(a + (int)(Math.random() * (1 - -1 + 1)) + -1)]][i] = hallID;
-				level[centerYList[(a + (int)(Math.random() * (1 - -1 + 1)) + -1)]-1][i] = hallID;
-				level[centerYList[(a + (int)(Math.random() * (1 - -1 + 1)) + -1)]+1][i] = hallID;
+					level[centerYList[a] - 2][i] = wallID;
+				level[centerYList[a]][i] = hallID;
+				level[centerYList[a]-1][i] = hallID;
+				level[centerYList[a]+1][i] = hallID;
 				
 				try{
 					if (level[centerYList[a] + 2][i] == 0)
@@ -275,7 +275,6 @@ public class LevelGenerator {
 		LevelGenerator l = new LevelGenerator();
 		l.createLevel(128, 128);
 		
-
 
 	}
 	
