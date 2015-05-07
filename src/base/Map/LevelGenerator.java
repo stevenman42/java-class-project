@@ -29,6 +29,7 @@ public class LevelGenerator {
 	
 	private int[] centerXList;
 	private int[] centerYList;
+	
 
 	/**
 	 * 
@@ -101,15 +102,19 @@ public class LevelGenerator {
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
-				level[centerYList[a]-2][i] = wallID;
-				level[centerYList[a]+2][i] = wallID;
+				if (level[centerYList[a] + 2][i] == 0)
+					level[centerYList[a] + 2][i] = wallID;
+				if (level[centerYList[a] - 2][i] == 0) 
+					level[centerYList[a] - 2][i] = wallID;
 				level[centerYList[a]][i] = hallID;
 				level[centerYList[a]-1][i] = hallID;
 				level[centerYList[a]+1][i] = hallID;
 				
 				try{
-					level[centerYList[a]+2][i] = wallID;
-					level[centerYList[a]-2][i] = wallID;
+					if (level[centerYList[a] + 2][i] == 0)
+						level[centerYList[a] + 2][i] = wallID;
+					if (level[centerYList[a] - 2][i] == 0) 
+						level[centerYList[a] - 2][i] = wallID;
 					level[centerYList[a]][i] = hallID;
 					level[centerYList[a]-1][i] = hallID;
 					level[centerYList[a]+1][i] = hallID;
@@ -121,8 +126,10 @@ public class LevelGenerator {
 			
 			if (centerYList[a] < centerYList[a + 1]){
 				for (int i = centerYList[a]; i < centerYList[a + 1]; i ++){
-					level[i][centerXList[a + 1]+2] = wallID;
-					level[i][centerXList[a + 1]-2] = wallID;
+					if (level[i][centerXList[a + 1] + 2] == 0)
+						level[i][centerXList[a + 1] + 2] = wallID;
+					if (level[i][centerXList[a + 1] - 2] == 0) 
+						level[i][centerXList[a + 1] - 2] = wallID;
 					level[i][centerXList[a + 1]] = hallID;
 					level[i][centerXList[a + 1]-1] = hallID;
 					level[i][centerXList[a + 1]+1] = hallID;
@@ -131,8 +138,10 @@ public class LevelGenerator {
 			
 			else if (centerYList[a] > centerYList[a + 1]){
 				for (int i = centerYList[a]; i > centerYList[a + 1]; i --){
-					level[i][centerXList[a + 1]+2] = wallID;
-					level[i][centerXList[a + 1]-2] = wallID;
+					if (level[i][centerXList[a + 1] + 2] == 0)
+						level[i][centerXList[a + 1]+2] = wallID;
+					if (level[i][centerXList[a + 1] - 2] == 0) 
+						level[i][centerXList[a + 1]-2] = wallID;
 					level[i][centerXList[a + 1]] = hallID;
 					level[i][centerXList[a + 1]+1] = hallID;
 					level[i][centerXList[a + 1]-1] = hallID;
@@ -259,7 +268,7 @@ public class LevelGenerator {
 		return spawn;
 	}
 	
-	
+	/*
 	public static void main(String [] args){
 		
 		System.out.println("hur");
@@ -267,6 +276,7 @@ public class LevelGenerator {
 		l.createLevel(128, 128);
 
 	}
+	*/
 	
 	
 }
