@@ -45,7 +45,7 @@ public class ArcLight extends GameObject{
 				y = handler.object.get(i).getY() + 16;
 			}
 		}
-		pangle = player.getAngle();
+		pangle = Player.getAngle();
 		arc.setArcByCenter(x, y, radius, pangle-spread, 2*spread, Arc2D.PIE);
 		}
 

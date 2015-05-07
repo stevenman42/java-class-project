@@ -68,6 +68,7 @@ public class Game extends Canvas implements Runnable{
 	private Overlay overlay;
 	private ArcLight arcLight;
 	private Player p;
+	private Action action;
 	public static Graphics2D g2Static;
 	
 	private static BufferedImage background,
@@ -262,6 +263,7 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g.create();
+		action = new Action(g, g2d);
 		g2Static = g2d;
 
 		
@@ -291,6 +293,7 @@ public class Game extends Canvas implements Runnable{
 				g2d.drawImage(background, 0,0,this);
 			mapHandler.render(g, g2d);		
 			g2d.setClip(null);
+			action.SwingSword(null);
 
 			handler.render(g, g2d);
 
@@ -299,6 +302,7 @@ public class Game extends Canvas implements Runnable{
 			g2d.setClip(null);
 
 			hud.render(g2d);
+
 
 		}
 		else if (Game.State == Game.STATE.MENU){

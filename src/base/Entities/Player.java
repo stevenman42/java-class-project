@@ -7,13 +7,11 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
-import java.util.ArrayList;
 
 import base.Game;
 import base.Handler;
 import base.Physics;
 import base.Input.MouseMover;
-import base.Items.GameItem;
 import base.Items.Container;
 import base.Map.Map;
 import base.Map.TileID;
