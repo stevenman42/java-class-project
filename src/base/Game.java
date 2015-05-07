@@ -6,7 +6,9 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.geom.Area;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -23,6 +25,7 @@ import base.Entities.Player;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
+import base.Items.ItemList;
 import base.Map.Map;
 import base.Map.MapHandler;
 import base.Map.TileID;
@@ -45,7 +48,10 @@ public class Game extends Canvas implements Runnable{
 	//set window size
 	public static final int WIDTH = 720, HEIGHT = WIDTH / 14 * 9;
 	public static final int MAPWIDTH = 128*32, MAPHEIGHT = 128*32;
-
+	
+	public static final Image opacity25 = Toolkit.getDefaultToolkit().createImage("Res/Textures/opacity_25P.jpg");
+	public static final Image opacity50 = Toolkit.getDefaultToolkit().createImage("Res/Textures/opacity_50P.jpg");
+	public static final Image opacity75 = Toolkit.getDefaultToolkit().createImage("Res/Textures/opacity_75P.jpg");
 
 	//make a running instance thread for the game(what it runs on)
 	private Thread thread;
@@ -176,6 +182,8 @@ public class Game extends Canvas implements Runnable{
 		System.out.println(p);
 		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
 		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32, 100));
+		
+		Player.container.addItem(ItemList.swastika);
 		
 	}
 	

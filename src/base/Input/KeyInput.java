@@ -28,7 +28,7 @@ public class KeyInput extends KeyAdapter{
 		}
 		SaveDataHandler sdh = StaticGame.getGame().getSaveDataHandler();
 		keyMovementForward = Integer.parseInt(sdh.getDataFromKey("KEY_MOVEMENT_FORWARD").getData());
-		System.out.println("KMF = " + keyMovementForward);
+		//System.out.println("KMF = " + keyMovementForward);
 		keyMovementLeft = Integer.parseInt(sdh.getDataFromKey("KEY_MOVEMENT_LEFT").getData());
 		keyMovementBackward = Integer.parseInt(sdh.getDataFromKey("KEY_MOVEMENT_BACKWARD").getData());
 		keyMovementRight = Integer.parseInt(sdh.getDataFromKey("KEY_MOVEMENT_RIGHT").getData());
