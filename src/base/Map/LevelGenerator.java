@@ -114,7 +114,6 @@ public class LevelGenerator {
 					level[centerYList[a]-1][i] = hallID;
 					level[centerYList[a]+1][i] = hallID;
 				}catch(ArrayIndexOutOfBoundsException e){
-					System.out.println("yeahhhhh...");
 					System.out.println(i);
 					System.out.println(Arrays.toString(centerXList));
 				}
@@ -132,6 +131,8 @@ public class LevelGenerator {
 			
 			else if (centerYList[a] > centerYList[a + 1]){
 				for (int i = centerYList[a]; i > centerYList[a + 1]; i --){
+					level[i][centerXList[a + 1]+2] = wallID;
+					level[i][centerXList[a + 1]-2] = wallID;
 					level[i][centerXList[a + 1]] = hallID;
 					level[i][centerXList[a + 1]+1] = hallID;
 					level[i][centerXList[a + 1]-1] = hallID;
