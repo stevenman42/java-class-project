@@ -62,7 +62,7 @@ public class Physics {
 		boolean notClear = false, cornerTopClear = false, cornerBottomClear = false;
 		Rectangle goRect = (Rectangle) go.getBounds().clone();
 		Point goCoor = go.getNearestPoint();
-		goRect.setLocation((int)go.getX()+3,(int)go.getY());
+		goRect.setLocation((int)go.getX()+2,(int)go.getY());
 		notClear = Map.tileMap[goCoor.y][goCoor.x + 1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y][goCoor.x + 1].getBounds());
 		cornerTopClear = (Map.tileMap[goCoor.y-1][goCoor.x+1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x+1].getBounds()));
 		cornerBottomClear = (Map.tileMap[goCoor.y+1][goCoor.x+1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y+1][goCoor.x+1].getBounds()));
@@ -85,7 +85,7 @@ public class Physics {
 		Rectangle goRect = (Rectangle) go.getBounds().clone();
 		Point goCoor = go.getNearestPoint();
 		goRect.setLocation((int)go.getX(),(int)go.getY()-3);
-		notClear = Map.tileMap[goCoor.y-1][goCoor.x].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x].getBounds());
+		notClear = Map.tileMap[goCoor.y-2][goCoor.x].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x].getBounds());
 		cornerLeftClear = (Map.tileMap[goCoor.y-1][goCoor.x-1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x-1].getBounds()));
 		cornerRightClear = (Map.tileMap[goCoor.y-1][goCoor.x+1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x+1].getBounds()));
 		return !notClear && !cornerLeftClear && !cornerRightClear;
