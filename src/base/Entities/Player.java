@@ -49,9 +49,9 @@ public class Player extends GameObject{
 			x += dX;
 		if(dX < 0 && Physics.clearLeft(this, TileID.bedRock))
 			x += dX;
-		if(dY > 0 && Physics.clearUp(this, TileID.bedRock))
+		if(dY > 0 && Physics.clearDown(this, TileID.bedRock))
 			y += dY;
-		if(dY < 0 && Physics.clearDown(this, TileID.bedRock))
+		if(dY < 0 && Physics.clearUp(this, TileID.bedRock))
 			y += dY;
 		if(dY != 0 || dX != 0){
 			Point p = getNearestPoint();
