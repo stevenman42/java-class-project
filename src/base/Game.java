@@ -23,6 +23,7 @@ import base.Entities.Player;
 import base.Input.KeyInput;
 import base.Input.MouseInput;
 import base.Input.MouseMover;
+import base.Items.ItemList;
 import base.Map.Map;
 import base.Map.MapHandler;
 import base.Map.TileID;
@@ -176,6 +177,8 @@ public class Game extends Canvas implements Runnable{
 		System.out.println(p);
 		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
 		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32, 100));
+		
+		Player.container.addItem(ItemList.swastika);
 		
 	}
 	

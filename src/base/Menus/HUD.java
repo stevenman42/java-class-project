@@ -28,6 +28,10 @@ public class HUD {
 			g2d.drawString("FPS:" + fps, Game.WIDTH-((""+fps).length()*6+37), Game.HEIGHT-35);
 		}
 		
+		if(renderContainers){
+			renderContainers();
+		}
+		
 	}
 	
 	public void addContainerToRender(Container c){
@@ -38,6 +42,12 @@ public class HUD {
 	public void stopRenderingContainers(){
 		renderContainers = false;
 		containers.clear();
+	}
+	
+	public void renderContainers(){
+		
+		
+		
 	}
 	
 }
