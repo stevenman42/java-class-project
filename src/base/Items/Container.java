@@ -34,6 +34,14 @@ public class Container {
 		contents.add(new ContainerHolder(item, amt));
 	}
 	
+	public ContainerHolder[] getContents(){
+		ContainerHolder[] ret = new ContainerHolder[contents.size()];
+		for(int i = 0; i < ret.length; i++){
+			ret[i] = contents.get(i);
+		}
+		return ret;
+	}
+	
 	public void removeItem(Item item, int amt){
 		
 		for(int i = 0; i < contents.size(); i++){
