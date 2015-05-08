@@ -14,6 +14,7 @@ import base.Handler;
 import base.Physics;
 import base.Input.MouseMover;
 import base.Items.GameItem;
+import base.Items.Container;
 import base.Map.Map;
 import base.Map.TileID;
 import base.Visual.LightSource;
@@ -28,7 +29,7 @@ public class Player extends GameObject{
 	boolean leftFoot = true;
 	private float playerWidth = 32, playerHeight = 32;
 	public static float staticX, staticY;
-	public static ArrayList<GameItem> items;
+	public static Container container;
 
 	public Player(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
@@ -37,7 +38,7 @@ public class Player extends GameObject{
 		handler.addObject(playerLight);
 		staticX = x;
 		staticY = y;
-		items = new ArrayList<GameItem>();
+		container = new Container();
 	}
 	
 	
