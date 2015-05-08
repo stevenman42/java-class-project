@@ -24,4 +24,21 @@ public class Item {
 		
 	}
 	
+	public String getName(){
+		return name;
+	}
+	
+	public String getID(){
+		return id;
+	}
+	
+	public Image getImage(){
+		return image;
+	}
+	
+	public boolean equals(Object obj){
+		Item i = (Item) obj;
+		return i.getID().equals(id) && i.getName().equals(name);
+	}
+	
 }
