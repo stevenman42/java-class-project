@@ -9,12 +9,14 @@ public abstract class Enemy extends GameObject{
 
 	protected float width, height;
 	protected int health;
+	protected boolean dormant;
 	
 	public Enemy(float x, float y, ID id, float width, float height, int health) {
 		super(x, y, id);
 		this.width = width;
 		this.height = height;
 		this.health = health;
+		dormant = true;
 	}
 
 	

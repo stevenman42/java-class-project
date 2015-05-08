@@ -8,7 +8,7 @@ import base.Game;
 
 public class Tile extends MapObject{
 	
-	private int scent, scentCounter = 100;
+	private int scent, scentCounter = 15;
 
 	public Tile(float x, float y, TileID id) {
 		super(y*32, x*32, id);
@@ -20,7 +20,7 @@ public class Tile extends MapObject{
 		scentCounter--;
 		if(scentCounter <= 0){
 			scent--;
-			scentCounter = 100;			
+			scentCounter = 5;			
 		}
 		if(scent < 0)
 			scent = 0;

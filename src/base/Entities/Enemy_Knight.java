@@ -3,6 +3,7 @@ package base.Entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 import base.Physics;
 import base.Map.TileID;
@@ -31,79 +32,61 @@ public class Enemy_Knight extends Enemy{
 			y += dY;
 		if(dY < 0 && Physics.clearUp(this, TileID.bedRock))
 			y += dY;
+		
 		following = Scent.isScent(this);
-		if(!following){
-			firstFollow = true;
-			if(!isRandom){
-				dX = 1;
-				dY = 1;
-				isRandom = true;
-			}else if(isRandom){
-				if(lastX == x){
-					dX = -dX;
-				}
-				if(lastY == y){
-					dY = -dY;
-				}
-			}
-		}else if(following){
-			isRandom = false;
-		//code for scent movements start here
-			int dir = Scent.findScent(this);
-
-			if(firstFollow){
-				firstFollow = false;
+		if(following){
+			Point p = getNearestPoint();
+			if(dormant){
+				int dir = Scent.findScent(this);
 				switch(dir){
 				case 0:
 					dX = 2;
 					dY = 0;
-					break;
 				case 1:
 					dX = 0;
 					dY = -2;
-					break;
 				case 2:
 					dX = -2;
 					dY = 0;
-					break;
 				case 3:
 					dX = 0;
 					dY = 2;
-					break;
-				default:
-					dX = 0;
-					dY = 0;
-					break;
 				}
+				dormant = false;
+			} else {
+				
+				int dir = Scent.findScent(this);
+				if(dX != 0){
+					if(dir == 1){
+						dX = 0;
+						dY = -2;
+					}
+					else if(dir == 3){
+						dX = 0;
+						dY = 2;
+					}
+				}
+				else if(dY != 0){
+					if(dir == 0){
+						dY = 0;
+						dX = 2;
+					}
+					else if(dir == 2){
+						dY = 0;
+						dX = -2;
+					}
+				}
+				
+				
 			}
-			if(lastDir == 1 || lastDir == 3){
-				if(dir == 0){
-					dX = 2;
-					dY = 0;
-					lastDir = dir;
-				}
-				if(dir == 2){
-					dX = -2;
-					dY = 0;
-					lastDir = dir;
-				}
+		} else {
+			if(lastX == x)
+				dX = -dX;
+			if(lastY == y){
+				dY = -dY;
 			}
-			else if(lastDir == 0 || lastDir == 2){
-				if(dir == 1){
-					dX = 0;
-					dY = -2;
-					lastDir = dir;
-				}
-				if(dir == 3){
-					dX = 0;
-					dY = 2;
-					lastDir = dir;
-				}
-			}
-		//code for scent movement ends here
 		}
-		
-		
+
 		
 	}
 	

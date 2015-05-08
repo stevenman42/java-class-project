@@ -13,8 +13,7 @@ public class Scent{
 	
 	public static boolean isScent(GameObject o){
 		Point p = o.getNearestPoint();
-		System.out.println(Map.tileMap[p.y][p.x].getScent());
-		if(Map.tileMap[p.y][p.x].getScent() != 0){
+		if(Map.tileMap[p.y][p.x].getScent() > 0){
 			return true;
 		}
 		return false;
@@ -48,7 +47,6 @@ public class Scent{
 			maxScent = Map.tileMap[p.y][p.x].getScent();
 			maxScentDirection = -1;
 		}
-		System.out.println(maxScentDirection);
 		return maxScentDirection;
 	}
 }
