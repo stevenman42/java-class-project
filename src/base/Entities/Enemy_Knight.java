@@ -36,56 +36,30 @@ public class Enemy_Knight extends Enemy{
 		following = Scent.isScent(this);
 		if(following){
 			Point p = getNearestPoint();
-			if(dormant){
-				int dir = Scent.findScent(this);
-				switch(dir){
-				case 0:
+				
+				Point nextPoint = Scent.findScent(this);
+				if(nextPoint.x > p.x){
 					dX = 2;
-					dY = 0;
-				case 1:
-					dX = 0;
-					dY = -2;
-				case 2:
+				} else if(nextPoint.x < p.x){
 					dX = -2;
-					dY = 0;
-				case 3:
+				} else if(nextPoint.x == p.x){
 					dX = 0;
+				}
+				if(nextPoint.y > p.y){
 					dY = 2;
-				}
-				dormant = false;
-			} else {
-				
-				int dir = Scent.findScent(this);
-				if(dX != 0){
-					if(dir == 1){
-						dX = 0;
-						dY = -2;
-					}
-					else if(dir == 3){
-						dX = 0;
-						dY = 2;
-					}
-				}
-				else if(dY != 0){
-					if(dir == 0){
-						dY = 0;
-						dX = 2;
-					}
-					else if(dir == 2){
-						dY = 0;
-						dX = -2;
-					}
+				} else if(nextPoint.y < p.y){
+					dY = -2;
+				} else if(nextPoint.y == p.y){
+					dY = 0;
 				}
 				
-				
-			}
 		} else {
-			if(lastX == x)
-				dX = -dX;
-			if(lastY == y){
-				dY = -dY;
-			}
+		if(lastX == x)
+			dX = -dX;
+		if(lastY == y){
+			dY = -dY;
 		}
+	}
 
 		
 	}

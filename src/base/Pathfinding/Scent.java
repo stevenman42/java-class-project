@@ -23,30 +23,19 @@ public class Scent{
 	/*
 	 * @return next move (0 = right, 1 = up, 2 = left, 3 = down)
 	 */
-	public static int findScent(GameObject o){
+	public static Point findScent(GameObject o){
 		Point p = o.getNearestPoint();
 		int maxScent = 0;
-		int maxScentDirection = -1;
-		if(Map.tileMap[p.y][p.x+1].getScent() > maxScent){
-			maxScent = Map.tileMap[p.y][p.x].getScent();
-			maxScentDirection = 0;
+		Point maxScentPoint = p;
+		for(int j = p.y-1; j < p.y+1 +1; j++){
+			for(int k = p.x-1; k < p.x+1 +1; k++){
+				int scent = Map.tileMap[j][k].getScent();
+				if(scent > maxScent){
+					maxScent = scent;
+					maxScentPoint = new Point(k,j);
+				}
+			}
 		}
-		if(Map.tileMap[p.y-1][p.x].getScent() > maxScent){
-			maxScent = Map.tileMap[p.y][p.x].getScent();
-			maxScentDirection = 1;
-		}
-		if(Map.tileMap[p.y][p.x-1].getScent() > maxScent){
-			maxScent = Map.tileMap[p.y][p.x].getScent();
-			maxScentDirection = 2;
-		}
-		if(Map.tileMap[p.y+1][p.x].getScent() > maxScent){
-			maxScent = Map.tileMap[p.y][p.x].getScent();
-			maxScentDirection = 3;
-		}
-		if(Map.tileMap[p.y][p.x].getScent() > maxScent){
-			maxScent = Map.tileMap[p.y][p.x].getScent();
-			maxScentDirection = -1;
-		}
-		return maxScentDirection;
+		return maxScentPoint;
 	}
 }
