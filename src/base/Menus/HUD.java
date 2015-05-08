@@ -1,8 +1,10 @@
 package base.Menus;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import base.Game;
+import base.Items.Container;
 
 public class HUD {
 	
@@ -10,8 +12,13 @@ public class HUD {
 	
 	private boolean showDebugData = true;
 	
+	private ArrayList<Container> containers;
+	private boolean renderContainers;
+	
 	public HUD(Game g){
 		game = g;
+		containers = new ArrayList<Container>();
+		renderContainers = false;
 	}
 	
 	public void render(Graphics2D g2d){
@@ -23,6 +30,14 @@ public class HUD {
 		
 	}
 	
+	public void addContainerToRender(Container c){
+		renderContainers = true;
+		containers.add(c);
+	}
 	
+	public void stopRenderingContainers(){
+		renderContainers = false;
+		containers.clear();
+	}
 	
 }
