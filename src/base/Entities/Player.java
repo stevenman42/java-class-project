@@ -42,6 +42,9 @@ public class Player extends GameObject{
 	
 
 	public void tick() {
+		if(Map.tileMap != null)
+			Map.tileMap[(int)x/32][(int)y/32].resetScent();
+
 		if(Physics.collision(this, Game.EnemyIDList, handler)){
 			Game.exitGame();
 		}

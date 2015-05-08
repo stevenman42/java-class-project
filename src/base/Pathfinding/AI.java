@@ -1,4 +1,4 @@
-package base;
+package base.Pathfinding;
 
 import java.awt.Point;
 import java.util.Arrays;
