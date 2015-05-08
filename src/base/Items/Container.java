@@ -12,6 +12,10 @@ public class Container {
 		
 	}
 	
+	public int getSize(){
+		return contents.size();
+	}
+	
 	public void addItem(Item item){
 		addItem(item, 1);
 	}

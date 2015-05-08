@@ -20,7 +20,7 @@ public class Menu {
 	private boolean audioPlaying = false;	
 	private Audio audio;
 
-	private boolean neo = false;
+	private boolean neo = true;
 
 	private MenuItem current;
 
@@ -38,15 +38,15 @@ public class Menu {
 		//Font buttonFont = new Font("arial", Font.BOLD, 25);
 
 		if(neo){
-			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
+			image  = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp.gif");
 			image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp2.gif");
 			image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp3.gif");
 			image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/MenuTemp4.jpg");
 		}else{
-			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/.gif");
-			image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/.gif");
-			image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/.gif");
-			image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/.jpg");
+			image = Toolkit.getDefaultToolkit().createImage("RES/Textures/wat.gif");
+			image2 = Toolkit.getDefaultToolkit().createImage("RES/Textures/wat.gif");
+			image3 = Toolkit.getDefaultToolkit().createImage("RES/Textures/wat.gif");
+			image4 = Toolkit.getDefaultToolkit().createImage("RES/Textures/wat.jpg");
 		}
 
 		//Button play = new ButtonImage(Game.WIDTH/2-50, 200, 100, 50, image2);
