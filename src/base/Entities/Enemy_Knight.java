@@ -22,6 +22,7 @@ public class Enemy_Knight extends Enemy{
 	}
 
 	public void tick() {
+		super.tick();
 		float lastX = x;
 		float lastY = y;
 		if(dX > 0 && Physics.clearRight(this, TileID.bedRock))
