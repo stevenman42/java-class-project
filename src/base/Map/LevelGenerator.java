@@ -268,15 +268,16 @@ public class LevelGenerator {
 		return spawn;
 	}
 	
-	/*
+	
 	public static void main(String [] args){
 		
 		System.out.println("hur");
 		LevelGenerator l = new LevelGenerator();
 		l.createLevel(128, 128);
+		
 
 	}
-	*/
+	
 	
 	
 }
