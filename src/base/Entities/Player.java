@@ -43,7 +43,7 @@ public class Player extends GameObject{
 
 	public void tick() {
 		if(Physics.collision(this, Game.EnemyIDList, handler)){
-			Game.State = Game.STATE.MENU;
+			Game.exitGame();
 		}
 		if(dX > 0 && Physics.clearRight(this, TileID.bedRock))
 			x += dX;

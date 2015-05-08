@@ -18,6 +18,7 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+import base.Entities.Enemy_Archer;
 import base.Entities.Enemy_Knight;
 import base.Entities.GameObject;
 import base.Entities.ID;
@@ -63,8 +64,9 @@ public class Game extends Canvas implements Runnable{
 	private MapHandler mapHandler;
 	private Camera cam;
 	private Map map;
-	public static ID[] EnemyIDList = {ID.Enemy, ID.Enemy_Knight};
+	public static ID[] EnemyIDList = {ID.Enemy, ID.Enemy_Knight, ID.Enemy_Archer};
 	private SaveDataHandler sdh;
+	public static boolean debug = false;
 	
 	
 	//make the HUD
@@ -182,6 +184,7 @@ public class Game extends Canvas implements Runnable{
 		System.out.println(p);
 		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
 		handler.addObject(new Enemy_Knight(50,50, ID.Enemy_Knight, 32, 32, 100));
+		handler.addObject(new Enemy_Archer(px+32*5,py+32*5,ID.Enemy_Archer,32,32,100));
 		
 		Player.container.addItem(ItemList.swastika);
 		
@@ -260,8 +263,10 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void render(){
-		//this.requestFocus();
+		//if(noMenu)
+		//	this.requestFocus();
 		//LEAVE THIS OUT SO THE OPTIONS MENU CAN WORK
+		//No, we are going to use them both. Simply make a boolean that says if there isnt another menu open request focus
 		
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
@@ -294,8 +299,11 @@ public class Game extends Canvas implements Runnable{
 			
 			g.setColor(Color.black);
 			g.fillRect(0, 0, MAPWIDTH, MAPHEIGHT);
-			Area in = clipArea(handler);
-			g2d.clip(in);
+			Area in;
+			if(!debug){
+				in = clipArea(handler);
+				g2d.clip(in);
+			}
 			
 			if(!Map.rendered)
 				g2d.drawImage(background, 0,0,this);
@@ -378,4 +386,8 @@ public class Game extends Canvas implements Runnable{
 		Game.State = (STATE) e;
 	}
 	
+	public static void exitGame(){
+		//save Game
+		System.exit(1);
+	}
 }

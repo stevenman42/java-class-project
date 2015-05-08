@@ -20,7 +20,7 @@ public class Menu {
 	private boolean audioPlaying = false;	
 	private Audio audio;
 
-	private boolean neo = true;
+	private boolean neo = false;
 
 	private MenuItem current;
 

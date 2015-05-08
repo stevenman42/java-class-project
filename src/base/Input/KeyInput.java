@@ -99,6 +99,9 @@ public class KeyInput extends KeyAdapter{
 		if(key == KeyEvent.VK_ESCAPE){
 			Game.State = Game.STATE.MENU;
 		}
+		if(key == KeyEvent.VK_SPACE){
+			Game.debug = !Game.debug;
+		}
 
 	}
 
