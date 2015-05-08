@@ -42,8 +42,8 @@ public class Player extends GameObject{
 	
 
 	public void tick() {
-		if(Map.tileMap != null)
-			Map.tileMap[(int)x/32][(int)y/32].resetScent();
+		Point p = getNearestPoint();
+		Map.tileMap[p.y][p.x].resetScent();
 
 		if(Physics.collision(this, Game.EnemyIDList, handler)){
 			Game.exitGame();
@@ -57,7 +57,6 @@ public class Player extends GameObject{
 		if(dY < 0 && Physics.clearUp(this, TileID.bedRock))
 			y += dY;
 		if(dY != 0 || dX != 0){
-			Point p = getNearestPoint();
 			if(audioPlaying <= 0 && Map.tileMap[p.y][p.x].getId() == TileID.wood){
 				if(leftFoot || audioPlaying != 0){
 					audio = new Audio("RES/Audio/GravelStep.wav");

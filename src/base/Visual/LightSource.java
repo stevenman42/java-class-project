@@ -35,17 +35,19 @@ public class LightSource extends GameObject{
 	}
 
 	public void render(Graphics g,Graphics2D g2){
-		Paint p = new RadialGradientPaint(
-				new Point((int)x,(int)y),
-				radius,
-				new float[]{0,1f},
-				new Color[]{new Color(50,50,0,0), new Color(0,0,0,255)});
-		g2.setPaint(p);
-		Arc2D.Double clipArc = ArcLight.arc;
-		Area out = new Area(new Rectangle(0,0,Game.MAPWIDTH, Game.MAPHEIGHT));
-		out.subtract(new Area(clipArc));
-		g2.setClip(out);
-		g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
+		if(!Game.debug){
+			Paint p = new RadialGradientPaint(
+					new Point((int)x,(int)y),
+					radius,
+					new float[]{0,1f},
+					new Color[]{new Color(50,50,0,0), new Color(0,0,0,255)});
+			g2.setPaint(p);
+			Arc2D.Double clipArc = ArcLight.arc;
+			Area out = new Area(new Rectangle(0,0,Game.MAPWIDTH, Game.MAPHEIGHT));
+			out.subtract(new Area(clipArc));
+			g2.setClip(out);
+			g2.fillRect((int)(x-radius), (int)(y-radius), (int)(radius*2), (int)(radius*2));
+		}
 	}
 	
 	public void tick(){
