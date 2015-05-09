@@ -50,15 +50,17 @@ public class ArcLight extends GameObject{
 		}
 
 	public void render(Graphics g, Graphics2D g2) {
-		Paint p = new RadialGradientPaint(
-				new Point((int)x,(int)y),
-				radius,
-				new float[]{0,1f},
-				new Color[]{new Color(50,50,0,50), new Color(0,0,0,255)});
-		g2.setClip(arc);
-		g2.setPaint(p);
-		g2.fillRect(0,0,Game.MAPWIDTH,Game.MAPHEIGHT);
-		g2.setPaint(null);
+		if(!Game.debug){
+			Paint p = new RadialGradientPaint(
+					new Point((int)x,(int)y),
+					radius,
+					new float[]{0,1f},
+					new Color[]{new Color(50,50,0,50), new Color(0,0,0,255)});
+			g2.setClip(arc);
+			g2.setPaint(p);
+			g2.fillRect(0,0,Game.MAPWIDTH,Game.MAPHEIGHT);
+			g2.setPaint(null);
+		}
 	}
 
 	public Rectangle getBounds() {

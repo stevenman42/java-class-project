@@ -5,20 +5,27 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
 
+import base.Pathfinding.Ray;
+
 public abstract class Enemy extends GameObject{
 
 	protected float width, height;
 	protected int health;
+	protected boolean dormant;
 	
 	public Enemy(float x, float y, ID id, float width, float height, int health) {
 		super(x, y, id);
 		this.width = width;
 		this.height = height;
 		this.health = health;
+		dormant = true;
 	}
 
-	
-
+	public void tick(){
+		if(Ray.castRay(this)){
+			System.out.println("Has LOS");
+		}
+	}
 	
 	public void render(Graphics2D g2) {
 		Color temp = g2.getColor();

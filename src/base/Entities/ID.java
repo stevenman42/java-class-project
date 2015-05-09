@@ -8,6 +8,7 @@ public enum ID {
 	ArcLight(),
 	Enemy(),
 	Enemy_Knight(),
+	Enemy_Archer(),
 	Trail();
 
 }

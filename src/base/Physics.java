@@ -14,6 +14,9 @@ import base.Map.TileID;
 
 public class Physics {
 	
+	public static Point getNearestPoint(int x, int y){
+		return new Point(x/32,y/32);
+	}
 	public static boolean collisionList(GameObject go, LinkedList<MapObject> moList, TileID id){
 		for(int i = 0; i < moList.size(); i++){
 			if(moList.get(i).getId() == id){
@@ -69,23 +72,23 @@ public class Physics {
 		return !notClear && !cornerTopClear && !cornerBottomClear;
 	}
 	
-	public static boolean clearUp(GameObject go, TileID id){
+	public static boolean clearDown(GameObject go, TileID id){
 		boolean notClear = false, cornerLeftClear = false, cornerRightClear = false;
 		Rectangle goRect = (Rectangle) go.getBounds().clone();
 		Point goCoor = go.getNearestPoint();
-		goRect.setLocation((int)go.getX(),(int)go.getY()+3);
+		goRect.setLocation((int)go.getX(),(int)go.getY()+2);
 		notClear = Map.tileMap[goCoor.y+1][goCoor.x].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y+1][goCoor.x].getBounds());
 		cornerLeftClear = (Map.tileMap[goCoor.y+1][goCoor.x-1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y+1][goCoor.x-1].getBounds()));
 		cornerRightClear = (Map.tileMap[goCoor.y+1][goCoor.x+1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y+1][goCoor.x+1].getBounds()));
 		return !notClear && !cornerLeftClear && !cornerRightClear;
 	}
 	
-	public static boolean clearDown(GameObject go, TileID id){
+	public static boolean clearUp(GameObject go, TileID id){
 		boolean notClear = false, cornerLeftClear = false, cornerRightClear = false;
 		Rectangle goRect = (Rectangle) go.getBounds().clone();
 		Point goCoor = go.getNearestPoint();
 		goRect.setLocation((int)go.getX(),(int)go.getY()-3);
-		notClear = Map.tileMap[goCoor.y-2][goCoor.x].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x].getBounds());
+		notClear = Map.tileMap[goCoor.y-1][goCoor.x].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x].getBounds());
 		cornerLeftClear = (Map.tileMap[goCoor.y-1][goCoor.x-1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x-1].getBounds()));
 		cornerRightClear = (Map.tileMap[goCoor.y-1][goCoor.x+1].getId() == TileID.bedRock && goRect.intersects(Map.tileMap[goCoor.y-1][goCoor.x+1].getBounds()));
 		return !notClear && !cornerLeftClear && !cornerRightClear;

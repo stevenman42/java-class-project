@@ -42,19 +42,21 @@ public class Player extends GameObject{
 	
 
 	public void tick() {
+		Point p = getNearestPoint();
+		Map.tileMap[p.y][p.x].resetScent();
+
 		if(Physics.collision(this, Game.EnemyIDList, handler)){
-			Game.State = Game.STATE.MENU;
+			Game.exitGame();
 		}
 		if(dX > 0 && Physics.clearRight(this, TileID.bedRock))
 			x += dX;
 		if(dX < 0 && Physics.clearLeft(this, TileID.bedRock))
 			x += dX;
-		if(dY > 0 && Physics.clearUp(this, TileID.bedRock))
+		if(dY > 0 && Physics.clearDown(this, TileID.bedRock))
 			y += dY;
-		if(dY < 0 && Physics.clearDown(this, TileID.bedRock))
+		if(dY < 0 && Physics.clearUp(this, TileID.bedRock))
 			y += dY;
 		if(dY != 0 || dX != 0){
-			Point p = getNearestPoint();
 			if(audioPlaying <= 0 && Map.tileMap[p.y][p.x].getId() == TileID.wood){
 				if(leftFoot || audioPlaying != 0){
 					audio = new Audio("RES/Audio/GravelStep.wav");

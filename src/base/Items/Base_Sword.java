@@ -1,12 +1,12 @@
 package base.Items;
 
-public abstract class Base_Sword extends GameItem{
+public abstract class Base_Sword extends Item{
 
 	protected int swordDmg, swordCoolDown;
 
 	
-	public Base_Sword(String name, ItemID id, int swordDmg) {
-		super(name, id);
+	public Base_Sword(String name, ItemID id, String imgName, int swordDmg) {
+		super(name, id, imgName);
 		this.swordDmg = swordDmg;
 
 	}

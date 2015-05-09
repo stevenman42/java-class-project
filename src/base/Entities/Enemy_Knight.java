@@ -3,33 +3,66 @@ package base.Entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 import base.Physics;
 import base.Map.TileID;
+import base.Pathfinding.Scent;
 
 public class Enemy_Knight extends Enemy{
 
+	private boolean following, firstFollow = true;
+	private boolean isRandom = true;
+	private int lastDir = -1;
+	
 	public Enemy_Knight(float x, float y, ID id, float width, float height, int health) {
 		super(x, y, id, width, height, health);
-		//setDX(1);
-		//setDY(2);
+		setDX(1);
+		setDY(-1);
 	}
 
 	public void tick() {
+		super.tick();
 		float lastX = x;
 		float lastY = y;
 		if(dX > 0 && Physics.clearRight(this, TileID.bedRock))
 			x += dX;
 		if(dX < 0 && Physics.clearLeft(this, TileID.bedRock))
 			x += dX;
-		if(dY > 0 && Physics.clearUp(this, TileID.bedRock))
+		if(dY > 0 && Physics.clearDown(this, TileID.bedRock))
 			y += dY;
-		if(dY < 0 && Physics.clearDown(this, TileID.bedRock))
+		if(dY < 0 && Physics.clearUp(this, TileID.bedRock))
 			y += dY;
+		
+		following = Scent.isScent(this);
+		if(following){
+			Point p = getNearestPoint();
+				
+				Point nextPoint = Scent.findScent(this);
+				if(nextPoint.x > p.x){
+					dX = 2;
+				} else if(nextPoint.x < p.x){
+					dX = -2;
+				} else if(nextPoint.x == p.x){
+					dX = 0;
+				}
+				if(nextPoint.y > p.y){
+					dY = 2;
+				} else if(nextPoint.y < p.y){
+					dY = -2;
+				} else if(nextPoint.y == p.y){
+					dY = 0;
+				}
+				
+		} else {
 		if(lastX == x)
 			dX = -dX;
-		if(lastY == y)
+		if(lastY == y){
 			dY = -dY;
+		}
+	}
+
+		
 	}
 	
 	public void render(Graphics g, Graphics2D g2){

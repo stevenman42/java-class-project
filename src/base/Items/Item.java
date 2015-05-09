@@ -5,13 +5,15 @@ import java.awt.Toolkit;
 
 public class Item {
 	
-	private String name;
+	protected String name;
 	
-	private String id;
+	protected ItemID id;
 	
-	private Image image;
+	protected Image image;
 	
-	public Item(String name, String id, String img){
+	protected boolean isActive;
+	
+	public Item(String name, ItemID id, String img){
 		
 		this.name = name;
 		this.id = id;
@@ -21,14 +23,18 @@ public class Item {
 		if(image == null){
 			System.err.println("coulden't create an image");
 		}
-		
+		isActive = false;		
 	}
 	
 	public String getName(){
 		return name;
 	}
 	
-	public String getID(){
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public ItemID getID(){
 		return id;
 	}
 	
@@ -39,6 +45,12 @@ public class Item {
 	public boolean equals(Object obj){
 		Item i = (Item) obj;
 		return i.getID().equals(id) && i.getName().equals(name);
+	}
+	public void setIsActive(boolean b){
+		isActive = b;
+	}
+	public boolean isActive(){
+		return isActive;
 	}
 	
 }

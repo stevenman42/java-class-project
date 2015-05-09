@@ -24,6 +24,9 @@ public class Handler {
 			GameObject tempObject = object.get(i);
 			if(tempObject.getId() != ID.Light)
 				g2.setClip(Game.clipArea(this));
+			if(Game.debug){
+				g2.setClip(null);
+			}
 			tempObject.render(g,g2);
 			g2.setClip(null);
 		}

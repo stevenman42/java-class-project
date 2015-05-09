@@ -8,14 +8,35 @@ import base.Game;
 
 public class Tile extends MapObject{
 	
+	private int scent, scentCounter = 15;
 
 	public Tile(float x, float y, TileID id) {
 		super(y*32, x*32, id);
-		//Map.tileMap[(int)y][(int)x] = this;
+		scent = 0;
+	}
+	
+	
+	public void updateScent(){
+		scentCounter--;
+		if(scentCounter <= 0){
+			scent--;
+			scentCounter = 5;			
+		}
+		if(scent < 0)
+			scent = 0;
+	}
+	
+	public void resetScent(){
+		scent = 100;
+	}
+	public int getScent(){
+		return scent;
 	}
 
 	public void tick() {
-		
+		if(id != TileID.black || id != TileID.bedRock){
+			updateScent();
+		}
 	}
 
 	public void render(Graphics2D g2) {
