@@ -17,6 +17,7 @@ public class Ray {
 			double slope = (((double)end.y/start.y)/(double)end.x/start.x);
 			int val = (int) ( -slope*i - start.y);
 			Point test = Physics.getNearestPoint(i, val);
+			System.out.println(test.y/32 + " || " + test.x/32);
 			if(Map.tileMap[test.y/32][test.x/32].getId() == TileID.bedRock){
 				LOS = false;
 			}
