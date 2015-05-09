@@ -267,10 +267,8 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void render(){
-		//if(noMenu)
-		//	this.requestFocus();
-		//LEAVE THIS OUT SO THE OPTIONS MENU CAN WORK
-		//No, we are going to use them both. Simply make a boolean that says if there isnt another menu open request focus
+		if(Game.State == Game.STATE.GAME)
+			this.requestFocus();
 		
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null){
