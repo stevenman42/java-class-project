@@ -102,22 +102,27 @@ public class LevelGenerator {
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
-				if (level[centerYList[a] + 2][i] == 0)
-					level[centerYList[a] + 2][i] = wallID;
-				if (level[centerYList[a] - 2][i] == 0) 
-					level[centerYList[a] - 2][i] = wallID;
-				level[centerYList[a]][i] = hallID;
-				level[centerYList[a]-1][i] = hallID;
-				level[centerYList[a]+1][i] = hallID;
 				
 				try{
-					if (level[centerYList[a] + 2][i] == 0)
-						level[centerYList[a] + 2][i] = wallID;
-					if (level[centerYList[a] - 2][i] == 0) 
-						level[centerYList[a] - 2][i] = wallID;
-					level[centerYList[a]][i] = hallID;
-					level[centerYList[a]-1][i] = hallID;
-					level[centerYList[a]+1][i] = hallID;
+					if (level[centerYList[a] + 3][i] == nullID)
+						level[centerYList[a] + 3][i] = wallID;
+					if (level[centerYList[a] - 3][i] == nullID) 
+						level[centerYList[a] - 3][i] = wallID;
+				
+					if (level[centerYList[a]][i] == nullID)
+						level[centerYList[a]][i] = hallID;
+				
+					if (level[centerYList[a] - 1][i] == nullID)
+						level[centerYList[a] - 1][i] = hallID;
+					if (level[centerYList[a] + 1][i] == nullID)
+						level[centerYList[a] + 1][i] = hallID;
+				
+					if (level[centerYList[a] + 2][i] == nullID)
+						level[centerYList[a] + 2][i] = hallID;
+					if (level[centerYList[a] - 2][i] == nullID)
+						level[centerYList[a] - 2][i] = hallID;
+				
+
 				}catch(ArrayIndexOutOfBoundsException e){
 					System.out.println(i);
 					System.out.println(Arrays.toString(centerXList));
@@ -126,25 +131,34 @@ public class LevelGenerator {
 			
 			if (centerYList[a] < centerYList[a + 1]){
 				for (int i = centerYList[a]; i < centerYList[a + 1]; i ++){
-					if (level[i][centerXList[a + 1] + 2] == 0)
-						level[i][centerXList[a + 1] + 2] = wallID;
-					if (level[i][centerXList[a + 1] - 2] == 0) 
-						level[i][centerXList[a + 1] - 2] = wallID;
-					level[i][centerXList[a + 1]] = hallID;
-					level[i][centerXList[a + 1]-1] = hallID;
-					level[i][centerXList[a + 1]+1] = hallID;
+					if (level[i][centerXList[a + 1] + 3] == 0)
+						level[i][centerXList[a + 1] + 3] = wallID;
+					if (level[i][centerXList[a + 1] - 3] == 0) 
+						level[i][centerXList[a + 1] - 3] = wallID;
+					
+					if (level[i][centerXList[a + 1]] == nullID)
+						level[i][centerXList[a + 1]] = hallID;
+					
+					if (level[i][centerXList[a + 1] - 1] == nullID)
+						level[i][centerXList[a + 1] - 1] = hallID;
+					if (level[i][centerXList[a + 1] + 1] == nullID)
+						level[i][centerXList[a + 1] + 1] = hallID;
 				}				
 			}
 			
 			else if (centerYList[a] > centerYList[a + 1]){
 				for (int i = centerYList[a]; i > centerYList[a + 1]; i --){
-					if (level[i][centerXList[a + 1] + 2] == 0)
-						level[i][centerXList[a + 1]+2] = wallID;
-					if (level[i][centerXList[a + 1] - 2] == 0) 
-						level[i][centerXList[a + 1]-2] = wallID;
-					level[i][centerXList[a + 1]] = hallID;
-					level[i][centerXList[a + 1]+1] = hallID;
-					level[i][centerXList[a + 1]-1] = hallID;
+					if (level[i][centerXList[a + 1] + 3] == 0)
+						level[i][centerXList[a + 1] + 3] = wallID;
+					if (level[i][centerXList[a + 1] - 3] == 0) 
+						level[i][centerXList[a + 1] - 3] = wallID;
+					
+					if (level[i][centerXList[a + 1]] == nullID)
+						level[i][centerXList[a + 1]] = hallID;
+					if (level[i][centerXList[a + 1] + 1] == nullID)
+						level[i][centerXList[a + 1] + 1] = hallID;
+					if (level[i][centerXList[a + 1] - 1] == nullID)
+						level[i][centerXList[a + 1] - 1] = hallID;
 				}
 			}
 			
