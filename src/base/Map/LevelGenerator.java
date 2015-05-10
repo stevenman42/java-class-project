@@ -159,6 +159,10 @@ public class LevelGenerator {
 						level[i][centerXList[a + 1] + 1] = hallID;
 					if (level[i][centerXList[a + 1] - 1] == nullID)
 						level[i][centerXList[a + 1] - 1] = hallID;
+					if (level[i][centerXList[a + 1] + 2] == nullID)
+						level[i][centerXList[a + 1] + 2] = hallID;
+					if (level[i][centerXList[a + 1] - 2] == nullID)
+						level[i][centerXList[a + 1] - 2] = hallID;
 				}
 			}
 			
