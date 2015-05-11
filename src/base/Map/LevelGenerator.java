@@ -203,6 +203,8 @@ public class LevelGenerator {
 				}				
 			}
 			
+			//hm
+			
 			else if (centerYList[a] > centerYList[a + 1]){ // if the halls need to go up
 				for (int i = centerYList[a]; i > centerYList[a + 1]; i --){
 					int offset = (int)(Math.random() * (1 - -1 + 1) ) + -1;
