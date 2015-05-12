@@ -98,53 +98,132 @@ public class LevelGenerator {
 			centerYList[i] = (originYList[i] + oppositeYList[i]) / 2;
 		}
 		
+		
 		for (int a = 0; a < centerXList.length - 1; a ++){
+			
+			int pivotX = 0; // the values of the points where the halls change directions
+			int pivotY = centerYList[a];
+			
+			
 			
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
-				if (level[centerYList[a] + 2][i] == 0)
-					level[centerYList[a] + 2][i] = wallID;
-				if (level[centerYList[a] - 2][i] == 0) 
-					level[centerYList[a] - 2][i] = wallID;
-				level[centerYList[a]][i] = hallID;
-				level[centerYList[a]-1][i] = hallID;
-				level[centerYList[a]+1][i] = hallID;
+				
+				int offset = (int)(Math.random() * (1 - -1 + 1) ) + -1;
 				
 				try{
-					if (level[centerYList[a] + 2][i] == 0)
-						level[centerYList[a] + 2][i] = wallID;
-					if (level[centerYList[a] - 2][i] == 0) 
-						level[centerYList[a] - 2][i] = wallID;
-					level[centerYList[a]][i] = hallID;
-					level[centerYList[a]-1][i] = hallID;
-					level[centerYList[a]+1][i] = hallID;
+					if (level[centerYList[a] + 3 + offset][i] == nullID)
+						level[centerYList[a] + 3 + offset][i] = wallID;
+					if (level[centerYList[a] - 3 + offset][i] == nullID) 
+						level[centerYList[a] - 3 + offset][i] = wallID;
+				
+					if (level[centerYList[a] + offset][i] == nullID)
+						level[centerYList[a] + offset][i] = hallID;
+				
+					if (level[centerYList[a] - 1 + offset][i] == nullID)
+						level[centerYList[a] - 1 + offset][i] = hallID;
+					if (level[centerYList[a] + 1 + offset][i] == nullID)
+						level[centerYList[a] + 1 + offset][i] = hallID;
+				
+					if (level[centerYList[a] + 2 + offset][i] == nullID)
+						level[centerYList[a] + 2 + offset][i] = hallID;
+					if (level[centerYList[a] - 2 + offset][i] == nullID)
+						level[centerYList[a] - 2 + offset][i] = hallID;
+				
+
 				}catch(ArrayIndexOutOfBoundsException e){
 					System.out.println(i);
 					System.out.println(Arrays.toString(centerXList));
 				}
+				
+				pivotX = i; // hahahahaha who even cares about efficiency not me that's for sure
 			}
+			pivotX += 1;
 			
-			if (centerYList[a] < centerYList[a + 1]){
+			
+			// who even needs loops I can just hardcode this why not I don't have anything better to do
+			level[pivotY][pivotX] = 4;
+			level[pivotY][pivotX + 1] = 4;
+			level[pivotY][pivotX - 1] = 4;
+			level[pivotY][pivotX + 2] = 4;
+			level[pivotY][pivotX - 2] = 4;
+
+			level[pivotY + 1][pivotX] = 4;
+			level[pivotY + 1][pivotX + 1] = 4;
+			level[pivotY + 1][pivotX - 1] = 4;
+			level[pivotY + 1][pivotX + 2] = 4;
+			level[pivotY + 1][pivotX - 2] = 4;
+			
+			level[pivotY - 1][pivotX] = 4;
+			level[pivotY - 1][pivotX + 1] = 4;
+			level[pivotY - 1][pivotX - 1] = 4;
+			level[pivotY - 1][pivotX + 2] = 4;
+			level[pivotY - 1][pivotX - 2] = 4;
+			
+			level[pivotY - 2][pivotX] = 4;
+			level[pivotY - 2][pivotX + 1] = 4;
+			level[pivotY - 2][pivotX - 1] = 4;
+			level[pivotY - 2][pivotX + 2] = 4;
+			level[pivotY - 2][pivotX - 2] = 4;
+			
+			level[pivotY + 2][pivotX] = 4;
+			level[pivotY + 2][pivotX + 1] = 4;
+			level[pivotY + 2][pivotX - 1] = 4;
+			level[pivotY + 2][pivotX + 2] = 4;
+			level[pivotY + 2][pivotX - 2] = 4;
+
+			
+			
+			System.out.println("X: " + pivotX + " Y: " + pivotY);
+			
+			//int offset = (int)(Math.random() * (1 - -1 + 1) ) + -1;
+			
+			if (centerYList[a] < centerYList[a + 1]){ // if the halls need to go down
 				for (int i = centerYList[a]; i < centerYList[a + 1]; i ++){
-					if (level[i][centerXList[a + 1] + 2] == 0)
-						level[i][centerXList[a + 1] + 2] = wallID;
-					if (level[i][centerXList[a + 1] - 2] == 0) 
-						level[i][centerXList[a + 1] - 2] = wallID;
-					level[i][centerXList[a + 1]] = hallID;
-					level[i][centerXList[a + 1]-1] = hallID;
-					level[i][centerXList[a + 1]+1] = hallID;
+					int offset = (int)(Math.random() * (1 - -1 + 1) ) + -1;
+					if (level[i][centerXList[a + 1] + 3 + offset] == 0)
+						level[i][centerXList[a + 1] + 3 + offset] = wallID;
+					if (level[i][centerXList[a + 1] - 3 + offset] == 0) 
+						level[i][centerXList[a + 1] - 3 + offset] = wallID;
+					
+					if (level[i][centerXList[a + 1] + offset] == nullID)
+						level[i][centerXList[a + 1] + offset] = hallID;
+					
+					if (level[i][centerXList[a + 1] - 1 + offset] == nullID)
+						level[i][centerXList[a + 1] - 1 + offset] = hallID;
+					if (level[i][centerXList[a + 1] + 1 + offset] == nullID)
+						level[i][centerXList[a + 1] + 1 + offset] = hallID;
+					
+					if (level[i][centerXList[a + 1] + 2 + offset] == nullID)
+						level[i][centerXList[a + 1] + 2 + offset] = hallID;
+					if (level[i][centerXList[a + 1] - 2 + offset] == nullID)
+						level[i][centerXList[a + 1] - 2 + offset] = hallID;
+					
+					
 				}				
 			}
 			
-			else if (centerYList[a] > centerYList[a + 1]){
+			//hm
+			
+			else if (centerYList[a] > centerYList[a + 1]){ // if the halls need to go up
 				for (int i = centerYList[a]; i > centerYList[a + 1]; i --){
-					if (level[i][centerXList[a + 1] + 2] == 0)
-						level[i][centerXList[a + 1]+2] = wallID;
-					if (level[i][centerXList[a + 1] - 2] == 0) 
-						level[i][centerXList[a + 1]-2] = wallID;
-					level[i][centerXList[a + 1]] = hallID;
-					level[i][centerXList[a + 1]+1] = hallID;
-					level[i][centerXList[a + 1]-1] = hallID;
+					int offset = (int)(Math.random() * (1 - -1 + 1) ) + -1;
+					if (level[i][centerXList[a + 1] + 3 + offset] == 0)
+						level[i][centerXList[a + 1] + 3 + offset] = wallID;
+					if (level[i][centerXList[a + 1] - 3 + offset] == 0) 
+						level[i][centerXList[a + 1] - 3 + offset] = wallID;
+					
+					if (level[i][centerXList[a + 1] + offset] == nullID)
+						level[i][centerXList[a + 1] + offset] = hallID;
+					if (level[i][centerXList[a + 1] + 1 + offset] == nullID)
+						level[i][centerXList[a + 1] + 1 + offset] = hallID;
+					if (level[i][centerXList[a + 1] - 1 + offset] == nullID)
+						level[i][centerXList[a + 1] - 1 + offset] = hallID;
+					
+					if (level[i][centerXList[a + 1] + 2 + offset] == nullID)
+						level[i][centerXList[a + 1] + 2 + offset] = hallID;
+					if (level[i][centerXList[a + 1] - 2 + offset] == nullID)
+						level[i][centerXList[a + 1] - 2 + offset] = hallID;
 				}
 			}
 			
