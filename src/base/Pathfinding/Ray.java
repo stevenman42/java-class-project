@@ -10,18 +10,51 @@ import base.Map.TileID;
 
 public class Ray {
 
-	public static boolean castRay(GameObject o){
+	public static boolean castRay(GameObject obj){
 		boolean LOS = true;
-		Point start = new Point((int)o.getX(),(int)o.getY()), end = new Point((int)Player.staticX,(int)Player.staticY);
-		for(int i = start.x; i < end.x; i++){
-			double slope = (((double)end.y/start.y)/(double)end.x/start.x);
-			int val = (int) ( -slope*i - start.y);
-			Point test = Physics.getNearestPoint(i, val);
-			System.out.println(test.y/32 + " || " + test.x/32);
-			if(Map.tileMap[test.y/32][test.x/32].getId() == TileID.bedRock){
-				LOS = false;
-			}
+
+		Point p = Physics.getNearestPoint(Player.staticX, Player.staticY);
+		Point o = obj.getNearestPoint();
+		int deltaX = o.x-p.x, deltaY = o.y-p.y;
+		int y = p.y;
+		if(Math.abs(deltaX) < Math.abs(deltaY) || Math.abs(deltaX) <= 10){
+
 		}
+		else{ //(Math.abs(deltaX) > Math.abs(deltaY)){
+			int slope = Math.abs(deltaY/deltaX);
+			if(deltaX > 0){
+				for(int x = p.x; x <= o.x;x++){
+					if(deltaY > 0){
+						y -= slope;
+					}
+					else if(deltaY < 0){
+						y += slope;
+					}
+					if(Map.tileMap[y][x].getId() == TileID.bedRock){
+						return false;
+					}
+				}
+			}
+			else if(deltaX < 0){
+				for(int x = p.x; x >= o.x;x--){
+					if(deltaY > 0){
+						y -= slope;
+					}
+					else if(deltaY < 0){
+						y += slope;
+					}
+					if(Map.tileMap[y][x].getId() == TileID.bedRock){
+						return false;
+					}
+				}
+
+			}
+
+		}
+
+
+
 		return LOS;
+
 	}
 }

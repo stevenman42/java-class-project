@@ -12,6 +12,7 @@ public abstract class Enemy extends GameObject{
 	protected float width, height;
 	protected int health;
 	protected boolean dormant;
+	protected int speed = 1;
 	
 	public Enemy(float x, float y, ID id, float width, float height, int health) {
 		super(x, y, id);
@@ -22,9 +23,6 @@ public abstract class Enemy extends GameObject{
 	}
 
 	public void tick(){
-		if(Ray.castRay(this)){
-			System.out.println("Has LOS");
-		}
 	}
 	
 	public void render(Graphics2D g2) {

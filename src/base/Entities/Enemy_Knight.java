@@ -7,6 +7,7 @@ import java.awt.Point;
 
 import base.Physics;
 import base.Map.TileID;
+import base.Pathfinding.Ray;
 import base.Pathfinding.Scent;
 
 public class Enemy_Knight extends Enemy{
@@ -33,16 +34,26 @@ public class Enemy_Knight extends Enemy{
 			y += dY;
 		if(dY < 0 && Physics.clearUp(this, TileID.bedRock))
 			y += dY;
-		
-		following = Scent.isScent(this);
-		if(following){
-			Point p = getNearestPoint();
+		if(Ray.castRay(this)){
+			if(x > Player.staticX)
+				dX = -speed;
+			if(x < Player.staticX)
+				dX = speed;
+			if(y < Player.staticY)
+				dY = speed;
+			if(y > Player.staticY)
+				dY = -speed;
+		}
+		else{
+			following = Scent.isScent(this);
+			if(following){
+				Point p = getNearestPoint();
 				
 				Point nextPoint = Scent.findScent(this);
 				if(nextPoint.x > p.x){
 					dX = 2;
 				} else if(nextPoint.x < p.x){
-					dX = -2;
+						dX = -2;
 				} else if(nextPoint.x == p.x){
 					dX = 0;
 				}
@@ -54,13 +65,13 @@ public class Enemy_Knight extends Enemy{
 					dY = 0;
 				}
 				
-		} else {
-		if(lastX == x)
-			dX = -dX;
-		if(lastY == y){
-			dY = -dY;
+			} else {
+			if(lastX == x)
+				dX = -dX;
+			if(lastY == y)
+				dY = -dY;
+			}
 		}
-	}
 
 		
 	}

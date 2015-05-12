@@ -184,7 +184,7 @@ public class Game extends Canvas implements Runnable{
 		System.out.println(p);
 		//manual enemy making!!!!!!!!!!!!!!!!!!!!1
 		//handler.addObject(new Enemy_Knight(px+32*7,py*32+7, ID.Enemy_Knight, 32, 32, 100));
-		handler.addObject(new Enemy_Knight(px+50,py+50,ID.Enemy_Knight,32,32,100));
+		handler.addObject(new Enemy_Knight(px+200,py+200,ID.Enemy_Knight,32,32,100));
 		
 		Player.container.addItem(ItemList.swastika);
 		

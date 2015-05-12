@@ -15,7 +15,10 @@ import base.Map.TileID;
 public class Physics {
 	
 	public static Point getNearestPoint(int x, int y){
-		return new Point(x/32,y/32);
+		return new Point((x+16)/32,(y+16)/32);
+	}
+	public static Point getNearestPoint(float x, float y){
+		return getNearestPoint((int)x,(int)y);
 	}
 	public static boolean collisionList(GameObject go, LinkedList<MapObject> moList, TileID id){
 		for(int i = 0; i < moList.size(); i++){
