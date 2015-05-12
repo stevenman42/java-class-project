@@ -98,6 +98,7 @@ public class LevelGenerator {
 			centerYList[i] = (originYList[i] + oppositeYList[i]) / 2;
 		}
 		
+		int offset, lastOffset = -2;
 		
 		for (int a = 0; a < centerXList.length - 1; a ++){
 			
@@ -109,7 +110,23 @@ public class LevelGenerator {
 			for (int i = centerXList[a]; i < centerXList[a + 1]; i ++){
 				// creates the horizontal halls
 				
-				int offset = (int)(Math.random() * (1 - -1 + 1) ) + -1;
+				offset = (int)(Math.random() * (1 - -1 + 1) ) + -1; // from -1 to 1 inclusive
+				if (lastOffset != -2){
+					
+					if (lastOffset == -1){
+						if (offset == 1){
+							offset = 0;
+						}
+					}
+					else if (offset == 1){
+						if (offset == -1){
+							offset = 0;
+						}
+					}
+				}
+				if (lastOffset == -2){
+					lastOffset = offset;
+				}
 				
 				try{
 					if (level[centerYList[a] + 3 + offset][i] == nullID)
@@ -180,7 +197,26 @@ public class LevelGenerator {
 			
 			if (centerYList[a] < centerYList[a + 1]){ // if the halls need to go down
 				for (int i = centerYList[a]; i < centerYList[a + 1]; i ++){
-					int offset = (int)(Math.random() * (1 - -1 + 1) ) + -1;
+					
+					offset = (int)(Math.random() * (1 - -1 + 1) ) + -1; // from -1 to 1 inclusive
+					if (lastOffset != -2){
+						
+						if (lastOffset == -1){
+							if (offset == 1){
+								offset = 0;
+							}
+						}
+						else if (offset == 1){
+							if (offset == -1){
+								offset = 0;
+							}
+						}
+					}
+					if (lastOffset == -2){
+						lastOffset = offset;
+					}
+					
+					
 					if (level[i][centerXList[a + 1] + 3 + offset] == 0)
 						level[i][centerXList[a + 1] + 3 + offset] = wallID;
 					if (level[i][centerXList[a + 1] - 3 + offset] == 0) 
@@ -207,7 +243,25 @@ public class LevelGenerator {
 			
 			else if (centerYList[a] > centerYList[a + 1]){ // if the halls need to go up
 				for (int i = centerYList[a]; i > centerYList[a + 1]; i --){
-					int offset = (int)(Math.random() * (1 - -1 + 1) ) + -1;
+					
+					offset = (int)(Math.random() * (1 - -1 + 1) ) + -1; // from -1 to 1 inclusive
+					if (lastOffset != -2){
+						
+						if (lastOffset == -1){
+							if (offset == 1){
+								offset = 0;
+							}
+						}
+						else if (offset == 1){
+							if (offset == -1){
+								offset = 0;
+							}
+						}
+					}
+					if (lastOffset == -2){
+						lastOffset = offset;
+					}
+					
 					if (level[i][centerXList[a + 1] + 3 + offset] == 0)
 						level[i][centerXList[a + 1] + 3 + offset] = wallID;
 					if (level[i][centerXList[a + 1] - 3 + offset] == 0) 
