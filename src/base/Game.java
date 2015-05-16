@@ -47,7 +47,7 @@ public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 6969696969696969696L;
 	
 	//set window size
-	public static final int WIDTH = 720, HEIGHT = WIDTH / 14 * 9;
+	public static final int WIDTH = 720, HEIGHT = WIDTH;// / 14 * 9;
 	public static final int MAPWIDTH = 128*32, MAPHEIGHT = 128*32;
 	
 	public static final Image opacity25 = Toolkit.getDefaultToolkit().createImage("Res/Textures/opacity_25P.jpg");
