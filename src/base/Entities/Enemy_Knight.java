@@ -53,7 +53,7 @@ public class Enemy_Knight extends Enemy{
 				LOS = false;
 			}
 		}
-		else{
+		else {
 			following = Scent.isScent(this);
 			if(following){
 				Point p = getNearestPoint();
