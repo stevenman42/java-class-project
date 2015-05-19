@@ -23,6 +23,7 @@ public abstract class Enemy extends GameObject{
 	}
 
 	public void tick(){
+		
 	}
 	
 	public void render(Graphics2D g2) {

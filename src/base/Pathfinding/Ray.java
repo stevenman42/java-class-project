@@ -41,7 +41,7 @@ public class Ray {
 				for(currX = p.x; currX < o.x; currX++){
 					currY += (double)deltaY/deltaX;
 					t = Physics.getNearestPoint(currX, (int)currY);
-					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock) return false;
+					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock ||  Map.tileMap[t.y][t.x].getId() == TileID.missing) return false;
 				}
 				return true;
 
@@ -55,7 +55,7 @@ public class Ray {
 				for(currX = p.x; currX > o.x; currX--){
 					currY -= (double)deltaY/deltaX;
 					t = Physics.getNearestPoint(currX, (int)currY);
-					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock) return false;
+					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock ||  Map.tileMap[t.y][t.x].getId() == TileID.missing) return false;
 				}
 				return true;
 
@@ -69,7 +69,7 @@ public class Ray {
 				for(currX = p.x; currX > o.x; currX--){
 					currY -= (double)deltaY/deltaX;
 					t = Physics.getNearestPoint(currX, (int)currY);
-					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock) return false;
+					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock ||  Map.tileMap[t.y][t.x].getId() == TileID.missing) return false;
 				}
 				return true;
 			}
@@ -85,7 +85,7 @@ public class Ray {
 				for(currY = p.y; currY > o.y; currY--){
 					currX += (double)deltaX/deltaY;
 					t = Physics.getNearestPoint((int)currX, currY);
-					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock) return false;
+					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock ||  Map.tileMap[t.y][t.x].getId() == TileID.missing) return false;
 				}
 				return true;
 			}
@@ -98,7 +98,7 @@ public class Ray {
 				for(currY = p.y; currY < o.y; currY++){
 					currX += (double)deltaX/deltaY;
 					t = Physics.getNearestPoint((int)currX, currY);
-					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock) return false;
+					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock ||  Map.tileMap[t.y][t.x].getId() == TileID.missing) return false;
 				}
 				return true;
 			}
@@ -110,7 +110,7 @@ public class Ray {
 				for(currY = p.y; currY < o.y; currY++){
 					currX -= (double)deltaX/deltaY;
 					t = Physics.getNearestPoint((int)currX, currY);
-					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock) return false;
+					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock ||  Map.tileMap[t.y][t.x].getId() == TileID.missing) return false;
 				}
 				return true;
 			}
@@ -122,7 +122,7 @@ public class Ray {
 				for(currY = p.y; currY > o.y; currY--){
 					currX -= (double)deltaX/deltaY;
 					t = Physics.getNearestPoint((int)currX, currY);
-					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock) return false;
+					if(Map.tileMap[t.y][t.x].getId() == TileID.bedRock ||  Map.tileMap[t.y][t.x].getId() == TileID.missing) return false;
 				}
 				return true;
 			}
